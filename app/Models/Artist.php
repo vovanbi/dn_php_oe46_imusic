@@ -15,4 +15,8 @@ class Artist extends Model
     {
         return $this->hasMany(Song::class);
     }
+    public function scopeArtist($query)
+    {
+        return $query->orderBy('name', 'desc');
+    }
 }

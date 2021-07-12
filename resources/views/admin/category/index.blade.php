@@ -20,7 +20,8 @@
       <!-- /.row -->
 
       <div class="table-responsive">
-          <h3>Q@lang('category.cateManage') <a href="" ><i class="fa fa-plus-circle"></i></a> </h3>
+
+          <h3>@lang('category.cateManage') <a href="" ><i class="fa fa-plus-circle"></i></a> </h3>
           <table id="dtBasicExample" class="table table-striped table-sm" cellspacing="0" width="100%">
               <thead>
               <tr>
@@ -34,7 +35,6 @@
 
                 </th>
                 <th class="th-sm">@lang('category.cateAction')
-
                 </th>
               </tr>
               </thead>

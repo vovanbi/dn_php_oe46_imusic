@@ -20,5 +20,7 @@ return [
     'albumn'=>'Albumn',
     'signer'=>'Singer',
     'comment'=>'Comment',
+    'accout'=>'Accout',
+    'logout'=>'Logout',
 
 ];
