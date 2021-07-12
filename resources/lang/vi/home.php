@@ -37,5 +37,6 @@ return [
     'delUse' =>'Xóa tài khoản',
     'changesuccss'=>'Thay đổi mật khẩu thành công',
     'repair'=>'Nhập lại mật khẩu không chính xác',
-    'notpass'='Mật khẩu cũ không chính '
+    'notpass'='Mật khẩu cũ không chính xác',
+    'top'=>'Top bài hát',
 ];

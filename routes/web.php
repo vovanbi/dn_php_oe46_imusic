@@ -61,21 +61,20 @@ Route::group(['middleware' => 'auth'], function () {
     ->name('delPlaylistSong');
     Route::post('favorite-song/{song}', [PlaylistController::class, 'addFavoriteSong'])->name('addFavoriteSong');
 });
+
+Route::get('/songs/{songId}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
+
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
 Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
 
 Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');
-
-Route::get('/song/{id}', [App\Http\Controllers\HomeController::class, 'songPlaying']);
-
 Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
 ->name('detail-song')-> middleware('auth');
 
 Route::get('/hot/{id}', [App\Http\Controllers\HomeController::class, 'hotAlbumMusic']);
 
-Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
-    ->name('detail-song')-> middleware('auth');
+Route::get('/top-trending-song', [App\Http\Controllers\HomeController::class, 'topTrending'])->name('top-trending');
 
 Route::post('/song-comment', [App\Http\Controllers\SongController::class, 'storeComent']);
 

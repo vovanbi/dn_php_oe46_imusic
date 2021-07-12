@@ -38,4 +38,5 @@ return [
     'changesuccss'=>'Change password success',
     'repair'=>'Re-enter incorrect password',
     'notpass'=>'Old password is not precision'
+    'top' => 'Top Trending',
 ];

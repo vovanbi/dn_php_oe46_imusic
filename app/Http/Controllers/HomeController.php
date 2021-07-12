@@ -8,6 +8,7 @@ use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Models\Category;
+use App\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -71,5 +72,13 @@ class HomeController extends Controller
         $albums = Album::where('hot', $id)->get();
 
         return response()->json(['songs' => $songs, 'albums' => $albums], 200);
+    }
+
+    public function topTrending()
+    {
+        $songs = Song::select('view', 'name', 'id', 'image')->whereMonth('created_at', date('m'))
+        ->orderBy('view', 'desc')->get();
+
+        return view('music.top-trending', compact('songs'));
     }
 }
