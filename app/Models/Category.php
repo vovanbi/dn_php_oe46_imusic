@@ -11,6 +11,8 @@ class Category extends Model
 
     protected $table = 'categories';
 
+    protected $fillable = ['name', 'parent_id'];
+
     public function songs()
     {
         return $this->hasMany(Song::class, 'cate_id', 'id');
@@ -29,5 +31,11 @@ class Category extends Model
     public function scopeIsParent($query)
     {
         return $query->where('parent_id', 0);
+    }
+
+    public function scopeorderByid($query)
+    {
+
+        return $query->orderBy('id');
     }
 }

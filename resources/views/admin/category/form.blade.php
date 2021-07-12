@@ -30,7 +30,7 @@
                         <option value='0' selected>@lang('category.cateParent')</option>
                     @if (isset($categoriesParent))
                         @foreach ($categoriesParent as $cate)
-                            <option value="{{$cate->id}}">{{$cate->name}}</option>
+                            <option value="{{$cate->id}}" {{ old('parent_id',isset($category->parent_id) ? $category->parent_id : '') == $cate->id ? "selected='selected'" : "" }}>{{$cate->name}}</option>
                         @endforeach
                     @endif
                 </select>

@@ -33,7 +33,7 @@
                     @if (isset($categories))
                         @foreach ($categories as $cate)
                             <tr id="category-{{ $cate->id }}">
-                                <td>{{ loopNo($categories, $loop) }}</td>
+                                <td>{{$loop->index}}</td>
                                 <td>{{ $cate->name }}</td>
                                 <td><button type="button"
                                         class="btn {{ $cate->parent_id != 0 ? 'btn-danger' : 'btn-success' }}">
