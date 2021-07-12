@@ -56,6 +56,7 @@
         <div class="article">
             <div class="article__content">
                 <h4>@lang('home.lyric') </h4>
+<<<<<<< HEAD
                   @if(isset($song->lyrics->content))
                    {!!$song->lyrics->content!!}
                    <br>

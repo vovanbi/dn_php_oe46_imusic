@@ -1200,6 +1200,7 @@ max-width: 400px;
 .rating-stars ul > li.star.selected > i.fa {
   color:#FF912C;
 }
+
 .dropdown-content_r a:hover {}
 
 .dropdown_r:hover .dropdown-content_r {display: block;
