@@ -12,5 +12,10 @@ mix.js('resources/js/app.js', 'public/js/app.js')
          'resources/theme_admin/css/dataTables.bootstrap4.min.css'
         ],'public/css/styles.css')
     .styles('resources/css/app.css','public/css/app.css')
+    .styles('resources/web/css/main.css','public/css/main.css')
     .js('resources/js/delartis.js','public/js/delartis.js')
-    .js('resources/js/delCategory.js', 'public/js/delCategory.js');
+    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js')
+    .js('resources/js/delCategory.js', 'public/js/delCategory.js')
+    .styles('resources/web/css/playmusic.css','public/css/playmusic.css')
+    .js('resources/web/js/playmusic.js', 'public/js/playmusic.js');
+

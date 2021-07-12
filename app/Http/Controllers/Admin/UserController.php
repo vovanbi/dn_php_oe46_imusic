@@ -87,11 +87,11 @@ class UserController extends Controller
     {
         try {
             $user = User::destroy($id);
-
-                return response()->json([
-                    'error' => false,
-                    'user' => $user
-                     ], 200);
+            
+            return response()->json([
+                'error' => false,
+                'user' => $user
+            ], 200);
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('user.Nodelete'));
         }
