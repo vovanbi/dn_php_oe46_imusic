@@ -20,4 +20,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Song::class);
     }
+
+    public function scopecountComment($query)
+    {
+        return $query->count();
+    }
 }

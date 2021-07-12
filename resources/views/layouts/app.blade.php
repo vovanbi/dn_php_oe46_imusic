@@ -17,10 +17,8 @@
         @include('layouts.header')
         @yield('content')
         @include('layouts.footer')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="{{asset('js/add_lyrc.js')}}"></script>
-        <script src="{{ asset('js/playmusic.js') }}"></script>
-        <script src="{{ asset('js/showsong.js')}}"></script>
-        <script src="{{asset('js/comment.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{asset('js/playmusic.js')}}"></script>
+    <script src="{{asset('js/showsong.js')}}"></script>
 </body>
 </html>
