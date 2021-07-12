@@ -44,6 +44,7 @@ class HomeController extends Controller
         $songs = Song::ofCategory($id)->get();
         $songs = $songs->map(function ($item) {
             $item->setAttribute('artist_name', $item->artist->name);
+
             return $item;
         });
 
@@ -55,12 +56,20 @@ class HomeController extends Controller
         $artists = Artist::getAll()->limit(6)->get();
         $albums  = Album::albumHot()->get();
         $songs = Song::songHot()->get();
+
+        return response()->json(['songs' => $songs, 'artists' => $artists , 'albums' => $albums], 200);
+    }
+
+    public function hotAlbumMusic($id)
+    {
+        $songs = Song::where('hot', $id)->get();
         $songs = $songs->map(function ($item) {
             $item->setAttribute('artist_name', $item->artist->name);
 
             return $item;
         });
+        $albums = Album::where('hot', $id)->get();
 
-        return response()->json(['songs' => $songs, 'artists' => $artists , 'albums' => $albums], 200);
+        return response()->json(['songs' => $songs, 'albums' => $albums], 200);
     }
 }

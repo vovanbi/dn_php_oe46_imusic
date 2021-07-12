@@ -20,13 +20,13 @@
             <div class="recently_played">
                 <h2>@lang('home.song')</h2>
                 <div class="row get_song">
-                        @foreach ($songs as $song)
-                            <a class="box_music song-list" href="" data-id = "{{ $song->id }}">
-                                <img src="{{ $song->image }}" alt="Loud Like Love">
-                                <h3>{{ $song->name }}</h3>
-                                <h4>{{ $song->artist->name }}</h4>
-                            </a>
-                        @endforeach
+                    @foreach ($songs as $song)
+                        <a class="box_music song-list" href="" data-id = "{{ $song->id }}">
+                            <img src="{{ $song->image }}" alt="Loud Like Love">
+                            <h3>{{ $song->name }}</h3>
+                            <h4>{{ $song->artist->name }}</h4>
+                        </a>
+                    @endforeach
                 </div>
             </div>
             <div class="album">
@@ -53,6 +53,6 @@
             </div>
         </div>
     </section>
-  </div>
+   </div>
 </div>
 @stop

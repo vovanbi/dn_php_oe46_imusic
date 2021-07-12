@@ -22,7 +22,6 @@ $(document).ready(function() {
                     success: function(data) {
                     $('#detail-song').html(data);
 
-
                     $("#formButton").click(function(evt) {
                          evt.preventDefault();
                             $("#form1").toggle();
