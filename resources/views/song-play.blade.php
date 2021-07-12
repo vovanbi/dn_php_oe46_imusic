@@ -7,8 +7,7 @@
                 <a class="pink_floyd" href="#"><span class="white-font">{{ $song->name }}</span></a>
             </div>
             <a class="heart" href="#"><i class="far fa-heart"></i></a>
-            <a class="folder" href="#"><i class="far fa-folder"></i></a>
-        </div>
+    </div>
         <div class="center">
             <div class="top">
                 <a class="random-song" href="#"><i class="fas fa-random"></i></a>
@@ -19,7 +18,7 @@
                 </a>
                 <a class="next-song" href="" data-id="{{ $song->id }}"><i class="fas fa-step-forward"></i></a>
                 <a class="repeat-song" href="#"><i class="fas fa-redo-alt"></i></a>
-            </div>  
+            </div>
             <div class="bottom">
                 <span class="current-time white-font"></span>
                 <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
@@ -28,9 +27,9 @@
             </div>
         </div>
         <div class="dx">
-            <a href="#"><i class="fas fa-list-ul"></i></a>
+            <a href="{{ route('detail-song',$song->id)}}"><i class="fas fa-list-ul"></i></a>
             <a href="#"><i class="fas fa-desktop"></i></a>
-            <input id="volProgress" class="volProgress" type="range" value="0.5" step="0.05" min="0" max="1">    
+            <input id="volProgress" class="volProgress" type="range" value="0.5" step="0.05" min="0" max="1">
         </div>
-    </div>
+</div>
 @endif  

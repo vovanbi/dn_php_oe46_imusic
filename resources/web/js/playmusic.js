@@ -8,7 +8,6 @@ $(document).ready(function() {
     $('.song-list').click(function(e) {
         e.preventDefault();
         var id = $(this).data('id');
-
         $.ajax({
             type:'get',
             url: '/'+id,
