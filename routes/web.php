@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AlbumController;
 use App\Http\Controllers\Admin\CategoryController;
 
 Route::get('/', function () {
@@ -17,4 +18,5 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('artist', App\Http\Controllers\Admin\ArtistController::class)->except('show', 'detroy');
     Route::resource('user', App\Http\Controllers\Admin\UserController::class)->except('show');
+    Route::resource('albums', AlbumController::class);
 });

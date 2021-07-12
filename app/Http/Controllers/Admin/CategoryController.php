@@ -11,14 +11,14 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('name')->paginate(config('app.paginateCategory'));
+        $categories = Category::orderBy('name')->paginate(config('app.paginate_num'));
 
         return view('admin.category.index', compact('categories'));
     }
 
     public function create()
     {
-        $categoriesParent = Category::where('parent_id', '=', config('app.categoryParent'))->get();
+        $categoriesParent = Category::where('parent_id', '=', config('app.paginate_num'))->get();
 
         return view('admin.category.create', compact('categoriesParent'));
     }

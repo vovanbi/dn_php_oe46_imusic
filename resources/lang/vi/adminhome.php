@@ -22,5 +22,4 @@ return [
     'comment'=>'Đánh giá',
     'accout'=>'Tài khoản',
     'logout'=>'Đăng xuất'
-
 ];

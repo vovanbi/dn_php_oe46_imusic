@@ -24,5 +24,4 @@ return [
     'cateDelete' => 'Xóa',
     'cateChild' => 'Con',
     'cateParent' => 'Cha',
-
 ];

@@ -22,5 +22,4 @@ return [
     'comment'=>'Comment',
     'accout'=>'Accout',
     'logout'=>'Logout',
-
 ];
