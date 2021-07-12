@@ -20,7 +20,6 @@
     <script src="{{asset('js/showsong.js')}}"></script>
     <script src="{{asset('js/hot_album_music.js')}}"></script>
     <script src="{{asset('js/profile.js')}}"></script>
-    <script src="{{ asset('js/playlist.js') }}"></script>
     <script src="{{asset('js/topTrending.js')}}"></script>
 </body>
 </html>

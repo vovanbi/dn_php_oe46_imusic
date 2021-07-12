@@ -15,8 +15,8 @@
         <article class="card-body mx-auto">
             <h4 class="card-title mt-3 text-center">Đăng nhập </h4>
             <p>
-                <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i> Đăng nhập bằng Google</a>
-                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> Đăng nhập bằng Facebook</a>
+                <a href="{{ route('social.oauth', 'google') }}" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i> Đăng nhập bằng Google</a>
+                <a href="{{ route('social.oauth', 'facebook') }}" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> Đăng nhập bằng Facebook</a>
             </p>
             <p class="divider-text">
                 <span class="bg-light">Hoặc</span>
