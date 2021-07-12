@@ -2,6 +2,13 @@
 
 return [
 
+    // constant for paginate category list
+
+    'paginateCategory' => '10',
+
+    // constant for categoryParent
+    'categoryParent' => '0',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

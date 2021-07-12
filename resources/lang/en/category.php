@@ -22,5 +22,7 @@ return [
     'cateManage' => 'Category Management',
     'cateEdit' => 'Edit',
     'cateDelete' => 'Delete',
+    'cateChild' => 'Child',
+    'cateParent' => 'Parent',
 
 ];

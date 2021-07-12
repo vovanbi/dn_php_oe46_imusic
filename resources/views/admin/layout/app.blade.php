@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>LMussic - Trang quản lý</title>
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.cs')}}s">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/sb-admin.css')}}">
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('') }}css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div id="wrapper">
@@ -71,12 +72,7 @@
                         <a href=""><i class="fa fa-fw fa-home"></i> @lang('adminhome.home')</a>
                     </li>
                     <li class="">
-                        <a href=""><i class="fa fa-fw fa-bar-chart-o"></i> @lang('adminhome.category')</a>
-
-                        <a href=""><i class="fa fa-fw fa-home"></i> @lang('adminhome.home') </a>
-                    </li>
-                    <li class="">
-                        <a href=""><i class="fa fa-fw fa-bar-chart-o"></i> @lang('adminhome.category') </a>
+                        <a href="{{ route('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> @lang('adminhome.category')</a>
                     </li>
                     <li class="">
                         <a href=""><i class="fa fa-play-circle-o" aria-hidden="true"></i> @lang('adminhome.song') </a>
@@ -109,9 +105,11 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{asset('js/showimg.js')}}"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="{{asset('js/delartis.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/delCategory.js')}}"></script>
 </body>
 </html>
