@@ -23,7 +23,7 @@
                 <label for="lyric"> @lang('lyric.content') :</label><br>
                 <textarea name="content" id="content" placeholder="Loi bai hat" rows="3" cols="81">{{old('content',isset($lyric->content) ? $lyric->content :'')}}</textarea>
             </div>
-              <button type="submit" class="btn btn-success"> @lang('artist.submit')</button>
+            <button type="submit" class="btn btn-success"> @lang('artist.submit')</button>
         </div>
     </div>
 </form>

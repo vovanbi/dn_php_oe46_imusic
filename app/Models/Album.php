@@ -20,4 +20,9 @@ class Album extends Model
     {
         return $this->belongsToMany(User::class, 'favorite_user_album', 'user_id', 'album_id');
     }
+
+    public function scopealbumHot($query)
+    {
+        return $query->where('hot', 1);
+    }
 }

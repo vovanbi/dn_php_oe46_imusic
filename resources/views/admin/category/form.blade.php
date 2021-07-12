@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1">@lang('category.cateType')</label>
                 <select class="form-control" name="parent_id">
-                        <option value="0" selected>@lang('category.cateParent')</option>
+                        <option value='0' selected>@lang('category.cateParent')</option>
                     @if (isset($categoriesParent))
                         @foreach ($categoriesParent as $cate)
                             <option value="{{$cate->id}}">{{$cate->name}}</option>

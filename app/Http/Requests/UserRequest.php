@@ -14,12 +14,12 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'fullname'=> 'required|max:50|',
-            'email'=> 'required | unique:users,email,'.$this->id,
-            'password'=> 'required',
-            'phone'=>'required',
+            'fullname'=> 'required|max:50',
+            'email'   => 'required|unique:users',
+            'phone'   => 'required',
+            'password'=> 'required|confirmed',
             'is_admin'=>'required',
-            'avatar'=> 'required |mimes:jpeg,png',
+            'avatar'  => 'nullable|mimes:jpeg,png',
         ];
     }
 
@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             'password.required'=> trans('user.required'),
             'phone.required'=> trans('user.required'),
             'is_admin.required'=> trans('user.required'),
-            'avatar.required'=> trans('user.required'),
+            'avatar.nullable'=> trans('user.required'),
             'avatar.mimes'=> trans('user.mimes'),
             'email.required'=> trans('user.required'),
             'email.unique'=> trans('user.unique'),

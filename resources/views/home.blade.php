@@ -2,12 +2,19 @@
 @section('content')
     <section class="box_main">
         <ul class="nav_bar_main">
-            <li><a href="#">New releases</a></li>
-            <li><a href="#">Charts</a></li>
-            <li><a href="#">Discover</a></li>
-            <li><a href="#">For you</a></li>
-            <li><a href="#">Genre</a></li>
-            <li><a href="#">Podcast</a></li>
+           @foreach($categories as $category)
+          <li>
+          <a class="_home">{{$category->name}}</a>
+             <ul class="sliding">
+               @foreach($category->children as $cate)
+              <li>
+                <a id="get_song" data-cate-id={{$cate->id}}>{{$cate->name}}</a>
+                <hr>
+              </li>
+               @endforeach
+            </ul>
+           </li>
+           @endforeach
         </ul>
         <div class="music">
             <div class="recently_played">
@@ -61,6 +68,6 @@
             </div>
         </div>
     </section>
-    </div>
-    </div>
+  </div>
+</div>
 @stop

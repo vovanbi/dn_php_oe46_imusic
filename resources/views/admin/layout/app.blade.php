@@ -68,8 +68,6 @@
                     </li>
                     <li class="">
                         <a href="{{ route('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> @lang('adminhome.category')</a>
-
-                        <a href=""><i class="fa fa-fw fa-bar-chart-o"></i> @lang('adminhome.category')</a>
                     </li>
                     <li class="">
                         <a href="{{ route('songs.index')}}"><i class="fa fa-play-circle-o" aria-hidden="true"></i> @lang('adminhome.song') </a>
