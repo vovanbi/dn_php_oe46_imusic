@@ -32,6 +32,9 @@ return [
 
     'lyric_active' => 'active',
 
+    'actionHot' => 'hot',
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
