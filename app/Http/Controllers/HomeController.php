@@ -34,8 +34,7 @@ class HomeController extends Controller
     {
         try {
             $song = Song::find($id);
-            $view = $song->view;
-            $song->view = ++$view;
+            $song->view += 1;
             $song->save();
 
             return view('song-play', compact('song'));
@@ -58,9 +57,9 @@ class HomeController extends Controller
 
     public function renderHome(Request $request)
     {
-        $artists = Artist::getAll()->limit(6)->get();
-        $albums  = Album::albumHot()->get();
-        $songs = Song::songHot()->get();
+        $songs = Song::orderBy('created_at', 'desc')->take(config('app.home_take_number'))->get();
+        $albums = Album::orderBy('created_at', 'desc')->take(config('app.home_take_number'))->get();
+        $artists = Artist::has('songs')->take(config('app.home_take_number'))->get();
 
         return response()->json(['songs' => $songs, 'artists' => $artists , 'albums' => $albums], 200);
     }

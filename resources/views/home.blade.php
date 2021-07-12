@@ -8,7 +8,7 @@
              <ul class="sliding">
                @foreach($category->children as $cate)
               <li>
-                <a id="get_song" data-cate-id={{$cate->id}}>{{$cate->name}}</a>
+                <a  class="get_song" data-cate-id={{$cate->id}}>{{$cate->name}}</a>
                 <hr>
               </li>
                @endforeach
@@ -18,12 +18,12 @@
         </ul>
         <div class="music">
             <div class="recently_played">
-                <h2>@lang('homePage.newestMusic')</h2>
-                <div class="row get_song">
+                <h2 class="title">@lang('homePage.newestMusic')</h2>
+                <div class="row list_song">
                     @if (isset($songs))
                         @foreach ($songs as $song)
                             <a class="box_music song-list" href="" data-id = "{{ $song->id }}">
-                                <img src="{{ $song->image }}" alt="Loud Like Love">
+                                <img src="/storage/{{ $song->image }}" alt="Loud Like Love">
                                 <h3>{{ $song->name }}</h3>
                                 <h4>{{ $song->artist->name }}</h4>
                             </a>

@@ -55,6 +55,7 @@
 .repeat-song.active i {
     color: var(--primary-color) !important;
 }
+
 .white-font {
     color: #fff !important;
 }
@@ -133,7 +134,7 @@
     padding: 8px 16px;
 }
 
-.more-option-view > li > a, 
+.more-option-view > li > a,
 .sub-more > li > a {
     text-decoration: none;
     color: #fff !important;
@@ -174,7 +175,6 @@
     width: 100%;
     text-align: center;
 }
-
 .search-keyword {
     color: #fff !important;
     font-size: 28px;
@@ -243,9 +243,6 @@ h4{
 }
 
 /*MUSIC PLAYER CUSTOMIZING STYLE*/
-span{
-    font-size: 16px;
-}*/
 .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded{
     background: #e0e0e0;
     height: 4px;

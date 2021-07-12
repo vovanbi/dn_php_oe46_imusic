@@ -35,12 +35,15 @@ class SongController extends Controller
 
     public function storeComent(Request $request)
     {
-        $comnent = new Comment();
-        $comnent->rate_star = $request->get('rate_star');
-        $comnent->content   = $request->get('content');
-        $comnent->song_id   = $request->get('song_id');
-        $comnent->user_id   = $request->get('user_id');
-        $comnent->save();
+        $comment = new Comment();
+        $comment->rate_star = $request->get('rate_star');
+        $comment->content   = $request->get('content');
+        $comment->song_id   = $request->get('song_id');
+        $comment->user_id   = $request->get('user_id');
+        $comment->save();
+        $comment->user = $comment->user->fullname;
+
+        return response()->json(['comment'=>$comment,'message' => 'Thêm bình luận thành công'], 200);
     }
 
     public function addLyric(Request $request)
@@ -50,5 +53,9 @@ class SongController extends Controller
         $lyric->song_id = $request->get('song_id');
         $lyric->user_id = $request->get('user_id');
         $lyric->save();
+        $lyric->user = $lyric->user;
+
+        return response()->json(['lyric'=>$lyric,'message' => 'Thêm lời thành công
+            ']);
     }
 }

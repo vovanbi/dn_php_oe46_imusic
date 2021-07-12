@@ -55,13 +55,13 @@
     <div class="col-12 col-lg-8">
         <div class="article">
             <div class="article__content">
-                <h4>@lang('home.lyric') </h4>
-<<<<<<< HEAD
+                <h4>@lang('home.lyris') </h4>
+                   <div class="show_lyric"></div>
+                   <span class="message"></span>
                   @if(isset($song->lyrics->content))
-                   {!!$song->lyrics->content!!}
-                   <br>
+                  {!! $song->lyrics->content!!}
                   @else
-                  <span>
+                  <span class="formlyric">
                       Bạn có thể thêm lời bài hát
                      <span  id="formButton"><i class="fas fa-plus-circle"></i></span>
                         <form id="form1">
@@ -106,6 +106,9 @@
                         </li>
                     </ul>
                     @endforeach
+                    <span class="message1"></span>
+                    <ul class="comments__list show_comment">
+                    </ul>
                     <form class="comments__form">
                         <div class="rating">
                             <span><input type="radio" name="rate_star" id="str5" value="5"><label for="str5" class="fas fa-star"></label></span>

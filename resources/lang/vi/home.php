@@ -38,5 +38,17 @@ return [
     'delUse' =>'Xóa tài khoản',
     'changesuccss'=>'Thay đổi mật khẩu thành công',
     'repair'=>'Nhập lại mật khẩu không chính xác',
-    'notpass'=>'Mật khẩu cũ không chính xác '
+    'notpass'=>'Mật khẩu cũ không chính xác ',
+    'Notlogin'=>'địa chỉ email và mật khẩu không chính xác',
+    'notsuccess'=>'Đăng nhập không thành công',
+    'logoutsucess'=>'Đăng xuất thành công',
+    'nosignup'=>'Bạn đã chưa có tài khoản ?',
+    'logingg'=>'Đăng nhập bằng Google',
+    'loginfb'=>'Đăng nhập bằng Facebook',
+    'or'=>'Hoặc',
+    'accout'=>'Bạn đã có tài khoản ?',
+    'create'=>'Tạo tài khoản',
+    "error" => 'Không chính xác'
+
+
 ];

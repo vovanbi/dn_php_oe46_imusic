@@ -25,6 +25,7 @@ return [
     'login'=>'Log in',
     'logout'=>'Log out',
     'signup'=>'SiGN UP',
+    'register'=> 'Register',
     'placeholder' => 'What do you want to find?',
     'search' => "Search",
     'Notid' => 'Not find id',
@@ -38,5 +39,15 @@ return [
     'delUse' =>'Delete acount',
     'changesuccss'=>'Change password success',
     'repair'=>'Re-enter incorrect password',
-    'notpass'=>'Old password is not precision'
+    'notpass'=>'Old password is not precision',
+    'Notlogin'=>'Email-Address And Password Are Wrong.',
+    'notsuccess'=>'Login not success',
+    'logoutsucess'=>'Login not success',
+    'nosignup' => 'You are not acount',
+    'logingg'=>'Login with Google',
+    'loginfb'=>'Login with Facebook',
+    'or'=>'OR',
+    'account'=>'You have acount',
+    'create'=>'Create Account',
+    'error' => 'Wrong'
 ];

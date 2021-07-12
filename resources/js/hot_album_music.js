@@ -17,7 +17,7 @@ $(document).ready (function(){
                         '</a>';
                 });
                  $('.title').html(title)
-                 $('.get_song').html(html);
+                 $('.list_song').html(html);
                  $('.album').hide();
                  $('.artist').hide();
                  $('.song-list').click(function(e) {
@@ -52,9 +52,7 @@ $(document).ready (function(){
                         '</a>';
                 });
                 $('.title').html(title)
-                $('.get_song').html(html);
-                $('.artists').hide();
-                $('.daily-mix').hide();
+                $('.list_song').html(html);
             }
         })
     });

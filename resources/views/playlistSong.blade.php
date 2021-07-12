@@ -49,7 +49,7 @@
                                             <h4><a class="play-music" href="#" data-id="{{ $song->id }}">{{ $loop->iteration }}. {{ $song->name }}</a></h4>
                                             <span><a href="">{{ $song->artist->name }}</a></span>
                                         </div>
-                                        <a href="" data-id="{{ $song->id }}" title="{{ trans('homePage.playSong') }}" class="single-item__add play play-music">
+                                        <a href="#" data-id="{{ $song->id }}" title="{{ trans('homePage.playSong') }}" class="single-item__add play play-music">
                                             <i class="far fa-play-circle icon-play"></i>
                                             <i class="far fa-pause-circle icon-pause"></i>
                                         </a>

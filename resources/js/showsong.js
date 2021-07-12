@@ -1,5 +1,5 @@
 $(document).ready (function(){
-    $('#get_song').on('click', function () {
+    $('.get_song').on('click', function () {
          var id = $(this).data('cate-id');
         $.ajax({
             method: 'GET',
@@ -7,6 +7,7 @@ $(document).ready (function(){
             data : {'id' :id},
             success: function (data) {
                 var html = '';
+                var title = 'Song';
                 Object.keys(data).forEach(key => {
                     html += '<a class="box_music song-list" data-id = '+ data[key].id +' >' +
                  '<img src="/storage/'+ data[key].image +'" alt="">'+
@@ -14,15 +15,14 @@ $(document).ready (function(){
                  '<h4>'+data[key].artist_name+'</h4>'+
                  '</a>';
                 });
-                $('.get_song').html(html);
-                $('.artists').hide();
-                $('.daily-mix').hide();
+                $('.title').html(title)
+                $('.list_song').html(html);
                 $('.song-list').click(function(e) {
                     e.preventDefault();
                     var id = $(this).data('id');
                     $.ajax({
                         type:'get',
-                        url: '/songs/'+id,
+                        url: '/song/'+id,
                         success: function(data) {
                             $('#music-playing').html(data);
                             playMusicEvent();
@@ -58,7 +58,7 @@ $(document).ready (function(){
                  '<h3>'+data['albums'][key].name+'</h3>'+
                  '</a>';
                 });
-                $('.get_song').html(html);
+                $('.list_song').html(html);
                 $('.get_artist').html(html1);
                 $('.get_album').html(html2);
             }
@@ -116,7 +116,7 @@ $(document).ready (function(){
 
             $.ajax({
                 type:'get',
-                url: '/'+nextIndex,
+                url: '/songs/'+nextIndex,
                 success: function(data)
                 {
                     $('#music-playing').html(data);
@@ -136,7 +136,7 @@ $(document).ready (function(){
 
             $.ajax({
                 type:'get',
-                url: '/'+prevIndex,
+                url: '/songs/'+prevIndex,
                 success: function(data)
                 {
                     $('#music-playing').html(data);
