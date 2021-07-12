@@ -19,6 +19,7 @@ class SongController extends Controller
 
     public function detailSong($id)
     {
+
         try {
             $song = Song::findOrFail($id);
             $cate_id = $song->cate_id;

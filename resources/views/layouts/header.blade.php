@@ -67,7 +67,7 @@
       </form>
       <div>
           @if(Auth::check())
-          <a class="btn_signup " href=""><i class="fas fa-user-circle"></i> {{auth()->user()->fullname}} </a>
+          <a class="btn_signup " id="pro_file" data-user-profile="{{ auth()->user()->id}}" href=""><i class="fas fa-user-circle"></i> {{auth()->user()->fullname}} </a>
           <a class="btn_login " href="{{route('logout')}}">LOG OUT</a>
           @else
           <a class="btn_signup " href="{{route('get.register')}}">SIGN UP</a>

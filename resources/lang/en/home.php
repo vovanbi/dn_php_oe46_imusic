@@ -28,4 +28,14 @@ return [
     'placeholder' => 'What do you want to find?',
     'search' => "Search",
     'Notid' => 'Not find id',
+    'fullname'=>'FullName',
+    'phone' =>'Phone',
+    'changpass'=>'Change Password',
+    'passold' => 'Password Old',
+    'passnew' => 'New Password',
+    'comfir' => 'Confirm password',
+    'delUse' =>'Delete acount',
+    'changesuccss'=>'Change password success',
+    'repair'=>'Re-enter incorrect password',
+    'notpass'=>'Old password is not precision'
 ];

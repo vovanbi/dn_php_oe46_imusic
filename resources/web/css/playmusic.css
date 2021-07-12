@@ -56,7 +56,6 @@
     color: var(--primary-color) !important;
 }
 
-
 .white-font {
     color: #fff !important;
 }
@@ -3685,9 +3684,7 @@ body::-webkit-scrollbar-thumb {
 .container-fluid{
   background-color: white;
 }
-.white{
-  color: white;
-}
+
 .rating {
     float:left;
     width:200px;

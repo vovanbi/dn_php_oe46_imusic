@@ -21,5 +21,6 @@
     <script src="{{asset('js/playmusic.js')}}"></script>
     <script src="{{asset('js/showsong.js')}}"></script>
     <script src="{{asset('js/hot_album_music.js')}}"></script>
+    <script src="{{asset('js/profile.js')}}"></script>
 </body>
 </html>
