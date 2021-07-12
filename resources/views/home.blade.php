@@ -35,8 +35,8 @@
                 <h2>@lang('homePage.albumSong')</h2>
                 <div class="row get_album">
                     @foreach ($albums as $album)
-                        <a class="box_music " href="{{ route('showAlbum', ['album' => $album->id])}}">
-                            <img src="{{ $song->image }}" alt="Death Cab fot Cutie">
+                        <a class="box_music" href="{{ route('showAlbum', ['album' => $album->id])}}">
+                            <img src="/storage/{{ $album->image }}" alt="Death Cab fot Cutie">
                             <h3>{{ $album->name }}</h3>
                         </a>
                     @endforeach

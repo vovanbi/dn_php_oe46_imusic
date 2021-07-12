@@ -7,15 +7,11 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>LMussic - Trang quản lý</title>
-    <base href="{{ asset('') }}">
-    <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/sb-admin.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/sb-admin.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
@@ -67,20 +63,20 @@
             </ul>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="">
-                        <a href=""><i class="fa fa-fw fa-home"></i> @lang('adminhome.home')</a>
+                    <li class="{{ \Request::route()->getName() == 'admin.home' ? 'active' : '' }}">
+                        <a href="{{route('admin.home')}}"><i class="fa fa-fw fa-home"></i> @lang('adminhome.home')</a>
                     </li>
-                    <li class="">
+                    <li class="{{\Request::route()->getName() == 'categories.index' ? 'active' : '' }}">
                         <a href="{{ route('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> @lang('adminhome.category')</a>
                     </li>
-                    <li class="">
+                    <li class="{{ \Request::route()->getName() == 'songs.index' ? 'active' : '' }}">
                         <a href="{{ route('songs.index')}}"><i class="fa fa-play-circle-o" aria-hidden="true"></i> @lang('adminhome.song') </a>
                     </li>
                     <li class="{{ \Request::route()->getName() == 'lyric.index' ? 'active' : '' }}">
                         <a href="{{route('lyric.index')}}"><i class="fa fa-files-o" aria-hidden="true"></i>
                          @lang('adminhome.lyris') </a>
                     </li>
-                    <li class="">
+                    <li class="{{ \Request::route()->getName() == 'albums.index' ? 'active' : '' }}">
                         <a href="{{ route('albums.index') }}"><i class="fa fa-book" aria-hidden="true"></i>
                     </i> @lang('adminhome.albumn') </a>
                     </li>
@@ -107,7 +103,6 @@
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{asset('js/showimg.js')}}"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="{{asset('js/delartis.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/delCategory.js')}}"></script>
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>

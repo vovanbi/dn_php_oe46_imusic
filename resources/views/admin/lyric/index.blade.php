@@ -47,7 +47,7 @@
                           <td>{{$lyric->song->name}}</td>
                           <td>{!!$lyric->content!!}</td>
                           <td>
-                            <a href="{{ route('lyric.action',['active',$lyric->id]) }}" class="btn {{$lyric->status == 1 ? 'btn-success' :'btn-danger'}}">{{ $lyric->status == 1 ? 'show' :                           'hidden' }}</a>
+                            <a href="{{ route('lyric.action',['active',$lyric->id]) }}" class="btn {{$lyric->status == config('app.Show') ? 'btn-success' :'btn-danger'}}">{{ $lyric->status == config('app.Show') ? 'show' :                           'hidden' }}</a>
                           </td>
                           <td>{{$lyric->user->fullname}}</td>
                           <td>

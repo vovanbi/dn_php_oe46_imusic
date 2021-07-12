@@ -46,7 +46,11 @@
                         <td> <img id="song-image" src="storage/{{ $song->image }}" alt=""> </td>
                         <td> {{ $song->link }} </td>
                         <td> {{ $song->view }} </td>
-                        <td> {{ $song->hot }} </td>
+                        <td>
+                          <a href="{{ route('songs.action',['hot',$song->id]) }}" class="btn {{$song->hot == config('app.Hot') ? 'btn-danger' :'btn-success'}}">
+                            {{ $song->hot == config('app.Hot') ? 'hot' :  'not' }}
+                          </a>
+                        </td>
                         <td><a class="btn btn-info" href=" {{ route('songs.edit', ['song' => $song->id]) }} "><i class="fa fa-pencil" aria-hidden="true"></i>   @lang('song.songEdit')</a></td>
                         <td><button type="button" class="btn btn-danger del-song-btn" data-id="{{ $song->id }}"><i class="fa fa-trash" aria-hidden="true"></i>  @lang('song.songDelete')</button></td>
                     </tr>

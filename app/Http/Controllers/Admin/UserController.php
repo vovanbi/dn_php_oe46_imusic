@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Throwable;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-
     public function index()
     {
         $users = User::allUser()->paginate(config('app.paginateUser'));
@@ -19,7 +19,6 @@ class UserController extends Controller
 
     public function create()
     {
-
         $userParent = User::where('id', '=', config('app.userParent'))->get();
         return view('admin.user.create', compact('userParent'));
     }
@@ -87,15 +86,25 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        DB::beginTransaction();
         try {
-            $user = User::destroy($id);
+            $user = User::findOrFail($id);
+            foreach ($user->playLists as $playlist) {
+                $playList->songs()->delete();
+            }
+            $user->playLists()->delete();
+            $user->comments()->delete();
+            $user->lyrics()->delete();
+            $user->albums()->delete();
+            $user->delete();
+            DB::commit();
 
             return response()->json([
                 'error' => false,
-                'user' => $user
+                'user'=> $user
             ], 200);
         } catch (Throwable $e) {
-            return redirect()->back()->with('danger', trans('user.Nodelete'));
+            DB::rollBack();
         }
     }
 }

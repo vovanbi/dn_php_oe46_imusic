@@ -42,9 +42,9 @@
                                                 @if($item->id == $cate->parent_id)
                                                     {{ $item->name }}
                                                 @endif
-                                            @endforeach       
-                                        @else 
-                                            {{ trans('category.cateParent') }}                     
+                                            @endforeach
+                                        @else
+                                            {{ trans('category.cateParent') }}
                                         @endif
                                     </button>
                                 </td>
