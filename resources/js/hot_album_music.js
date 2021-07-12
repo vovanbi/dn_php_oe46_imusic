@@ -1,22 +1,26 @@
 $(document).ready (function(){
-    $('#get_song').on('click', function () {
-         var id = $(this).data('cate-id');
+    $('._hotS').on('click', function (e) {
+        e.preventDefault()
+        var idS = $(this).data('song')
         $.ajax({
             method: 'GET',
-            url: '/get-song-by-category/' + id,
-            success: function (data) {
-                var html = '';
-                Object.keys(data).forEach(key => {
-                    html += '<a class="box_music song-list" data-id = '+ data[key].id +' >' +
-                 '<img src="/storage/'+ data[key].image +'" alt="">'+
-                 '<h3>'+data[key].name+'</h3>'+
-                 '<h4>'+data[key].artist_name+'</h4>'+
-                 '</a>';
+            url :'/hot/'+idS,
+            success :function(data)
+            {
+                var html= '';
+                var title = "Song Hot"
+                Object.keys(data['songs']).forEach(key => {
+                html += '<a class="box_music song-list" data-id = '+ data['songs'][key].id +' >' +
+                        '<img src="/storage/'+ data['songs'][key].image +'" alt="">'+
+                        '<h3>'+data['songs'][key].name+'</h3>'+
+                        '<h4>'+data['songs'][key].artist_name+'</h4>'+
+                        '</a>';
                 });
-                $('.get_song').html(html);
-                $('.artists').hide();
-                $('.daily-mix').hide();
-                $('.song-list').click(function(e) {
+                 $('.title').html(title)
+                 $('.get_song').html(html);
+                 $('.album').hide();
+                 $('.artist').hide();
+                 $('.song-list').click(function(e) {
                     e.preventDefault();
                     var id = $(this).data('id');
                     $.ajax({
@@ -29,40 +33,30 @@ $(document).ready (function(){
                     })
                 });
             }
-        });
+        })
     });
-    $('._home').click(function (e) {
+    $('._hotA').on('click', function (e) {
         e.preventDefault()
+        var idA = $(this).data('album')
         $.ajax({
-            method :'GET',
-            url:'/show-category',
-            success : function(data) {
-                var html = html1 =html2 = ''
-                Object.keys(data['songs']).forEach(key => {
-                   html += '<a class="box_music" href="#" id="play">' +
-                 '<img src="/storage/'+ data['songs'][key].image +'" alt="">'+
-                 '<h3>'+data['songs'][key].name+'</h3>'+
-                 '<h4>'+data['songs'][key].artist_name+'</h4>'+
-                 '</a>';
-                });
-
-                Object.keys(data['artists']).forEach(key => {
-                   html1 += '<a class="box_music" href="#" id="play">' +
-                 '<img src="/storage/'+ data['artists'][key].image +'" alt="">'+
-                 '<h3>'+data['artists'][key].name+'</h3>'+
-                 '</a>';
-                });
+            method: 'GET',
+            url :'/hot/'+idA,
+            success :function(data)
+            {
+                var html= '';
+                var title = "Album hot"
                 Object.keys(data['albums']).forEach(key => {
-                   html2 += '<a class="box_music" href="#" id="play">' +
-                 '<h3>'+data['albums'][key].name+'</h3>'+
-                 '</a>';
+                html += '<a class="box_music >' +
+                        '<img src="/storage/'+ data['albums'][key].image +'" alt="">'+
+                        '<h3>'+data['albums'][key].name+'</h3>'+
+                        '</a>';
                 });
+                $('.title').html(title)
                 $('.get_song').html(html);
-                $('.get_artist').html(html1);
-                $('.get_album').html(html2);
+                $('.artists').hide();
+                $('.daily-mix').hide();
             }
-        });
-
+        })
     });
     var isRepeat = false;
     function playMusicEvent() {
@@ -188,3 +182,4 @@ $(document).ready (function(){
         }
     }
 });
+

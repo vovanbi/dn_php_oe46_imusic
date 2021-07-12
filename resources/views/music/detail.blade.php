@@ -21,6 +21,7 @@
                     </div>
                     <a href="#modal-buy" class="release__buy open-modal">{{$song->artist->name}}</a>
                 </div>
+<<<<<<< HEAD
                 <div class="release__list" data-scrollbar="true" tabindex="-1">
                     <div class="scroll-content">
                         <ul class="main__list main__list--playlist main__list--dashbox">
@@ -116,8 +117,9 @@
                         <textarea type=""  id="_contend" name="content" class="comment_input" placeholder="Add comment"> </textarea>
                         <button type="submit" data-song = "{{$song->id}}" data-user="{{auth()->user()->id}}" class="sign__btn" id="submit_c">Send</button>
                     </form>
-                </div>
+                </div>)
             </div>
         </div>
     </div>
 </div>
+
