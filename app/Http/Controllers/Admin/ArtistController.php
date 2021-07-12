@@ -11,9 +11,11 @@ use Throwable;
 
 class ArtistController extends Controller
 {
+
     public function index()
     {
-        $artists = Artist::GetAll()->get();
+        $artists = Artist::getAll()->get();
+
         return view('admin.artist.index', compact('artists', $artists));
     }
 
@@ -25,6 +27,7 @@ class ArtistController extends Controller
     public function store(ArtistRequest $request)
     {
         $this->insertOrUpdate($request);
+
         return redirect()->route('artist.index')->with('susccess', trans('artist.susccessAdd'));
     }
 
@@ -47,6 +50,7 @@ class ArtistController extends Controller
     public function update(Request $request, $id)
     {
         $this->insertOrUpdate($request, $id);
+
         return redirect()->route('artist.index')->with('susccess', trans('artist.susccessUpdate'));
     }
 
@@ -83,6 +87,7 @@ class ArtistController extends Controller
     {
         try {
             $artist = Artist::destroy($id);
+
                 return response()->json([
                     'error' => false,
                     'artist' => $artist
