@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\SongRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class SongController extends Controller
 {
@@ -81,11 +82,40 @@ class SongController extends Controller
 
     public function destroy($id)
     {
-        $song = Song::destroy($id);
-        
-        return response()->json([
-            'error' => false,
-            'song'  => $song,
-        ], 200);
+        DB::beginTransaction();
+        try {
+            $song = Song::findOrFail($id);
+            $song->lyrics()->delete();
+            $song->comments()->delete();
+            foreach ($song->albums as $album) {
+                $album->users()->delete();
+            }
+            $song->albums()->delete();
+            $song->delete();
+            DB::commit();
+
+            return response()->json([
+                'error' => false,
+            ], 200);
+        } catch (Throwable $e) {
+            DB::rollBack();
+        }
+    }
+
+    public function action($action, $id)
+    {
+        try {
+            $song = Song::findOrFail($id);
+            switch ($action) {
+                case 'hot':
+                    $song->hot = $song->hot ? 0 : 1;
+                    $song->save();
+                    break;
+            }
+
+            return redirect()->back()->with('success', trans('lyric.active'));
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('lyric.noactive'));
+        }
     }
 }

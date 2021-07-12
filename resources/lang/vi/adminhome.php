@@ -21,5 +21,7 @@ return [
     'signer'=>'Ca sĩ',
     'comment'=>'Đánh giá',
     'accout'=>'Tài khoản',
-    'logout'=>'Đăng xuất'
+    'logout'=>'Đăng xuất',
+    'success' =>'Thành công',
+    'danger'=>'Thất bại'
 ];

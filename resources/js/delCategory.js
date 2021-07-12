@@ -12,13 +12,13 @@ $(document).ready(function()
         }
         var id = $(this).data('id')
         $.ajax({
-        type:'DELETE',
-        url: '/admin/categories/'+id,
+        method:'DELETE',
+        url: 'categories/'+id,
         success: function(data)
         {
             $('#category-' + id).remove()
         }
-        })
+        });
     });
     $('.del-album-btn').on('click', function(){
         var option = confirm('Do you want to delete this album?');
@@ -37,17 +37,17 @@ $(document).ready(function()
     });
     $('.del-song-btn').on('click', function(){
         var option = confirm('Do you want to delete this song?');
-        if(!option) {
-        return;
-        }
+            if (!option) {
+            return;
+            }
         var id = $(this).data('id')
         $.ajax({
-             type:'DELETE',
-             url: '/admin/songs/'+id,
-             success: function(data)
-             {
-                 $('#song-' + id).remove();
-             }
-         })
+            type:'DELETE',
+            url: '/admin/songs/'+id,
+            success: function(data)
+            {
+                $('#song-' + id).remove();
+            }
+        })
     });
 });

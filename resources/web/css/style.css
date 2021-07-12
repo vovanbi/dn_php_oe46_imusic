@@ -277,7 +277,7 @@ h1, h2, h3, h4, a {
   font-size: 12px;
 }
 
-.main .box_main .music a {
+.main .box_main .music .box_music {
   display: inline-block;
   padding: 15px;
 }
@@ -294,7 +294,6 @@ h1, h2, h3, h4, a {
   font-weight: 700;
   text-transform: uppercase;
 }
-
 .main .box_main .nav_bar_main li:first-child::after {
   position: absolute;
   content: '';
@@ -981,23 +980,10 @@ max-width: 400px;
     background-color: #f1f1f1;
 }
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
-/* Caret */
-/*.caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    vertical-align: middle;
-    border-top: 6px dashed;
-    border-right: 6px solid transparent;
-    border-left: 6px solid transparent;
-}
-*/
-/* Dropdown menu Header */
 .dropdown-menu .dropdown-header {
     color: #777;
     font-size: .8rem;
@@ -1029,7 +1015,7 @@ max-width: 400px;
 .nav_bar_main > li > ul {
   position: absolute;
   left: -13px;
-  top: 0px;
+  top: -10px;
   position: inherit;
 }
 .nav_bar_main > li:hover > ul{
@@ -1042,24 +1028,6 @@ max-width: 400px;
 }
 .nav_bar_main > li {
   position:relative;
-}
-
-.sliding {
- display: none;
-}
-
-.nav_bar_main li a {
-  font-size: 14px;
-  text-decoration: none;
-}
-.nav_bar_main > li > ul {
-  position: absolute;
-  left: -13px;
-  top: 0px;
-  position: inherit;
-}
-.nav_bar_main > li:hover > ul{
-   display:block;
 }
 
 .dropup {
@@ -1098,7 +1066,8 @@ max-width: 400px;
 
 #add_lyric{
   width: 80px;
-  height: 30px;
+  height: 300px;
+  margin-right: .5rem!important;
   position: 5px 0px;
   border: 1px solid #222227;
   border-radius: 20px;
@@ -1120,6 +1089,7 @@ max-width: 400px;
 
 .dropdown-content_r {
   display: none;
+  margin-right: .5rem!important;
   position: absolute;
   left:80px;
   top:-30px;
@@ -1146,7 +1116,6 @@ max-width: 400px;
 .dropup:hover .dx {
   background-color: #2980B9;
 }
-
 .nav_bar_main {
   list-style-type: none;
   margin: 0;

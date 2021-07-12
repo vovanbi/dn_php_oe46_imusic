@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Models\Category;
 use App\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -33,10 +34,13 @@ class HomeController extends Controller
     {
         try {
             $song = Song::find($id);
+            $view = $song->view;
+            $song->view = ++$view;
+            $song->save();
 
             return view('song-play', compact('song'));
         } catch (Throwable $e) {
-            return redirect()->back()->with('danger', trans('songNotFound'));
+            return redirect()->back()->with('danger', trans('homePage.songNotFound'));
         }
     }
 
@@ -80,5 +84,39 @@ class HomeController extends Controller
         ->orderBy('view', 'desc')->get();
 
         return view('music.top-trending', compact('songs'));
+    }
+    
+    public function searchFeature($search)
+    {
+        try {
+            $songs = Song::where('name', 'like', '%'.$search.'%')->take(config('app.home_take_number'))->get();
+            $albums = Album::where('name', 'like', '%'.$search.'%')->take(config('app.home_take_number'))->get();
+            $artists = Artist::where('name', 'like', '%'.$search.'%')->take(config('app.home_take_number'))->get();
+    
+            return view('search', compact('songs', 'albums', 'artists', 'search'));
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('homePage.noSearchResult'));
+        }
+    }
+
+    public function searchType($type, $search)
+    {
+        try {
+            if ($type == 'song') {
+                $songs = Song::where('name', 'like', '%'.$search.'%')->paginate(config('app.search_take_num'));
+
+                return view('searchDetail', compact('songs', 'search'));
+            } elseif ($type == 'album') {
+                $albums = Album::where('name', 'like', '%'.$search.'%')->paginate(config('app.search_take_num'));
+
+                return view('searchDetail', compact('albums', 'search'));
+            } elseif ($type == 'artist') {
+                $artists = Artist::where('name', 'like', '%'.$search.'%')->paginate(config('app.search_take_num'));
+
+                return view('searchDetail', compact('artists', 'search'));
+            }
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('homePage.noSearchResult'));
+        }
     }
 }

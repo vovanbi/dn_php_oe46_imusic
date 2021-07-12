@@ -116,7 +116,7 @@
                         <textarea type=""  id="_contend" name="content" class="comment_input" placeholder="Add comment"> </textarea>
                         <button type="submit" data-song = "{{$song->id}}" data-user="{{auth()->user()->id}}" class="sign__btn" id="submit_c">Send</button>
                     </form>
-                </div>)
+                </div>
             </div>
         </div>
     </div>

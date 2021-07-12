@@ -12,8 +12,9 @@ class PageDetailController extends Controller
     {
         try {
             $album = Album::find($album);
+            $songs = $album->songs;
 
-            return view('detail', compact('album'));
+            return view('detail', compact('album', 'songs'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('pageDetail.notFoundAlbum'));
         }
@@ -23,8 +24,9 @@ class PageDetailController extends Controller
     {
         try {
             $artist = Artist::find($artist);
+            $songs = $artist->songs;
 
-            return view('detail', compact('artist'));
+            return view('detail', compact('artist', 'songs'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('pageDetail.notFoundArtist'));
         }

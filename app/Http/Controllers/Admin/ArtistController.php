@@ -8,6 +8,7 @@ use App\Models\Artist;
 use App\Http\Requests\ArtistRequest;
 use Illuminate\Support\Facades\File;
 use Throwable;
+use Illuminate\Support\Facades\DB;
 
 class ArtistController extends Controller
 {
@@ -85,15 +86,23 @@ class ArtistController extends Controller
 
     public function destroy($id)
     {
+        DB::beginTransaction();
         try {
-            $artist = Artist::destroy($id);
+            $artist = Artist::findOrFail($id);
+            foreach ($artist->songs as $song) {
+                $song->lyrics()->delete();
+                $song->comments()->delete();
+                $song->albums()->delete();
+            }
+            $artist->songs()->delete();
+            $artist->delete();
+            DB::commit();
 
-                return response()->json([
-                    'error' => false,
-                    'artist' => $artist
-                ], 200);
+            return response()->json([
+                'error' => false,
+            ], 200);
         } catch (Throwable $e) {
-            return redirect()->back()->with('danger', trans('artist.Nodelete'));
+            DB::rollBack();
         }
     }
 }

@@ -55,65 +55,145 @@
 .repeat-song.active i {
     color: var(--primary-color) !important;
 }
-
 .white-font {
     color: #fff !important;
 }
-:root {
-    --primary-color: #ec1f55;
-    --text-color: #333;
+
+.image-detail {
+    width: 250px;
 }
 
-.progress {
-    width: 100%;
-    -webkit-appearance: none;
-    height: 6px !important;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
+.track-number{
+    color: var(--primary-color) !important;
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.progress::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px !important;
-    height: 6px;
-    background-color: var(--primary-color);
-    cursor: pointer;
+.bg-white {
+    padding-top: 50px;
+    min-height: 600px;
 }
 
-.volProgress {
-    height: 6px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
+.add-album-btn {
+    text-decoration: none !important;
 }
 
-.volProgress::-webkit-slider-thumb {
-    cursor: pointer;
+.add-album-btn i {
+    margin-right: 10px;
 }
 
-.play .icon-pause {
+.add-album-btn .added {
     display: none;
 }
 
-.play.playing .icon-pause {
+.add-album-btn.active .nonAdd {
+    display: none;
+}
+
+.add-album-btn.active .added {
     display: inline-block;
 }
 
-.play.playing .icon-play {
+.playlist-box {
+    position: relative;
+}
+
+.del-playlist,
+.del-favAlbum {
+    position: absolute;
+    z-index: 99;
+    width: 16px;
+    display: block;
+    top: 0px;
+    right: 10px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.more-option {
+    cursor: pointer;
+    position: relative;
+}
+
+.more-option-view {
     display: none;
+    position: absolute;
+    z-index: 999999;
+    background-color: rgba(0,0,0,0.6);
+    min-width: 200px;
+    top: 0;
+    right: 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    border-radius: 8px;
 }
 
-.random-song.active i {
-    color: var(--primary-color) !important;
+.more-option-view > li,
+.sub-more > li {
+    padding: 8px 16px;
 }
 
-.repeat-song.active i {
+.more-option-view > li > a, 
+.sub-more > li > a {
+    text-decoration: none;
+    color: #fff !important;
+    display: block;
+}
+
+.more-option-view li:hover {
+    background-color: #ccc;
+}
+
+.more-option-view > li:hover > a,
+.sub-more > li:hover > a {
+    color: #000 !important;
+}
+
+.more-option:hover .more-option-view {
+    display: block;
+}
+
+.sub-more {
+    display: none;
+    position: absolute;
+    z-index: 999999999;
+    right: 200px;
+    top: 20px;
+    background-color: rgba(0,0,0,0.6);
+    min-width: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    border-radius: 8px;
+}
+
+.add-to-playlist:hover .sub-more {
+    display: block;
+}
+
+.heart-box {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.search-keyword {
+    color: #fff !important;
+    font-size: 28px;
+}
+
+.search-key-result {
+    color: #fff !important;
+    font-size: 23px !important;
+    margin-left: 25px !important;
+    font-style: italic !important;
+}
+
+.search-more {
+    cursor: pointer;
+    font-size: 26px !important;
+    display: inline-block;
+}
+
+.search-more:hover {
     color: var(--primary-color) !important;
 }
 .col-md-3{
@@ -134,7 +214,6 @@
 h3{
     font-size: 34px;
     margin-bottom: 34px;
-    border-bottom: 4px solid #e6e6e6;
     padding-bottom: 15px;
 }
 p{
@@ -163,10 +242,8 @@ h4{
     bottom: 0;
 }
 
-
 /*MUSIC PLAYER CUSTOMIZING STYLE*/
-/*span{
-    color: #000 !important;
+span{
     font-size: 16px;
 }*/
 .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded{
@@ -1003,7 +1080,7 @@ body::-webkit-scrollbar-thumb {
 }
 .release__list {
   position: relative;
-  height: 330px;
+  min-height: 330px;
   width: 100%;
   overflow: hidden;
   padding-right: 14px;
@@ -1082,7 +1159,7 @@ body::-webkit-scrollbar-thumb {
 @media (min-width: 1200px) {
   .release__list {
     width: calc(100% - 310px);
-    height: 388px;
+    min-height: 388px;
   }
   .release__content {
     width: 290px;
@@ -3434,7 +3511,6 @@ body::-webkit-scrollbar-thumb {
   color: #fff;
   font-weight: 400;
   margin-left: 10px;
-  margin-top: -6px;
 }
 .comments__title--tabs li {
   position: relative;
@@ -3474,7 +3550,6 @@ body::-webkit-scrollbar-thumb {
 .comments__name {
   display: block;
   font-size: 16px;
-  color: #fff;
   line-height: 20px;
   font-weight: 400;
   font-family: 'Inter', sans-serif;
@@ -3686,9 +3761,7 @@ body::-webkit-scrollbar-thumb {
 .container-fluid{
   background-color: white;
 }
-.white{
-  color: white;
-}
+
 .rating {
     float:left;
     width:200px;

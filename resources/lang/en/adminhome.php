@@ -22,4 +22,6 @@ return [
     'comment'=>'Comment',
     'accout'=>'Accout',
     'logout'=>'Logout',
+    'success'=>'Success',
+    'danger' =>'Danger',
 ];

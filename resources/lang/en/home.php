@@ -29,4 +29,14 @@ return [
     'search' => "Search",
     'Notid' => 'Not find id',
     'top' => 'Top Trending',
+    'fullname'=>'FullName',
+    'phone' =>'Phone',
+    'changpass'=>'Change Password',
+    'passold' => 'Password Old',
+    'passnew' => 'New Password',
+    'comfir' => 'Confirm password',
+    'delUse' =>'Delete acount',
+    'changesuccss'=>'Change password success',
+    'repair'=>'Re-enter incorrect password',
+    'notpass'=>'Old password is not precision'
 ];

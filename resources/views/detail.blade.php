@@ -6,268 +6,73 @@
         <!-- title -->
         <div class="col-12">
             <div class="main__title main__title--page">
-                <h1>Jason Aldean – Space Melody</h1>
+                <h1>
+                    @if (isset($album))
+                        {{ $album->name }}
+                    @elseif (isset($artist))
+                        {{ $artist->name }}
+                    @endif
+                </h1>
             </div>
         </div>
         <div class="col-12">
             <div class="release">
                 <div class="release__content">
                     <div class="release__cover">
-                        <img src="img/covers/cover3.jpg" alt="" />
+                        @if (isset($album))
+                            <img class="image-detail" src="{{ $album->image}}" alt="" />
+                        @elseif (isset($artist))
+                            <img class="image-detail" src="{{ $artist->avatar }}" alt="">
+                        @endif
                     </div>
                     <div class="release__stat">
-                        <span>
-
-                            10 tracks
-                        </span>
-                        <span>
-
-                            19 503
+                        <span class="track-number">
+                            {{ count($songs).' '.trans('homePage.tracks') }} 
                         </span>
                     </div>
-                    <a href="#modal-buy" class="release__buy open-modal">Buy album – $18</a>
+                        @if (isset($album))
+                            <a href="" data-id ="{{ $album->id }}" class="release__buy open-modal add-album-btn">
+                                <i class="fa fa-plus-circle nonAdd" aria-hidden="true"></i>
+                                <i class="fa fa-check-circle added" aria-hidden="true"></i>
+                                {{ trans('homePage.addAlbum') }} 
+                            </a>
+                        @elseif (isset($artist))
+                            @lang('homePage.artistInfo')
+                            <p>{{ $artist->info }}</p>
+                        @endif
                 </div>
 
                 <div class="release__list" data-scrollbar="true" tabindex="-1" style="overflow: hidden; outline: none;">
                     <div class="scroll-content">
                         <ul class="main__list main__list--playlist main__list--dashbox">
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="1. Got What I Got"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/12071151_epic-cinematic-trailer_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">1. Got What I Got</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <a href="#" class="single-item__export">
-
-                                </a>
-                                <span class="single-item__time">2:58</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="2. Supalonely"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/9106709_epic-adventure-cinematic-trailer_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">2. Supalonely</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <a href="#" class="single-item__export">
-
-                                </a>
-                                <span class="single-item__time">3:14</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="3. Girls In The Hood"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/10938456_inspiring-epic-motivational-cinematic-trailer_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">3. Girls In The Hood</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <a href="#" class="single-item__export">
-                                </a>
-                                <span class="single-item__time">3:21</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="4. Got It On Me"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/16412111_upbeat-rock_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">4. Got It On Me</a></h4>
-                                    <span><a href="artist.html">Jason Aldean &amp; Alan Walker</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <a href="#" class="single-item__export">
-
-                                </a>
-                                <span class="single-item__time">3:12</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="5. Righteous"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/19478377_ambient-pop_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">5. Righteous</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <a href="#" class="single-item__export">
-
-                                </a>
-                                <span class="single-item__time">5:04</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="6. Got What I Got"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/12071151_epic-cinematic-trailer_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">6. Got What I Got</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <a href="#" class="single-item__export">
-
-                                </a>
-                                <span class="single-item__time">2:58</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="7. Supalonely"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/9106709_epic-adventure-cinematic-trailer_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">7. Supalonely</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <a href="#" class="single-item__export">
-                                   >
-                                </a>
-                                <span class="single-item__time">3:02</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="8. Girls In The Hood"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/10938456_inspiring-epic-motivational-cinematic-trailer_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">8. Girls In The Hood</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <a href="#" class="single-item__export">
-
-                                </a>
-                                <span class="single-item__time">3:19</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="9. Got It On Me"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/16412111_upbeat-rock_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">9. Got It On Me</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-                                <a href="#" class="single-item__add">
-
-                                </a>
-                                <span class="single-item__time">3:13</span>
-                            </li>
-                            <li class="single-item">
-                                <a
-                                    data-playlist=""
-                                    data-title="10. Righteous"
-                                    data-artist="Jason Aldean"
-                                    data-img="img/covers/cover.svg"
-                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/19478377_ambient-pop_by_audiopizza_preview.mp3"
-                                    class="single-item__cover"
-                                >
-                                    <img src="img/covers/cover.svg" alt="" />
-
-                                </a>
-                                <div class="single-item__title">
-                                    <h4><a href="#">10. Righteous</a></h4>
-                                    <span><a href="artist.html">Jason Aldean</a></span>
-                                </div>
-
-                                </a>
-                                <a href="#" class="single-item__export">
-
-                                </a>
-                                <span class="single-item__time">5:24</span>
-                            </li>
+                            @if (count($songs) > 0)
+                                @foreach ($songs as $song)
+                                    <li class="single-item">
+                                        <a class="single-item__cover">
+                                            <img src="{{ $song->image }}" alt="" />
+                                        </a>
+                                        <div class="single-item__title">
+                                            <h4><a class="play-music" href="#" data-id="{{ $song->id }}">{{ $loop->iteration }}. {{ $song->name }}</a></h4>
+                                            <span><a href="">{{ $song->artist->name }}</a></span>
+                                        </div>
+                                        <a href="" data-id="{{ $song->id }}" title="{{ trans('homePage.playSong') }}" class="single-item__add play play-music">
+                                            <i class="far fa-play-circle icon-play"></i>
+                                            <i class="far fa-pause-circle icon-pause"></i>
+                                        </a>
+                                        <a href="#" title="{{ trans('homePage.addSong') }}" class="single-item__export">
+                                            <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @else 
+                                @if(isset($album))
+                                    {{trans('homePage.noAlbumSong')}}
+                                @else
+                                    {{trans('homePage.noArtistSong')}}
+                                @endif
+                            @endif
                         </ul>
                     </div>
-                    <div class="scrollbar-track scrollbar-track-x show" style="display: none;"><div class="scrollbar-thumb scrollbar-thumb-x" style="width: 586px; transform: translate3d(0px, 0px, 0px);"></div></div>
-                    <div class="scrollbar-track scrollbar-track-y show" style="display: block;"><div class="scrollbar-thumb scrollbar-thumb-y" style="height: 228.097px; transform: translate3d(0px, 0px, 0px);"></div></div>
                 </div>
             </div>
         </div>

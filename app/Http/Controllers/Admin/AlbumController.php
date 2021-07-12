@@ -7,6 +7,7 @@ use App\Models\Album;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlbumRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class AlbumController extends Controller
 {
@@ -67,12 +68,38 @@ class AlbumController extends Controller
 
     public function destroy($id)
     {
-        $album = Album::destroy($id);
-        
-        return response()->json([
-            'error' => false,
-            'album'  => $album,
-        ], 200);
+        DB::beginTransaction();
+        try {
+            $album = Album::findOrFail($id);
+            $album->users()->delete();
+            $album->songs()->delete();
+            $album->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'error' => false,
+            ], 200);
+        } catch (Throwable $e) {
+            DB::rollBack();
+        }
+    }
+
+    public function action($action, $id)
+    {
+        try {
+            $album = Album::findOrFail($id);
+            switch ($action) {
+                case 'hot':
+                    $album->hot = $album->hot ? 0 : 1;
+                    $album->save();
+                    break;
+            }
+
+            return redirect()->back()->with('success', trans('lyric.active'));
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('lyric.noactive'));
+        }
     }
 
     public function albumSong($album)

@@ -13,7 +13,7 @@ class Category extends Model
 
     public function songs()
     {
-        return $this->hasMany(Song::class);
+        return $this->hasMany(Song::class, 'cate_id', 'id');
     }
 
     public function children()

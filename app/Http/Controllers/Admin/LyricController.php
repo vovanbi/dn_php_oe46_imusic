@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Lyric;
 use App\Models\Song;
 use Throwable;
+use Illuminate\Support\Facades\DB;
 
 class LyricController extends Controller
 {
@@ -75,14 +76,17 @@ class LyricController extends Controller
 
     public function destroy($id)
     {
+        DB::beginTransaction();
         try {
-            $lyric = Lyric::destroy($id);
+            $lyric = Lyric::findOrFail($id);
+            $lyric->delete();
+            DB::commit();
+
             return response()->json([
-                    'error' => false,
-                    'lyric' => $lyric
+                'error' => false,
             ], 200);
         } catch (Throwable $e) {
-            return redirect()->back()->with('danger', trans('lyric.notDelete'));
+            DB::rollBack();
         }
     }
 
