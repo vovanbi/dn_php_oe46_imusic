@@ -23,4 +23,5 @@ return [
     'noSearchSong' => 'No song found with this keyword!',
     'noSearchAlbum' => 'No album found with this keyword!',
     'noSearchArtist' => 'No aritist found with this keyword!',
+    'addedAlbum' => 'This album\'s already exists in your playlist',
 ];

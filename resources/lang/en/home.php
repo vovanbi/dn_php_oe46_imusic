@@ -25,6 +25,7 @@ return [
     'login'=>'Log in',
     'logout'=>'Log out',
     'signup'=>'SiGN UP',
+    'register'=> 'Register',
     'placeholder' => 'What do you want to find?',
     'search' => "Search",
     'Notid' => 'Not find id',
@@ -64,4 +65,9 @@ return [
     'listsong'=>'Song list updated today',
     'imusicSign'=>'iMusic pages',
     'no'=>'No.',
+    'rating'=> 'Rating is success',
+    'logingg'=>'Login with Google',
+    'loginfb'=>'Login with Facebook',
+    'nosignup'=>'Do not have an account ?',
+    'or' => 'Or'
 ];

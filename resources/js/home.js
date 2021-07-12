@@ -13,11 +13,7 @@ var channel = pusher.subscribe('NotificationEventSong');
 var count = parseInt($('.cart-items').html())
 channel.bind('send-message', function(data) {
     var newNotificationHtml = `
-<<<<<<< HEAD
-    <tr class="notif-count">
-=======
     <tr class="notif-count" id="detail-noti" data-song="${data.id}">
->>>>>>> a19f414 (notification for user when admin new song)
         <td class="product-pic">
             <a href="">
                 <img src="/storage/${data.image}" alt="">
@@ -35,18 +31,12 @@ channel.bind('send-message', function(data) {
     count+=1;
     $('.cart-items').html(count);
     $('.new-notify').prepend(newNotificationHtml);
-<<<<<<< HEAD
-});
-
-$('.notif-count').on('click', function(e){
-=======
     detailSong()
 });
 
 function markAsRead()
 {
     $('.notif-count').on('click', function(e){
->>>>>>> a19f414 (notification for user when admin new song)
     e.preventDefault()
     var id = $(this).data('id')
     $.ajax({
@@ -56,21 +46,10 @@ function markAsRead()
         success: function(data) {
             $('.cart-items').html(data)
         }
+        });
     });
-<<<<<<< HEAD
-});
-
-$('.cart-box').click(function(e) {
-    if ($(this).find('.cart-product').css('display') == 'none') {
-        $('.cart-product').css('display', 'block');
-    } else {
-        $('.cart-product').css('display', 'none');
-    }
-    e.preventDefault();
-});
-=======
-   });
 }
+
 
 markAsRead()
  $('.cart-box').on('click',function(e) {
@@ -84,9 +63,9 @@ $(document).on('click', function(e) {
     }
 });
 
->>>>>>> a19f414 (notification for user when admin new song)
 function detailSong() {
 $('#detail-noti').on('click', function(e){
+
     var id = $(this).data('song');
     e.preventDefault()
     $.ajax({
@@ -107,15 +86,9 @@ $('#detail-noti').on('click', function(e){
            var content = $('.content').val();
            var user_id = $(this).data('user');
            $.ajax({
-<<<<<<< HEAD
-                method        : "POST",
-                url         : '/add-lyric',
-                data        : {
-=======
                 method: "POST",
                 url   : '/add-lyric',
                 data  : {
->>>>>>> a19f414 (notification for user when admin new song)
                 'song_id': song_id,
                 'content':content,
                 'user_id':user_id,
@@ -220,10 +193,6 @@ $('#detail-noti').on('click', function(e){
 
                 $('.message1').html('<div class="alert alert-danger" role="alert">' +'Đánh giá không thành công'
                     + '</div>');
-<<<<<<< HEAD
-
-=======
->>>>>>> a19f414 (notification for user when admin new song)
             }
         });
         });
@@ -232,10 +201,10 @@ $('#detail-noti').on('click', function(e){
        {
         window.location = '/login'
        }
-    }
+     }
 
-});
-});
+    });
+ });
 }
 function playMusic() {
     $('.play-music').click(function(e) {
@@ -255,10 +224,10 @@ function playMusic() {
         })
     });
 }
-<<<<<<< HEAD
-=======
+
+detailSong()
 playMusic()
->>>>>>> a19f414 (notification for user when admin new song)
+
 var isRepeat = false;
 function playMusicEvent() {
     audio.play();
@@ -415,4 +384,3 @@ function actionPlaylist()
         });
     });
 }
-detailSong()

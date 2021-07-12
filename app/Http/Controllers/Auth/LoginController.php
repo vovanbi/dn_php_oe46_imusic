@@ -49,6 +49,7 @@ class LoginController extends Controller
         'facebook','google'
     ];
 
+
     public function redirectToProvider($driver)
     {
         if (!$this->isProviderAllowed($driver)) {
@@ -62,6 +63,7 @@ class LoginController extends Controller
             return $this->sendFailedResponse($e->getMessage());
         }
     }
+
 
 
     public function handleProviderCallback($driver)
@@ -91,7 +93,7 @@ class LoginController extends Controller
     protected function loginOrCreateAccount($providerUser, $driver)
     {
         $user = User::where('email', $providerUser->getEmail())->first();
-        if ($user) {
+        if( $user ) {
             $user->update([
                 'avatar' => $providerUser->avatar,
                 'provider' => $driver,

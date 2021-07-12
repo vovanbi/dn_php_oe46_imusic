@@ -23,7 +23,7 @@ return [
     'Hidden' => '0',
 
     'Show' => '1',
-    
+
     'search_take_num' => '20',
 
     'lyric_hidden' => '0',
@@ -265,5 +265,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
-
 ];

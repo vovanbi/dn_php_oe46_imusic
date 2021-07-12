@@ -38,6 +38,8 @@ class LyricRepository extends BaseRepository implements ILyricRepository
             'user_id' => $user_id,
         ]);
 
+        $lyric->user = $lyric->user;
+
         return $lyric;
     }
 

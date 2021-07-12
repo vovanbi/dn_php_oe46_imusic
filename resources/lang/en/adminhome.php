@@ -24,4 +24,5 @@ return [
     'logout'=>'Logout',
     'success'=>'Success',
     'danger' =>'Danger',
+    'error' => 'Error'
 ];

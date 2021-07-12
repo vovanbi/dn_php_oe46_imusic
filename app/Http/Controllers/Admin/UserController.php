@@ -17,7 +17,8 @@ class UserController extends Controller
     {
         $this->userRepository = $userRepository;
     }
-    
+
+
     public function index()
     {
         $users = $this->userRepository->all();
@@ -27,6 +28,7 @@ class UserController extends Controller
 
     public function create()
     {
+
         return view('admin.user.create');
     }
 

@@ -65,6 +65,7 @@ class ArtistController extends Controller
         DB::beginTransaction();
         try {
             $this->artistRepository->destroy($id);
+
             DB::commit();
 
             return response()->json([
@@ -72,6 +73,7 @@ class ArtistController extends Controller
             ], 200);
         } catch (Throwable $e) {
             DB::rollBack();
+
             return redirect()->back()->with('danger', trans('artist.Nodelete'));
         }
     }

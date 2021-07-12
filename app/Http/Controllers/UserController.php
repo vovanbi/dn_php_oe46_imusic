@@ -30,8 +30,6 @@ class UserController extends Controller
 
     public function changePassword(Request $request)
     {
-        $user = $this->userRepository->changePassword($request->all());
-
-        return $user;
+        $this->userRepository->changePassword($request->all());
     }
 }

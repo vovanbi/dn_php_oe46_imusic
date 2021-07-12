@@ -1,10 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Song;
-use App\Models\Comment;
-use App\Models\Lyric;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Throwable;
@@ -35,8 +31,9 @@ class SongController extends Controller
             $song = $this->songRepository->findOrFail($id);
             $cate_id = $song->cate_id;
             $cate_songs = $this->songRepository->getSongofCategory($cate_id);
-            $comments = $this->commentRepository->all();
-            $countComment = $this->commentRepository->countComments();
+            $comments = $song->comments;
+            $countComment = $song->comments->count();
+
 
             return view('music.detail', compact('song', 'cate_songs', 'comments', 'countComment'));
         } catch (Throwable $e) {
@@ -46,15 +43,18 @@ class SongController extends Controller
 
     public function storeComent(Request $request)
     {
-        $comment = $this->commentRepository->create($request->all());
 
-        return $comment;
+        $comment = $this->commentRepository->create($request->all());
+        $message = trans('home.rating');
+
+        return response()->json(['comment'=>$comment,'message'=>$message], 200);
     }
 
     public function addLyric(Request $request)
     {
         $lyric = $this->lyricRepository->create($request->all());
+        $message = trans('lyric.addSuccess');
 
-        return $lyric;
+       return response()->json(['lyric'=> $lyric, 'message'=>$message], 200);
     }
 }

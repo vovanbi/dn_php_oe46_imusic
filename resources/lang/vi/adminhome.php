@@ -23,5 +23,6 @@ return [
     'accout'=>'Tài khoản',
     'logout'=>'Đăng xuất',
     'success' =>'Thành công',
-    'danger'=>'Thất bại'
+    'danger'=>'Thất bại',
+    'Error'=> 'Lỗi',
 ];

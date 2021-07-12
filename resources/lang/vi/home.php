@@ -44,8 +44,6 @@ return [
     'notsuccess'=>'Đăng nhập không thành công',
     'logoutsucess'=>'Đăng xuất thành công',
     'Notlogin'=>'địa chỉ email và mật khẩu không chính xác',
-    'notsuccess'=>'Đăng nhập không thành công',
-    'logoutsucess'=>'Đăng xuất thành công',
     'subjects'=>'Chào bạn, Imusic',
     'contents'=>'Imusic đã cập nhật một bài hát mới',
     'namesong'=>'Tên bài hát : ',
@@ -67,4 +65,10 @@ return [
     'listsong'=>'Danh sách bài hát cập nhật hôm nay',
     'imusicSign'=>'iMusic pages',
     'no' => 'STT',
+    'rating'=>'Đánh giá thành công',
+    'logingg'=>'Đăng nhập băng google',
+    'loginfb'=>'Đăng nhập bằng facebook',
+    'nosignup'=>'Bạn chưa có tài khoản ? ',
+    'or' => 'Hoặc',
+
 ];

@@ -31,7 +31,6 @@ class HomeController extends Controller
     }
     public function changeLanguage($locale)
     {
-        App::setlocale($locale);
         session()->put('locale', $locale);
         return redirect()->back();
     }
@@ -71,6 +70,7 @@ class HomeController extends Controller
 
     public function renderHome(Request $request)
     {
+
         $songs = $this->songRepository->getSongNew();
         $albums = $this->albumReporitory->getAlbumNew();
         $artists = $this->artistRepository->getArtistSong();
@@ -90,20 +90,13 @@ class HomeController extends Controller
         }
     }
 
-    public function topTrending()
-    {
-        $songs = $this->songRepository->topTrending();
-
-        return view('music.top-trending', compact('songs'));
-    }
-
     public function searchFeature($search)
     {
         try {
             $songs = $this->songRepository->searchName($search);
             $albums = $this->albumReporitory->searchName($search);
             $artists = $this->artistRepository->searchName($search);
-    
+
             return view('search', compact('songs', 'albums', 'artists', 'search'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('homePage.noSearchResult'));
@@ -135,5 +128,12 @@ class HomeController extends Controller
     {
         $countNofication = $this->songRepository->markAsRead($id);
         return response()->json($countNofication);
+    }
+
+    public function topTrending()
+    {
+        $songs = $this->songRepository->topTrending();
+
+        return view('music.top-trending', compact('songs'));
     }
 }

@@ -79,6 +79,7 @@ class SongController extends Controller
                 'error' => false,
             ], 200);
         } catch (Throwable $e) {
+
             return redirect()->back()->with('danger', trans('song.nodel'));
         }
     }
@@ -86,6 +87,7 @@ class SongController extends Controller
     public function action($action, $id)
     {
         try {
+
             $this->songRepository->actionHot($action, $id);
 
             return redirect()->back()->with('success', trans('lyric.active'));

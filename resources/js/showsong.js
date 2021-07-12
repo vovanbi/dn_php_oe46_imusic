@@ -302,21 +302,22 @@ $('.detail-song').on('click', function(e){
            var content = $('.content').val();
            var user_id = $(this).data('user');
            $.ajax({
-                method        : "POST",
-                url         : '/add-lyric',
-                data        : {
+                method : "POST",
+                url    : '/add-lyric',
+                data   : {
                 'song_id': song_id,
                 'content':content,
                 'user_id':user_id,
                 '_token': $('input[name=_token]').val()},
                 success: function(data){
-                    var html=''
-                    html = '<span class="content_lyric">'+data.lyric.content+'</span>'+
-                    '<br>'+
-                    '<span class="content_lyric"> Người thêm lời :'+ data.lyric.user.fullname+' </span>';
+                    console.log(data);
+                    // var html=''
+                    // html = '<span class="content_lyric">'+data.lyric.content+'</span>'+
+                    // '<br>'+
+                    // '<span class="content_lyric"> Người thêm lời :'+ data.lyric.user.fullname+' </span>';
 
-                    $('.message').html('<div class="alert alert-success" role="alert">' + data.message
-                    + '</div>');
+                    // $('.message').html('<div class="alert alert-success" role="alert">' + data.message
+                    // + '</div>');
                     $('.show_lyric').append(html);
                     $('.formlyric').hide();
                 }, error: function( reponses ,xhr, textStatus, thrownError) {
@@ -557,6 +558,7 @@ function albumDetail ()
 })
 
 }
+detailSong()
 function artislDetail ()
 {
 $('.artist-detail').click(function(e) {

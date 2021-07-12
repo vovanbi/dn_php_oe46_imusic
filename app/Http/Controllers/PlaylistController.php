@@ -39,6 +39,7 @@ class PlaylistController extends Controller
 
     public function storePlaylists(Request $request)
     {
+
         $playlist = $this->playlistRepository->create($request->all());
         try {
             $albums = $this->playlistRepository->getAlbumUser();
@@ -53,6 +54,7 @@ class PlaylistController extends Controller
     public function addAlbum($id)
     {
         try {
+
             $user = $this->playlistRepository->addAlbum($id);
 
             return response()->json([
@@ -67,7 +69,9 @@ class PlaylistController extends Controller
     public function playlistDetail($id)
     {
         try {
+
             $playlist = $this->playlistRepository->findOrFail($id);
+
             $songs = $playlist->songs;
             
             return view('playlistSong', compact('songs', 'playlist'));
@@ -79,7 +83,9 @@ class PlaylistController extends Controller
     public function favoriteAlbum($id)
     {
         try {
+
             $album = $this->albumReporitory->findOrFail($id);
+
             $songs = $album->songs;
             
             return view('playlistSong', compact('songs', 'album'));
@@ -91,6 +97,7 @@ class PlaylistController extends Controller
     public function delPlaylist($id)
     {
         try {
+
             $this->playlistRepository->destroy($id);
 
             return response()->json([
@@ -104,6 +111,7 @@ class PlaylistController extends Controller
     public function delFavAlbum($id)
     {
         try {
+
             $this->albumReporitory->delFavAlbum($id);
     
             return response()->json([
@@ -122,7 +130,9 @@ class PlaylistController extends Controller
     public function songResult($playlistId, $search)
     {
         try {
+
             $songs = $this->playlistRepository->songResult($playlistId, $search);
+
             return view('songResult', compact('songs', 'playlistId'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('playlist.noSearchFound'));
@@ -157,7 +167,7 @@ class PlaylistController extends Controller
 
     public function addFavoriteSong($idSong)
     {
-        $this->playlistRepository->addSonginPlaylist($idSong);
+        $this->playlistRepository->addFavoriteSong($idSong);
 
         return response()->json([
             'error' => false,

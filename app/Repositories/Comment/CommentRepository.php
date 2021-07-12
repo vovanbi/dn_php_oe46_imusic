@@ -13,13 +13,6 @@ class CommentRepository extends BaseRepository implements ICommentRepository
         return Comment::class;
     }
 
-    public function all()
-    {
-        $comments = $this->model::orderBy('created_at', 'asc')->get();
-
-        return $comments;
-    }
-
     public function create($data)
     {
         $comment = $this->model::create([
@@ -28,6 +21,8 @@ class CommentRepository extends BaseRepository implements ICommentRepository
             'song_id' => $data['song_id'],
             'user_id' => $data['user_id'],
         ]);
+
+        $comment->user = $comment->user;
 
         return $comment;
     }

@@ -23,14 +23,14 @@
                 @endforeach
             @elseif (isset($albums))
                 @foreach ($albums as $album)
-                    <a class="box_music" href="{{ route('showAlbum', ['album' => $album->id])}}">
+                    <a class="box_music album-detail" data-id={{ $album->id }} href=""">
                         <img src="{{ $album->image }}" alt="Death Cab fot Cutie">
                         <h3>{{ $album->name }}</h3>
                     </a>
                 @endforeach
             @elseif (isset($artists))
                 @foreach ($artists as $artist)
-                    <a class="box_music" href="{{ route('showArtist', ['artist' => $artist->id])}}">
+                    <a class="box_music artist-detail" data-id={{ $artist->id }} href="">
                         <img src="{{ $artist->image }}" alt="Death Cab fot Cutie">
                         <h3>{{ $artist->name }}</h3>
                     </a>

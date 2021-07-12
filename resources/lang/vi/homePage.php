@@ -22,4 +22,5 @@ return [
     'noSearchSong' => 'Không có bài hát nào được tìm thấy với từ khóa này!',
     'noSearchAlbum' => 'Không có album nào được tìm thấy với từ khóa này!',
     'noSearchArtist' => 'Không có nghệ sĩ nào được tìm thấy với từ khóa này!',
+    'addedAlbum' => 'Album này đã có trong danh sách phát của bạn',
 ];

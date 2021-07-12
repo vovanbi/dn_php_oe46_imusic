@@ -29,7 +29,7 @@ class AlbumRepository extends BaseRepository implements IAlbumRepository
 
     public function getAlbumHot()
     {
-        return $this->model->songHot();
+        return $this->model->albumHot();
     }
 
     public function searchName($search)

@@ -13,6 +13,6 @@
 @if(\Session::has('error'))
     <div class="alert alert-danger alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>@lang('adminhome.danger')</strong> {{ \Session::get('danger') }}
+        <strong>@lang('adminhome.error')</strong> {{ \Session::get('error') }}
     </div>
 @endif

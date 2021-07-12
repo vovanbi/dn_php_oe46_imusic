@@ -7,6 +7,7 @@ use App\Models\Artist;
 use Illuminate\Http\Request;
 use App\Repositories\Album\IAlbumRepository;
 use App\Repositories\Artist\ArtistRepository;
+use Illuminate\Support\Facades\Auth;
 
 class PageDetailController extends Controller
 {
@@ -23,10 +24,15 @@ class PageDetailController extends Controller
     public function showAlbum($album)
     {
         try {
+           $check = '';
+            if (Auth::check()) {
+                $check = Auth::user()->albums->where('id', $album);
+            }
+
             $album = $this->albumReporitory->findOrFail($album);
             $songs = $album->songs;
 
-            return view('detail', compact('album', 'songs'));
+            return view('detail', compact('album', 'songs', 'check'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('pageDetail.notFoundAlbum'));
         }
@@ -35,6 +41,7 @@ class PageDetailController extends Controller
     public function showArtist($artist)
     {
         try {
+
             $artist = $this->artistRepository->findOrFail($artist);
             $songs = $artist->songs;
 

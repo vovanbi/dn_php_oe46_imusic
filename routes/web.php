@@ -18,15 +18,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
     Route::resource('categories', CategoryController::class);
     Route::resource('albums', AlbumController::class);
+
     Route::get('albums/{album}/album-song', [AlbumController::class, 'albumSong'])->name('albumSong');
+
     Route::get('albums/{album}/add-song', [AlbumController::class, 'getAddSong'])->name('getAddSong');
+
     Route::get('albums/{album}/add-song/{song}', [AlbumController::class, 'addAlbumSong'])->name('addAlbumSong');
+
     Route::get('albums/{album}/del-song/{song}', [AlbumController::class, 'delAlbumSong'])->name('delAlbumSong');
+
     Route::resource('songs', SongController::class);
+
     Route::resource('artist', App\Http\Controllers\Admin\ArtistController::class)->except('show');
+
     Route::get('albums/{action}/{id}', [AlbumController::class, 'action'])->name('albums.action');
-    Route::resource('songs', SongController::class);
+
     Route::get('songs/{action}/{id}', [SongController::class, 'action'])->name('songs.action');
+
     Route::resource('user', App\Http\Controllers\Admin\UserController::class)->except('show');
 
     Route::resource('lyric', App\Http\Controllers\Admin\LyricController::class)->except('show');
@@ -39,23 +47,24 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'statistiSong'])->name('song-statistical');
 });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class,'index'])->name('home');
 
-Route::group(['namespace'=>''], function () {
+Route::group(['namespace'=>''],function (){
     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'getRegister'])->name('get.register');
-    Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'postRegister'])
-    ->name('post.register');
-    Route::get('/login', [LoginController::class, 'getLogin'])->name('get.login');
-    Route::post('/login', [LoginController::class, 'postLogin'])->name('post.login');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-    Route::get('oauth/{driver}', [LoginController::class, 'redirectToProvider'])
-    ->name('social.oauth');
-    Route::get('oauth/{driver}/callback', [LoginController::class, 'handleProviderCallback'])->name('social.callback');
+    Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'postRegister'])->name('post.register');
+    Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'getLogin'])->name('get.login');
+    Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'postLogin'])->name('post.login');
+    Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('auth/social', 'App\Http\Controllers\Auth\LoginController@show')->name('get
+        .login');
+    Route::get('oauth/{driver}', 'App\Http\Controllers\Auth\LoginController@redirectToProvider')->name('social.oauth');
+    Route::get('oauth/{driver}/callback', 'App\Http\Controllers\Auth\LoginController@handleProviderCallback')->name('social.callback');
 });
 
-Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::class, 'getSong']);
-
 Route::get('/song/{id}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
+
+
+Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
 Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
 Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');
@@ -78,22 +87,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('favorite-song/{song}', [PlaylistController::class, 'addFavoriteSong'])->name('addFavoriteSong');
 });
 
-Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
-Route::get('/hot/{id}', [App\Http\Controllers\HomeController::class, 'hotAlbumMusic']);
-
-Route::get('/top-trending-song', [App\Http\Controllers\HomeController::class, 'topTrending'])->name('top-trending');
+Route::get('/hot/{type}', [App\Http\Controllers\HomeController::class, 'hotAlbumMusic']);
 
 Route::post('/song-comment', [App\Http\Controllers\SongController::class, 'storeComent']);
 Route::post('/add-lyric', [App\Http\Controllers\SongController::class, 'addLyric']);
 
-Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
-    ->name('detail-song')-> middleware('auth');
+Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong']);
+
+Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
 
 Route::get('/info-profile/{id}', [App\Http\Controllers\UserController::class, 'proFile']);
 Route::post('/change-password', [App\Http\Controllers\UserController::class, 'changePassword']);
-Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
+
 Route::get('search/{type}/key/{search}', [HomeController::class, 'searchType'])->name('searchType');
 
 Route::post('markAsRead/{id}', [HomeController::class, 'markAsRead']);
 
 Route::get('showNotification', [HomeController::class, 'showNotification']);
+
+Route::get('/top-trending-song', [App\Http\Controllers\HomeController::class, 'topTrending'])->name('top-trending');

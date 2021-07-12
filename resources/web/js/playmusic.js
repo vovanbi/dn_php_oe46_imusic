@@ -57,6 +57,7 @@ function detailSong() {
                     'user_id':user_id,
                     '_token': $('input[name=_token]').val()},
                     success: function(data){
+                        console.log(data)
                         var html=''
                         html = '<span class="content_lyric">'+data.lyric.content+'</span>'+
                         '<br>'+
@@ -181,7 +182,7 @@ function playMusic() {
     });
 }
 playMusic();
-
+detailSong();
 var isRepeat = false;
 function playMusicEvent() {
     audio.play();

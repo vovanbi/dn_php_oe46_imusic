@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Song;
-use App\Models\Album;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlbumRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\Album\IAlbumRepository;
 use App\Repositories\Song\ISongRepository;
+use Illuminate\Support\Facades\DB;
 
 class AlbumController extends Controller
 {
@@ -72,6 +71,7 @@ class AlbumController extends Controller
     public function action($action, $id)
     {
         try {
+
             $album = $this->albumRepository->pinHotAlbum($action, $id);
 
             return redirect()->back()->with('success', trans('lyric.active'));

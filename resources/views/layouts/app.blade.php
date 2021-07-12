@@ -20,9 +20,9 @@
     <script src="https://js.pusher.com/7.0.3/pusher.min.js"></script>
     <script src="{{asset('js/playmusic.js')}}"></script>
     <script src="{{asset('js/showsong.js')}}"></script>
-    <script src="{{asset('js/hot_album_music.js')}}"></script>
     <script src="{{asset('js/profile.js')}}"></script>
     <script src="{{asset('js/topTrending.js')}}"></script>
     <script src="{{asset('js/home.js')}}"></script>
 </body>
+
 </html>
