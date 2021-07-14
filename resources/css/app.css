@@ -95,6 +95,7 @@
     padding: 8px 16px;
 }
 
-#album-image {
+#album-image,
+#song-image {
     width: 150px;
 }

@@ -1,0 +1,36 @@
+<?php
+
+return [
+
+    'errorAlert' => 'Đã xảy ra lỗi!',
+    'nameRequired' => 'Trường tên bài hát không được để trống.',
+    'cateRequired' => 'Trường danh mục bài hát không được để trống.',
+    'artRequired' => 'Trường nghệ sĩ trình bày không được để trống.',
+    'linkRequired' => 'Đường dẫn bài hát không được để trống',
+    'addSuccess' => 'Thêm bài hát thành công.',
+    'editSuccess' => 'Cập nhật bài hát thành công.',
+    'song' => 'Bài hát',
+    'image' => 'Hình ảnh',
+    'homePage' => 'Trang chủ',
+    'update' => 'Cập nhật',
+    'addNew' => 'Thêm mới',
+    'songName' => 'Tên bài hát',
+    'saveBtn' => 'Lưu thông tin',
+    'stt' => 'STT',
+    'songAction' => 'Thao tác',
+    'songManage' => 'Quản lý bài hát',
+    'songHot' => 'Bài hát nổi bật',
+    'songEdit' => 'Sửa',
+    'songDelete' => 'Xóa',
+    'imageRequired' => 'Chưa có tệp hình ảnh',
+    'imageExtension' => 'Tệp hình ảnh phải có đuôi jpg, jpeg hoặc png',
+    'songCate' => 'Tên danh mục bài hát',
+    'songArtist' => 'Nghệ sĩ trình bày',
+    'songLink' => 'Đường dẫn bài hát',
+    'songView' => 'Lượt nghe',
+    'cateSelect' => 'Chọn danh mục bài hát',
+    'artSelect' => 'Chọn nghệ sĩ trình bày',
+    'editError' => 'Không tìm thấy bài hát để sửa',
+    'linkUnique' => 'Đường dẫn bài hát đã tồn tại.',
+
+];
