@@ -31,7 +31,11 @@
                         </span>
                     </div>
                         @if (isset($album))
-                            <a href="#modal-buy" class="release__buy open-modal"> {{ trans('homePage.addAlbum') }} </a>
+                            <a href="" data-id ="{{ $album->id }}" class="release__buy open-modal add-album-btn">
+                                <i class="fa fa-plus-circle nonAdd" aria-hidden="true"></i>
+                                <i class="fa fa-check-circle added" aria-hidden="true"></i>
+                                {{ trans('homePage.addAlbum') }} 
+                            </a>
                         @elseif (isset($artist))
                             @lang('homePage.artistInfo')
                             <p>{{ $artist->info }}</p>

@@ -8,16 +8,18 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .js('resources/theme_admin/js/jquery-3.5.1.js','public/js/jquery-3.5.1.js')
     .styles('resources/css/app.css','public/css/app.css')
     .styles('resources/web/css/music.css', 'public/css/music.css')
+    .styles('resources/web/css/style.css','public/css/style.css')
     .styles('resources/web/css/main.css','public/css/main.css')
     .js('resources/js/delartis.js','public/js/delartis.js')
+    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js')
     .js('resources/js/delCategory.js', 'public/js/delCategory.js')
     .copy('resources/image/', 'public/storage/img')
     .styles('resources/web/css/playmusic.css','public/css/playmusic.css')
-    .styles('resources/web/css/style.css', 'public/css/style.css')
     .js('resources/js/admin.js','public/js/admin.js')
     .js('resources/web/js/playmusic.js', 'public/js/playmusic.js')
     .js('resources/js/showsong.js', 'public/js/showsong.js')
     .js('resources/js/hot_album_music.js','public/js/hot_album_music.js')
     .js('resources/js/profile.js', 'public/js/profile.js')
-    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js');
+    .js('resources/web/js/playlist.js','public/js/playlist.js');
+
 

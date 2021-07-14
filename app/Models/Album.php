@@ -18,7 +18,7 @@ class Album extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'favorite_user_album', 'user_id', 'album_id');
+        return $this->belongsToMany(User::class, 'favorite_user_album', 'album_id', 'user_id');
     }
 
     public function scopealbumHot($query)
