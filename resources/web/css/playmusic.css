@@ -72,7 +72,7 @@
 
 .bg-white {
     padding-top: 50px;
-    height: 600px;
+    min-height: 600px;
 }
 
 .add-album-btn {
@@ -93,6 +93,87 @@
 
 .add-album-btn.active .added {
     display: inline-block;
+}
+
+.playlist-box {
+    position: relative;
+}
+
+.del-playlist,
+.del-favAlbum {
+    position: absolute;
+    z-index: 99;
+    width: 16px;
+    display: block;
+    top: 0px;
+    right: 10px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.more-option {
+    cursor: pointer;
+    position: relative;
+}
+
+.more-option-view {
+    display: none;
+    position: absolute;
+    z-index: 999999;
+    background-color: rgba(0,0,0,0.6);
+    min-width: 200px;
+    top: 0;
+    right: 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    border-radius: 8px;
+}
+
+.more-option-view > li,
+.sub-more > li {
+    padding: 8px 16px;
+}
+
+.more-option-view > li > a, 
+.sub-more > li > a {
+    text-decoration: none;
+    color: #fff !important;
+    display: block;
+}
+
+.more-option-view li:hover {
+    background-color: #ccc;
+}
+
+.more-option-view > li:hover > a,
+.sub-more > li:hover > a {
+    color: #000 !important;
+}
+
+.more-option:hover .more-option-view {
+    display: block;
+}
+
+.sub-more {
+    display: none;
+    position: absolute;
+    z-index: 999999999;
+    right: 200px;
+    top: 20px;
+    background-color: rgba(0,0,0,0.6);
+    min-width: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    border-radius: 8px;
+}
+
+.add-to-playlist:hover .sub-more {
+    display: block;
+}
+
+.heart-box {
+    display: block;
+    width: 100%;
+    text-align: center;
 }
 
 .col-md-3{
@@ -977,7 +1058,7 @@ body::-webkit-scrollbar-thumb {
 }
 .release__list {
   position: relative;
-  height: 330px;
+  min-height: 330px;
   width: 100%;
   overflow: hidden;
   padding-right: 14px;
@@ -1056,7 +1137,7 @@ body::-webkit-scrollbar-thumb {
 @media (min-width: 1200px) {
   .release__list {
     width: calc(100% - 310px);
-    height: 388px;
+    min-height: 388px;
   }
   .release__content {
     width: 290px;

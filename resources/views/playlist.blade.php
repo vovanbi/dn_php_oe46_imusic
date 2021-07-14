@@ -5,10 +5,13 @@
             <div class="row">
                 @if(isset($playlists))
                     @foreach ($playlists as $playlist)
-                        <a class="box_music" href="">
-                            <img src="" alt="Playlist">
-                            <h3>{{ $playlist->name }}</h3>
-                        </a>
+                        <div class="playlist-box" id="playlist-{{ $playlist->id }}">
+                            <span class="del-playlist" data-id="{{ $playlist->id }}"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                            <a class="box_music play-playlist" data-id="{{ $playlist->id }}" href="">
+                                <img src="" alt="Playlist">
+                                <h3>{{ $playlist->name }}</h3>
+                            </a>
+                        </div>
                     @endforeach
                 @endif
             </div>
@@ -18,10 +21,13 @@
             <div class="row">
                 @if(isset($albums))
                     @foreach ($albums as $album)
-                        <a class="box_music" href="">
-                            <img src="{{ $album->image }}" alt="Death Cab fot Cutie">
-                            <h3>{{ $album->name }}</h3>
-                        </a>
+                        <div class="playlist-box" id="playlist-{{ $album->id }}">
+                            <span class="del-favAlbum" data-id="{{ $album->id }}"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                            <a class="box_music play-favAlbum" data-id="{{ $album->id }}" href="">
+                                <img src="{{ $album->image }}" alt="Death Cab fot Cutie">
+                                <h3>{{ $album->name }}</h3>
+                            </a>
+                        </div>
                     @endforeach
                 @endif
             </div>
