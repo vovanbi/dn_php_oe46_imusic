@@ -118,7 +118,7 @@ class PlaylistController extends Controller
     public function songResult($playlistId, $search)
     {
         try {
-            $songs = Song::where('name', 'like', '%'.$search.'%')->take(config('app.home_take_number'))->get();
+            $songs = Song::searchName($search)->take(config('app.home_take_number'))->get();
 
             return view('songResult', compact('songs', 'playlistId'));
         } catch (Throwable $e) {

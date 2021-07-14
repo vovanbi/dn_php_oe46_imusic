@@ -19,4 +19,9 @@ class Artist extends Model
     {
         return $query->orderBy('name', 'desc');
     }
+
+    public function scopeSearchName($query, $search)
+    {
+        return $query->where('name', 'like', '%'.$search.'%');
+    }
 }

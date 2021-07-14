@@ -50,4 +50,9 @@ class Song extends Model
     {
         return $query->where('hot', 1);
     }
+
+    public function scopeSearchName($query, $search)
+    {
+        return $query->where('name', 'like', '%'.$search.'%');
+    }
 }

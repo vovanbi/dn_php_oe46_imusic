@@ -16,4 +16,11 @@ return [
     'noPlaylistSong' => 'This playlist have no song',
     'playlist' => 'The playlist songs',
     'addSongPlaylist' => 'Add song to this playlist',
+    'searchSong' => 'Song',
+    'searchAlbum'=> 'Album',
+    'noSearchResult' => 'No result for this keyword',
+    'searchKeyResult' => 'The search result for keyword',
+    'noSearchSong' => 'No song found with this keyword!',
+    'noSearchAlbum' => 'No album found with this keyword!',
+    'noSearchArtist' => 'No aritist found with this keyword!',
 ];
