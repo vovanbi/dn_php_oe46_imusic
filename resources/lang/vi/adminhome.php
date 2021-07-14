@@ -19,6 +19,8 @@ return [
     'lyris'=>'Lời bài hát',
     'albumn'=>'Albumn',
     'signer'=>'Ca sĩ',
-    'comment'=>'Đánh giá'
+    'comment'=>'Đánh giá',
+    'accout'=>'Tài khoản',
+    'logout'=>'Đăng xuất'
 
 ];

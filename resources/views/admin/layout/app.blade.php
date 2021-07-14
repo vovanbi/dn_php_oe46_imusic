@@ -5,18 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>LMussic - Trang quản lý</title>
-     <link rel="stylesheet" href="{{asset('')}}/css/bootstrap.css">
-    <link href="{{ asset('') }}css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('')}}css/sb-admin.css">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.cs')}}s">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/sb-admin.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -27,15 +28,15 @@
                 <a class="navbar-brand" href="">LMussic</a>
             </div>
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
+            <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Tài Khoản</a>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> @lang('adminhome.accout')</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href=""><i class="fa fa-fw fa-power-off"></i> Đăng Xuất</a>
+                            <a href=""><i class="fa fa-fw fa-power-off"></i>@lang('adminhome.logout')</a>
                         </li>
                     </ul>
                 </li>
@@ -71,6 +72,11 @@
                     </li>
                     <li class="">
                         <a href=""><i class="fa fa-fw fa-bar-chart-o"></i> @lang('adminhome.category')</a>
+
+                        <a href=""><i class="fa fa-fw fa-home"></i> @lang('adminhome.home') </a>
+                    </li>
+                    <li class="">
+                        <a href=""><i class="fa fa-fw fa-bar-chart-o"></i> @lang('adminhome.category') </a>
                     </li>
                     <li class="">
                         <a href=""><i class="fa fa-play-circle-o" aria-hidden="true"></i> @lang('adminhome.song') </a>
@@ -83,8 +89,9 @@
                         <a href=""><i class="fa fa-book" aria-hidden="true"></i>
                     </i> @lang('adminhome.albumn') </a>
                     </li>
-                     <li class="">
-                        <a href=""><i class="fa fa-music" aria-hidden="true"></i>
+
+                     <li class="{{ \Request::route()->getName() == 'artist.index' ? 'active' : '' }}">
+                        <a href="{{route('artist.index')}}"><i class="fa fa-music" aria-hidden="true"></i>
                     </i> @lang('adminhome.signer') </a>
                     </li>
                     <li class="">
@@ -97,17 +104,14 @@
                 </ul>
             </div>
         </nav>
-         @yield('content')
+        @include('admin.layout.notification')
+        @yield('content')
     </div>
-   <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
-    <script type="text/javascript" src="{{asset('js/lib.js')}}"></script>
-    <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
-    <!-- <script src="{{asset('')}}/js/app.js"></script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{asset('js/showimg.js')}}"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    @yield('script')
+    <script type="text/javascript" src="{{asset('js/delartis.js')}}"></script>
 </body>
 </html>
