@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SongListController;
 use App\Http\Controllers\Admin\SongController;
+use App\Http\Controllers\PageDetailController;
 use App\Http\Controllers\Admin\AlbumController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LyricController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Route::get('change-language/{language}', [App\Http\Controllers\HomeController::class,
     'changeLanguage'])->name('change-language');
@@ -33,3 +35,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/{songId}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
 
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
+Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
+Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');

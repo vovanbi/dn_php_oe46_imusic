@@ -908,6 +908,7 @@ h1, h2, h3, h4, a {
 .me-2 {
     margin-right: .5rem!important;
 }
+
 .divider-text {
     position: relative;
     text-align: center;
@@ -945,7 +946,7 @@ max-width: 400px;
 .fas{
   font-size: 20px;
 }
-<<<<<<< HEAD
+
 .dropbtn {
     display: inline-block;
     font-weight: 400;
@@ -1049,4 +1050,35 @@ max-width: 400px;
 }
 .nav_bar_main > li:hover > ul{
    display:block;
+}
+
+.dropup {
+  position: relative;
+  display: inline-block;
+}
+
+.dropup-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  bottom: 50px;
+  z-index: 1;
+}
+
+.dropup-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropup-content a:hover {background-color: #ccc}
+
+.dropup:hover .dropup-content {
+  display: block;
+}
+
+.dropup:hover .dx {
+  background-color: #2980B9;
 }
