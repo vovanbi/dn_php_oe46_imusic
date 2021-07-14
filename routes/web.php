@@ -6,10 +6,6 @@ use App\Http\Controllers\Admin\AlbumController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LyricController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/admin', [App\Http\Controllers\Admin\HomeController::class, 'index']);
 
 Route::get('change-language/{language}', [App\Http\Controllers\HomeController::class,
@@ -25,3 +21,5 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('lyric', App\Http\Controllers\Admin\LyricController::class)->except('show');
     Route::get('lyric/{action}/{id}', [LyricController::class, 'action'])->name('lyric.action');
 });
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

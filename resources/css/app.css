@@ -17,29 +17,7 @@
  width: 100%
 }
 .dropdown {
-   margin-top: 12px;
-}
-
-/* Dropdown button */
-.dropbtn {
-    display: inline-block;
-    font-weight: 400;
-    cursor: pointer;
-    color: white;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    user-select: none;
-    outline: 0;
-    transition: .15s ease-in-out;
-    margin-top: 10px;
-    background: black;
-
+   margin-top: 10px;
 }
 
 .dropbtn:hover {
@@ -53,7 +31,7 @@
     top: 100%;
     left: 0;
     min-width: 160px;
-    padding: 8px 0;
+    padding: 5px 0;
     background: white;
     box-shadow: 0 1px 8px 2px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -62,7 +40,7 @@
 /* Links inside the dropdown menu */
 .dropdown-menu a {
     color: #000;
-    padding: 10px 16px;
+    padding: 5px 10px;
     text-decoration: none;
     display: block;
 }
@@ -91,11 +69,6 @@
 /* Dropdown menu Header */
 .dropdown-menu .dropdown-header {
     color: #777;
-    font-size: .8rem;
-    padding: 8px 16px;
-}
-
-#album-image,
-#song-image {
-    width: 150px;
+    font-size: .5rem;
+    padding: 5px 10px;
 }
