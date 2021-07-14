@@ -19,7 +19,7 @@ $(document).ready(function()
             success : function(data)
             {
                $('#artist-' + id).remove()
-            }
+            },
             error :function(reponses){
                alert(response.responseJSON.errors);
             }

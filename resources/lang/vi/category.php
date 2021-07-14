@@ -22,5 +22,7 @@ return [
     'cateManage' => 'Quản lý danh mục',
     'cateEdit' => 'Sửa',
     'cateDelete' => 'Xóa',
+    'cateChild' => 'Con',
+    'cateParent' => 'Cha',
 
 ];
