@@ -55,6 +55,7 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
             $userParent = User::where('id', '=', config('app.userParent'))->get();
+
             return view('admin.user.update', compact(['user', 'userParent']));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('user.notId'));
@@ -87,7 +88,6 @@ class UserController extends Controller
     {
         try {
             $user = User::destroy($id);
-
                 return response()->json([
                     'error' => false,
                     'user' => $user

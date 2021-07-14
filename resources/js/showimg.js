@@ -38,3 +38,5 @@ window.onclick = function(event) {
     }
   }
 }
+
+CKEDITOR.replace('content')

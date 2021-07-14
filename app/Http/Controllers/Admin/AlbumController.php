@@ -12,7 +12,7 @@ class AlbumController extends Controller
     public function index()
     {
         $albums = Album::orderBy('id')->paginate(config('app.paginate_num'));
-        
+
         return view('admin.album.index', compact('albums'));
     }
 
@@ -39,7 +39,7 @@ class AlbumController extends Controller
     {
         try {
             $album = Album::find($album);
-    
+
             return view('admin.album.update', compact('album'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('album.editError'));
@@ -57,7 +57,7 @@ class AlbumController extends Controller
             $image->move($path, $image_path);
             $album->image = $image_path;
             $album->save();
-    
+
             return redirect()->route('albums.index')->with('success', trans('album.esditSuccess'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('album.editError'));

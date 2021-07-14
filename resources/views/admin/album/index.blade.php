@@ -1,4 +1,5 @@
-@extends('admin.layout.app') @section('content')
+@extends('admin.layout.app')
+@section('content')
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="row">
@@ -60,6 +61,4 @@
         </div>
         <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-
 @stop
