@@ -10,7 +10,7 @@ return [
 
     'paginateUser' =>'10',
 
-    'userParent' => '0',
+    'noLyric' => '0',
 
     'image_admin' => 'image_admin/',
 
@@ -25,6 +25,12 @@ return [
     'Show' => '1',
     
     'search_take_num' => '20',
+
+    'lyric_hidden' => '0',
+
+    'lyric_show' => '1',
+
+    'lyric_active' => 'active',
 
     /*
     |--------------------------------------------------------------------------

@@ -8,34 +8,37 @@ use App\Models\Lyric;
 use App\Models\Song;
 use Throwable;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\Lyric\ILyricRepository;
 
 class LyricController extends Controller
 {
+    protected $lyricRepository;
+
+    public function __construct(ILyricRepository $lyricRepository)
+    {
+        $this->lyricRepository = $lyricRepository;
+    }
 
     public function index()
     {
-        $lyrics = Lyric::getLyric()->paginate(config('app.paginateUser'));
+        $lyrics = $this->lyricRepository->all();
+
         return view('admin.lyric.index', compact('lyrics'));
     }
 
     public function create()
     {
-        $lyricParent = Lyric::where('id', '=', config('app.userParent'))->get();
-        $songs = Song::has('lyrics', 0)->get();
+        $songs = $this->lyricRepository->getNoLyricSongs();
 
-        return view('admin.lyric.create', compact('songs', 'lyricParent'));
+        return view('admin.lyric.create', compact('songs'));
     }
 
     public function store(Request $request)
     {
         try {
-            $lyric = new Lyric();
-            $lyric->song_id = $request->song_id;
-            $lyric->content = $request->content;
-            $lyric->user_id = auth()->user()->id;
-            $lyric->save();
+            $this->lyricRepository->create($request->all());
 
-            return redirect()->route('lyric.index')->with('susccess', trans('lyric.addSuccess'));
+            return redirect()->route('lyric.index')->with('success', trans('lyric.addSuccess'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('lyric.noAdd'));
         }
@@ -49,11 +52,10 @@ class LyricController extends Controller
     public function edit($id)
     {
         try {
-            $lyricParent = Lyric::where('id', '=', config('app.userParent'))->get();
-            $lyric = Lyric::findOrFail($id);
-            $songs = Song::has('lyrics')->get();
+            $lyric = $this->lyricRepository->findOrFail($id);
+            $songs = $this->lyricRepository->getSongHasLyric();
 
-            return view('admin.lyric.update', compact('lyric', 'songs', 'lyricParent'));
+            return view('admin.lyric.update', compact('lyric', 'songs'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('lyric.notId'));
         }
@@ -62,13 +64,9 @@ class LyricController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $lyric = Lyric::findOrFail($id);
-            $lyric->song_id = $request->song_id;
-            $lyric->content =$request->content;
-            $lyric->user_id = auth()->user()->id;
-            $lyric->save();
+            $result = $this->lyricRepository->update($id, $request->all());
 
-            return redirect()->route('lyric.index')->with('susccess', trans('lyric.updatesuccess'));
+            return redirect()->route('lyric.index')->with('success', trans('lyric.updatesuccess'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('lyric.Noupdate'));
         }
@@ -76,30 +74,19 @@ class LyricController extends Controller
 
     public function destroy($id)
     {
-        DB::beginTransaction();
         try {
-            $lyric = Lyric::findOrFail($id);
-            $lyric->delete();
-            DB::commit();
+            $this->lyricRepository->destroy($id);
 
-            return response()->json([
-                'error' => false,
-            ], 200);
+            return redirect()->route('lyric.index')->with('success', trans('lyric.deleteSuccess'));
         } catch (Throwable $e) {
-            DB::rollBack();
+            return redirect()->back()->with('danger', trans('lyric.noDelete'));
         }
     }
 
     public function action($action, $id)
     {
         try {
-            $lyric = Lyric::findOrFail($id);
-            switch ($action) {
-                case 'active':
-                    $lyric->status = $lyric->status ? config('app.Hidden') : config('app.Show');
-                    $lyric->save();
-                    break;
-            }
+            $this->lyricRepository->setLyricStatus($action, $id);
 
             return redirect()->back()->with('success', trans('lyric.active'));
         } catch (Throwable $e) {

@@ -19,6 +19,6 @@ return [
     'notId' => 'Not find id',
     'updatesuccess' => 'Update lyric success',
     'active' => "Active show success",
-
-
+    'deleteSuccess' => 'Delete lyric success',
+    'noDelete' => 'Cant\'t not delete lyric',
 ];

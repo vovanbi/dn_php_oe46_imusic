@@ -11,6 +11,12 @@ class Lyric extends Model
 
     protected $table = 'lyrics';
 
+    protected $fillable = [
+        'content',
+        'song_id',
+        'user_id',
+    ];
+
     public function song()
     {
         return $this->belongsTo(Song::class);

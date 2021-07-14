@@ -29,9 +29,9 @@ abstract class BaseRepository implements IRepository
 
     public function findOrFail($id)
     {
-        $category = $this->model::findOrFail($id);
+        $result = $this->model->findOrFail($id);
 
-        return $category;
+        return $result;
     }
 
     public function create(array $attributes)
