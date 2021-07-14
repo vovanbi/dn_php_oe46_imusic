@@ -295,6 +295,18 @@ h1, h2, h3, h4, a {
   text-transform: uppercase;
 }
 
+.main .box_main .nav_bar_main li:first-child::after {
+  position: absolute;
+  content: '';
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 2.5px;
+  border-radius: 2px;
+  background-color: #1ed760;
+}
+
 .main .box_main .nav_bar_main a:hover {
   transition: color 1s;
   color: #ffffff;

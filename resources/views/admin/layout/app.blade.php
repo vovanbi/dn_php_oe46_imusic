@@ -103,7 +103,7 @@
         @include('admin.layout.notification')
         @yield('content')
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{asset('js/showimg.js')}}"></script>
@@ -111,5 +111,6 @@
     <script type="text/javascript" src="{{asset('js/delartis.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/delCategory.js')}}"></script>
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+    <script src=" {{ asset('js/admin.js') }}"></script>
 </body>
 </html>

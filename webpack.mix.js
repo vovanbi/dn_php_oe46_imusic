@@ -17,4 +17,6 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .styles('resources/web/css/style.css', 'public/css/style.css')
     .js('resources/js/showsong.js','public/js/showsong.js')
     .js('resources/js/comment.js' ,'public/js/comment.js')
-    .js('resources/web/js/playmusic.js', 'public/js/playmusic.js');
+    .js('resources/web/js/playmusic.js', 'public/js/playmusic.js')
+    .js('resources/js/admin.js','public/js/admin.js');
+

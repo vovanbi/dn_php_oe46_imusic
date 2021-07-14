@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Song;
 use App\Models\Album;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlbumRequest;
@@ -72,5 +73,59 @@ class AlbumController extends Controller
             'error' => false,
             'album'  => $album,
         ], 200);
+    }
+
+    public function albumSong($album)
+    {
+        try {
+            $album = Album::find($album);
+            $songs = $album->songs()->paginate(config('app.paginate_num'));
+
+            return view('admin.album.albumSong', compact('album', 'songs'));
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('album.notFoundAlbum'));
+        }
+    }
+
+    public function getAddSong($album)
+    {
+        try {
+            $album = Album::find($album);
+            $songs = Song::orderBy('id')->paginate(config('app.paginate_num'));
+
+            return view('admin.album.addAlbumSong', compact('album', 'songs'));
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('album.notFoundAlbum'));
+        }
+    }
+
+    public function addAlbumSong($album, $song)
+    {
+        try {
+            $album = Album::find($album);
+            $album->songs()->attach($song);
+
+            return response()->json([
+                'error' => false,
+                'album'  => $album,
+            ], 200);
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('album.addSongError'));
+        }
+    }
+
+    public function delAlbumSong($album, $song)
+    {
+        try {
+            $album = Album::find($album);
+            $album->songs()->detach($song);
+
+            return response()->json([
+                'error' => false,
+                'album'  => $album,
+            ], 200);
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('album.delSongError'));
+        }
     }
 }

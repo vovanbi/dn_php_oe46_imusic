@@ -31,13 +31,22 @@
                 </thead>
                 <tbody>
                     @if (isset($categories))
-                        <?php $no = 1; ?>
                         @foreach ($categories as $cate)
                             <tr id="category-{{ $cate->id }}">
-                                <td>{{ $no++ }}</td>
+                                <td>{{ loopNo($categories, $loop) }}</td>
                                 <td>{{ $cate->name }}</td>
                                 <td><button type="button"
-                                        class="btn {{ $cate->parent_id ? 'btn-danger' : 'btn-success' }}">{{ $cate->parent_id ? trans('category.cateChild') : trans('category.cateParent') }}</button>
+                                        class="btn {{ $cate->parent_id != 0 ? 'btn-danger' : 'btn-success' }}">
+                                        @if ($cate->parent_id != 0)
+                                            @foreach ($categories as $item)
+                                                @if($item->id == $cate->parent_id)
+                                                    {{ $item->name }}
+                                                @endif
+                                            @endforeach       
+                                        @else 
+                                            {{ trans('category.cateParent') }}                     
+                                        @endif
+                                    </button>
                                 </td>
                                 <td><a class="btn btn-primary"
                                         href="{{ route('categories.edit', ['category' => $cate->id]) }}"><i
