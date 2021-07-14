@@ -97,4 +97,25 @@ class HomeController extends Controller
             return redirect()->back()->with('danger', trans('homePage.noSearchResult'));
         }
     }
+
+    public function searchType($type, $search)
+    {
+        try {
+            if ($type == 'song') {
+                $songs = Song::searchName($search)->paginate(config('app.search_take_num'));
+
+                return view('searchDetail', compact('songs', 'search'));
+            } elseif ($type == 'album') {
+                $albums = Album::searchName($search)->paginate(config('app.search_take_num'));
+
+                return view('searchDetail', compact('albums', 'search'));
+            } elseif ($type == 'artist') {
+                $artists = Artist::searchName($search)->paginate(config('app.search_take_num'));
+
+                return view('searchDetail', compact('artists', 'search'));
+            }
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('homePage.noSearchResult'));
+        }
+    }
 }
