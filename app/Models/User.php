@@ -11,22 +11,13 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name',
+        'fullname',
         'email',
         'password',
+        'phone',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -59,5 +50,10 @@ class User extends Authenticatable
     public function albums()
     {
         return $this->belongsToMany(Album::class, 'favorite_user_album', 'album_id', 'user_id');
+    }
+
+    public function scopeAlluser($query)
+    {
+        return $query->orderBy('fullname', 'desc');
     }
 }

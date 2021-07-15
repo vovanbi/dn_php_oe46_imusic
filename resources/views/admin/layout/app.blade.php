@@ -9,12 +9,12 @@
     <title>LMussic - Trang quản lý</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('') }}css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sb-admin.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div id="wrapper">
@@ -90,9 +90,10 @@
                         <a href="{{route('artist.index')}}"><i class="fa fa-music" aria-hidden="true"></i>
                     </i> @lang('adminhome.signer') </a>
                     </li>
-                    <li class="">
-                        <a href=""><i class="fa fa-users" aria-hidden="true"></i>
-                    </i> Admin</a>
+                    <li class="{{ \Request::route()->getName() == 'user.index' ?
+                     'active' : ''}}">
+                        <a href="{{route('user.index')}}"><i class="fa fa-users" aria-hidden="true"></i>
+                    </i> User</a>
                     </li>
                     <li class="">
                         <a href=""><i class="fa fa-comments-o" aria-hidden="true"></i> @lang('adminhome.comment')</a>

@@ -2,12 +2,16 @@
 
 return [
 
-    // constant for paginate category list
-
     'paginateCategory' => '10',
 
-    // constant for categoryParent
     'categoryParent' => '0',
+
+    'paginateUser' =>'10',
+
+    'userParent' => '0',
+
+    'image_admin' => 'image_admin/',
+
 
     /*
     |--------------------------------------------------------------------------
