@@ -1,0 +1,36 @@
+<?php
+
+return [
+
+    'errorAlert' => 'Whoops! Something went wrong!',
+    'nameRequired' => 'The song name is required.',
+    'cateRequired' => 'The song category is required.',
+    'artRequired' => 'The song artist is required.',
+    'linkRequired' => 'The song link is required.',
+    'addSuccess' => 'The song was added successfully.',
+    'editSuccess' => 'The song was edited successfully.',
+    'song' => 'Songs',
+    'image' => 'Song image',
+    'homePage' => 'Home Page',
+    'update' => 'Update',
+    'addNew' => 'Add new',
+    'songName' => 'Song Name',
+    'saveBtn' => 'Save infomation',
+    'stt' => 'No.',
+    'songAction' => 'Action',
+    'songManage' => 'Songs Management',
+    'songHot' => 'Hot Song',
+    'songEdit' => 'Edit',
+    'songDelete' => 'Delete',
+    'imageRequired' => 'The image is required',
+    'imageExtension' => 'This file must be jpg, jpeg, png file.',
+    'songCate' => 'Category name',
+    'songArtist' => 'Artist',
+    'songLink' => 'Song link',
+    'songView' => 'Song view',
+    'cateSelect' => 'Choose category song',
+    'artSelect' => 'Choose the artist',
+    'editError' => 'Not found song to edit',
+    'linkUnique' => 'Song link is already exists.',
+
+];
