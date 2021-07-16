@@ -94,3 +94,7 @@
     font-size: .8rem;
     padding: 8px 16px;
 }
+
+#album-image {
+    width: 150px;
+}

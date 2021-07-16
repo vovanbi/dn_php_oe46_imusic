@@ -22,5 +22,4 @@ return [
     'unique'=>'Tên ca sĩ đã tồn tại',
     'action'=>'Thao tác',
     'manage'=>'Quản lý ca sĩ',
-
 ];

@@ -7,8 +7,5 @@
     "/css/app.css": "/css/app.css",
     "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js",
     "/js/dataTables.bootstrap4.min.js": "/js/dataTables.bootstrap4.min.js",
-    "/js/boostrap.min.css": "/js/boostrap.min.css",
-    "/js/sb-admin.css": "/js/sb-admin.css",
-    "/css/dataTables.bootstrap4.min.css": "/css/dataTables.bootstrap4.min.css",
-    "/js/ckeditor.js": "/js/ckeditor.js"
+    "/css/styles.css": "/css/styles.css"
 }

@@ -2,7 +2,9 @@
 
 return [
 
-    'paginateCategory' => '10',
+    // constant for paginate category list
+
+    'paginate_num' => '10',
 
     'categoryParent' => '0',
 

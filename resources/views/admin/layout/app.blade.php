@@ -7,11 +7,12 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>LMussic - Trang quản lý</title>
-
+    <base href="{{ asset('') }}">
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
+    
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css')}}">
-    <link rel="stylesheet" href="{{asset('css/sb-admin.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/sb-admin.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -82,7 +83,7 @@
                          @lang('adminhome.lyris') </a>
                     </li>
                     <li class="">
-                        <a href=""><i class="fa fa-book" aria-hidden="true"></i>
+                        <a href="{{ route('albums.index') }}"><i class="fa fa-book" aria-hidden="true"></i>
                     </i> @lang('adminhome.albumn') </a>
                     </li>
 
@@ -104,7 +105,6 @@
         @include('admin.layout.notification')
         @yield('content')
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
