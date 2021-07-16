@@ -1,11 +1,17 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/showimg.js": "/js/showimg.js",
-    "/js/jquery-3.5.1.js": "/js/jquery-3.5.1.js",
     "/js/delartis.js": "/js/delartis.js",
     "/js/delCategory.js": "/js/delCategory.js",
+    "/js/playmusic.js": "/js/playmusic.js",
     "/css/app.css": "/css/app.css",
     "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js",
     "/js/dataTables.bootstrap4.min.js": "/js/dataTables.bootstrap4.min.js",
-    "/css/styles.css": "/css/styles.css"
+    "/js/boostrap.min.css": "/js/boostrap.min.css",
+    "/js/sb-admin.css": "/js/sb-admin.css",
+    "/css/dataTables.bootstrap4.min.css": "/css/dataTables.bootstrap4.min.css",
+    "/css/style.css": "/css/style.css",
+    "/css/main.css": "/css/main.css",
+    "/js/ckeditor.js": "/js/ckeditor.js",
+    "/css/playmusic.css": "/css/playmusic.css"
 }
