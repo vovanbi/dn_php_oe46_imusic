@@ -41,4 +41,23 @@ $(document).ready(function()
             }
         })
     });
+     $('.btn-delete-lyric').on('click', function(e){
+         e.preventDefault()
+         var option = confirm('Do you want to delete this Lyric ?');
+         if(!option) {
+            return;
+         }
+         var id = $(this).data('id')
+         $.ajax({
+            type:'DELETE',
+            url : 'lyric/'+id,
+            success : function(data)
+            {
+               $('#lyric-' + id).remove()
+            },
+            error :function(reponses){
+               alert(response.responseJSON.errors);
+            }
+        })
+    });
 });

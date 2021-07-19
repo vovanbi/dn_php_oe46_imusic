@@ -24,5 +24,4 @@ return [
     'imageExtension' => 'Tệp này phải có đuôi jpg, jpeg hoặc png',
     'editError' => 'Không thể tìm thấy album',
     'imageExtension' => 'Tệp hình ảnh phải có đuôi jpg, jpeg hoặc png',
-    
 ];

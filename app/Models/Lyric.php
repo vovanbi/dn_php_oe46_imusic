@@ -20,4 +20,9 @@ class Lyric extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopegetLyric($query)
+    {
+        return $query->orderBy('id');
+    }
 }

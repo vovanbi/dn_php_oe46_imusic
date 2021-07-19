@@ -17,8 +17,6 @@
                 </ol>
             </div>
         </div>
-        <!-- /.row -->
-
         <div class="table-responsive">
             <h3>@lang('category.cateManage')<a href="{{ route('categories.create') }}"><i
                         class="fa fa-plus-circle"></i></a> </h3>
@@ -56,6 +54,4 @@
         </div>
         <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-
 @stop

@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
             <label for="name">@lang('album.image')</label>
-            <input type="file" class="form-control" value="abc.jpg" name="image" >
+            <input type="file" class="form-control" value="abc.jpg" name="image" id="input_img">
         </div>
         <div class="form-group">
             <img id="out_img" src="{{ asset('image/unnamed.png') }}">

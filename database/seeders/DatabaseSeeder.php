@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->count(15)->create();
         \App\Models\Category::factory()->count(12)->create();
         \App\Models\Artist::factory()->count(15)->create();
-        \App\Models\Album::factory()->count(15)->create(); 
-        \App\Models\Song::factory()->count(30)->create();     
+        \App\Models\Album::factory()->count(15)->create();
+        \App\Models\Song::factory()->count(30)->create();
     }
 }
