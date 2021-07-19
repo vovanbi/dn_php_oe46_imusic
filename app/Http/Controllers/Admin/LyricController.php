@@ -21,6 +21,7 @@ class LyricController extends Controller
     {
         $lyricParent = Lyric::where('id', '=', config('app.userParent'))->get();
         $songs = Song::has('lyrics', 0)->get();
+
         return view('admin.lyric.create', compact('songs', 'lyricParent'));
     }
 
