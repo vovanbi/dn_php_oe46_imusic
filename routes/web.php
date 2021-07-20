@@ -20,9 +20,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('lyric/{action}/{id}', [LyricController::class, 'action'])->name('lyric.action');
 });
 
-
-Route::get('/', [App\Http\Controllers\HomeController::class,'index'])->name('home');
-
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'getRegister'])->name('get.register');
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'postRegister'])->name('post.register');
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'getLogin'])->name('get.login');
@@ -30,3 +27,5 @@ Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'postLo
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::class, 'getSong']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/{songId}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
