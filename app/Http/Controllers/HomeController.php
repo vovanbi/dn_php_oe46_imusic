@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use App\Models\Album;
+use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Models\Category;
-use App\Models\Album;
-use App\Models\Artist;
 
 class HomeController extends Controller
 {
@@ -21,9 +21,11 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::isParent()->get();
-        $songs = Song::where('hot', 1)->get();
+        $songs = Song::orderBy('created_at', 'desc')->take(config('app.home_take_number'))->get();
+        $albums = Album::orderBy('created_at', 'desc')->take(config('app.home_take_number'))->get();
+        $artists = Artist::has('songs')->take(config('app.home_take_number'))->get();
 
-        return view('home', compact('songs', 'categories'));
+        return view('home', compact('songs', 'albums', 'artists', 'categories'));
     }
 
     public function songPlaying($id)
