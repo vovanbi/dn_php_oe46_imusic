@@ -40,4 +40,14 @@ class Song extends Model
     {
         return $this->belongsToMany(Playlist::class, 'playlist_song', 'playlist_id', 'song_id');
     }
+
+    public function scopeOfCategory($query, $id)
+    {
+        return $query->where('cate_id', $id);
+    }
+
+    public function scopeSongHot($query)
+    {
+        return $query->where('hot', 1);
+    }
 }

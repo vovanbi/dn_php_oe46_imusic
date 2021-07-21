@@ -30,8 +30,7 @@ class LoginController extends Controller
                     return redirect()->route('home');
                 }
             } else {
-                return redirect()->back()
-                    ->with('error', 'Email-Address And Password Are Wrong.');
+                return redirect()->back()->with('error', 'Email-Address And Password Are Wrong.');
             }
         } catch (Throwable $e) {
             return redirect()->back()->with('error', 'Login not success');
@@ -40,6 +39,6 @@ class LoginController extends Controller
     public function logout()
     {
         auth()->logout();
-        return redirect('/');
+        return redirect('/')->with('susccess', 'Logout success');
     }
 }

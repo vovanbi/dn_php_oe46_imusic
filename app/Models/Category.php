@@ -25,4 +25,9 @@ class Category extends Model
     {
         return $this->belongsTo(Category::class, 'id', 'parent_id');
     }
+
+    public function scopeIsParent($query)
+    {
+        return $query->where('parent_id', 0);
+    }
 }

@@ -19,6 +19,7 @@ class UserController extends Controller
 
     public function create()
     {
+
         $userParent = User::where('id', '=', config('app.userParent'))->get();
         return view('admin.user.create', compact('userParent'));
     }

@@ -12,6 +12,7 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .js('resources/js/delartis.js','public/js/delartis.js')
     .js('resources/js/delCategory.js', 'public/js/delCategory.js')
     .copy('resources/image/', 'public/storage/img')
-    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js')
     .styles('resources/web/css/playmusic.css','public/css/playmusic.css')
     .js('resources/web/js/playmusic.js', 'public/js/playmusic.js');
+    .js('resources/js/showsong.js', 'public/js/showsong.js')
+    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js');
