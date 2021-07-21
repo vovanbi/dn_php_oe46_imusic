@@ -11,7 +11,6 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .styles('resources/web/css/style.css','public/css/style.css')
     .styles('resources/web/css/main.css','public/css/main.css')
     .js('resources/js/delartis.js','public/js/delartis.js')
-    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js')
     .js('resources/js/delCategory.js', 'public/js/delCategory.js')
     .copy('resources/image/', 'public/storage/img')
     .styles('resources/web/css/playmusic.css','public/css/playmusic.css')
@@ -22,5 +21,6 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .js('resources/js/hot_album_music.js','public/js/hot_album_music.js')
     .js('resources/js/topTrending.js','public/js/topTrending.js')
     .js('resources/js/profile.js', 'public/js/profile.js')
-    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js')
-    .js('resources/web/js/playlist.js','public/js/playlist.js');
+    .js('resources/web/js/playlist.js','public/js/playlist.js')
+    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js');
+

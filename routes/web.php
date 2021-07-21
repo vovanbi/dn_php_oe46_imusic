@@ -56,6 +56,7 @@ Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::c
 
 Route::get('/songs/{id}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
 
+
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
 Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
@@ -80,7 +81,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');
 
-Route::get('detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
+Route::get('/{id}', [App\Http\Controllers\HomeController::class, 'songPlaying']);
+
+Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
 ->name('detail-song')-> middleware('auth');
 
 Route::get('/hot/{id}', [App\Http\Controllers\HomeController::class, 'hotAlbumMusic']);
@@ -97,3 +100,5 @@ Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('h
 Route::get('search/{type}/key/{search}', [HomeController::class, 'searchType'])->name('searchType');
 
 
+Route::get('/info-profile/{id}', [App\Http\Controllers\UserController::class, 'proFile']);
+Route::post('/change-password', [App\Http\Controllers\UserController::class, 'changePassword']);
