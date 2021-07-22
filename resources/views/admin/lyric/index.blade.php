@@ -43,7 +43,7 @@
                 @if(isset($lyrics))
                     @foreach($lyrics as $lyric)
                       <tr id="lyric-{{ $lyric->id }}">
-                          <td>{{$loop->index+1}}</td>
+                          <td>{{ loopNo($lyrics, $loop) }}</td>
                           <td>{{$lyric->song->name}}</td>
                           <td>{!!$lyric->content!!}</td>
                           <td>

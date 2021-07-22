@@ -42,7 +42,7 @@
                     @if (isset($artists))
                         @foreach ($artists as $artist)
                             <tr id="artist-{{ $artist->id }}">
-                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ loopNo($artists, $loop) }}</td>
                                 <td>{{ $artist->name }}</td>
                                 <td><img src="/storage/{{ $artist->avatar }}" alt="" class="img_artist"></td>
                                 <td>
@@ -58,6 +58,7 @@
 
                 </tbody>
             </table>
+            {{ $artists->links() }}
         </div>
     </div>
 @stop

@@ -23,4 +23,10 @@ return [
     'imageRequired' => 'Chưa có tệp hình ảnh',
     'editError' => 'Không thể tìm thấy album',
     'imageExtension' => 'Tệp hình ảnh phải có đuôi jpg, jpeg hoặc png',
+    'albSong' => 'Bài hát',
+    'albAddSong' => 'Thêm bài hát',
+    'albSongManage' => 'Quản lý bài hát',
+    'notFoundAlbum' => 'Không tìm thấy album',
+    'addSongError' => 'Không thể thêm bài hát vào album',
+    'delSongError' => 'Không thể xóa bài hát này',
 ];

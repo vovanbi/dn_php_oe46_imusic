@@ -44,7 +44,7 @@
                 @if(isset($users))
                     @foreach($users as $user)
                   <tr id="user-{{ $user->id }}">
-                      <td>{{$loop->index + 1}}</td>
+                      <td>{{ loopNo($users, $loop) }}</td>
                       <td>{{$user->fullname}}</td>
                       <td>{{$user->email}}</td>
                       <td>

@@ -39,7 +39,7 @@
                 @if (isset($songs))
                   @foreach ($songs as $song)
                     <tr id="song-{{$song->id}}">
-                        <td>{{ $loop->index+1 }}</td>
+                        <td>{{ loopNo($songs, $loop) }}</td>
                         <td> {{ $song->category->name }} </td>
                         <td> {{ $song->name }} </td>
                         <td> {{ $song->artist->name }} </td>

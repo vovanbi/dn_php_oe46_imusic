@@ -23,4 +23,10 @@ return [
     'imageRequired' => 'The image is required',
     'imageExtension' => 'This file must be jpg, jpeg, png file.',
     'editError' => 'Can\'t found the album to edit',
+    'albSong' => 'Song name',
+    'albAddSong' => 'Add song to album',
+    'albSongManage' => 'Manage song in album',
+    'notFoundAlbum' => 'Album\'s not found',
+    'addSongError' => 'Can\'t not add song to album',
+    'delSongError' => 'Can\'t not delete song from album',
 ];

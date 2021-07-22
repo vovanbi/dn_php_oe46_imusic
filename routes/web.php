@@ -16,8 +16,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
     Route::resource('categories', CategoryController::class);
     Route::resource('albums', AlbumController::class);
+    Route::get('albums/{album}/album-song', [AlbumController::class, 'albumSong'])->name('albumSong');
+    Route::get('albums/{album}/add-song', [AlbumController::class, 'getAddSong'])->name('getAddSong');
+    Route::get('albums/{album}/add-song/{song}', [AlbumController::class, 'addAlbumSong'])->name('addAlbumSong');
+    Route::get('albums/{album}/del-song/{song}', [AlbumController::class, 'delAlbumSong'])->name('delAlbumSong');
     Route::resource('songs', SongController::class);
-
+    Route::resource('artist', App\Http\Controllers\Admin\ArtistController::class)->except('show');
     Route::resource('user', App\Http\Controllers\Admin\UserController::class)->except('show');
     Route::resource('lyric', App\Http\Controllers\Admin\LyricController::class)->except('show');
     Route::get('lyric/{action}/{id}', [LyricController::class, 'action'])->name('lyric.action');
