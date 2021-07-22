@@ -27,4 +27,5 @@ return [
     'signup'=>'SiGN UP',
     'placeholder' => 'What do you want to find?',
     'search' => "Search",
+    'Notid' => 'Not find id',
 ];
