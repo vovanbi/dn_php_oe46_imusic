@@ -11,8 +11,8 @@ use App\Http\Controllers\Admin\CategoryController;
 Route::get('change-language/{language}', [App\Http\Controllers\HomeController::class,
     'changeLanguage'])->name('change-language');
 
-
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
     Route::resource('categories', CategoryController::class);
     Route::resource('albums', AlbumController::class);
@@ -37,6 +37,7 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 
 Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::class, 'getSong']);
 
+
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
 Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
@@ -44,6 +45,9 @@ Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist']
 
 Route::get('/{id}', [App\Http\Controllers\HomeController::class, 'songPlaying']);
 
-Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
+Route::get('detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
 ->name('detail-song')-> middleware('auth');
+
 Route::post('/song-comment', [App\Http\Controllers\SongController::class, 'storeComent']);
+
+Route::post('/add-lyric', [App\Http\Controllers\SongController::class, 'addLyric']);

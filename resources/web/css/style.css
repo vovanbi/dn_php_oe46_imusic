@@ -1118,3 +1118,88 @@ max-width: 400px;
 .dropup:hover .dx {
   background-color: #2980B9;
 }
+
+.nav_bar_main {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.nav_bar_main > li {
+  position:relative;
+}
+
+.sliding {
+ display: none;
+}
+
+.nav_bar_main li a {
+  font-size: 14px;
+  text-decoration: none;
+}
+.nav_bar_main > li > ul {
+  position: absolute;
+  left: -13px;
+  top: 0px;
+  position: inherit;
+}
+.nav_bar_main > li:hover > ul{
+   display:block;
+}
+
+#form1 {
+  display: none;
+  margin-bottom: 20px;
+  background-color: white;
+  border: 1px solid #222227;
+  padding: 20px;
+  border-radius: 12px;
+}
+#form1 .comment
+{
+  border: 1px solid #222227;
+  border-radius: 20%;
+  padding: 20px;
+}
+#formButton i {
+  justify-self: center;
+  align-items: center;
+  color: #F5A9F2;
+}
+
+#add_lyric{
+  width: 80px;
+  height: 30px;
+  position: 5px 0px;
+  border: 1px solid #222227;
+  border-radius: 20px;
+  color: white;
+  background-color: #25a56a;
+}
+
+.rating-stars ul {
+  list-style-type:none;
+  padding:0;
+
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+  display:inline-block;
+
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size:2.5em; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}

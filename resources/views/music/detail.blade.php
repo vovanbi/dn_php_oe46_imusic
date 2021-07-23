@@ -1,9 +1,5 @@
-@extends('layouts.app')
-@section('content')
- <section class="box_main">
-   <div class="container-fluid">
+<div class="container-fluid">
     <div class="row row--grid">
-        <!-- title -->
         <div class="col-12">
             <div class="main__title main__title--page">
                 <h1>{{$song->name}}</h1>
@@ -25,31 +21,70 @@
                     </div>
                     <a href="#modal-buy" class="release__buy open-modal">{{$song->artist->name}}</a>
                 </div>
-                 @include('music.release')
+                <div class="release__list" data-scrollbar="true" tabindex="-1">
+                    <div class="scroll-content">
+                        <ul class="main__list main__list--playlist main__list--dashbox">
+                             @foreach($cate_songs as $cate_song)
+                            <li class="single-item">
+                                <a data-playlist=""
+                                    data-title="1. Got What I Got"
+                                    data-artist="Jason Aldean"
+                                    data-img="img/covers/cover.svg"
+                                    href="https://dmitryvolkov.me/demo/blast2.0/audio/12071151_epic-cinematic-trailer_by_audiopizza_preview.mp3"
+                                    class="single-item__cover">
+                                    <img src="/storage/{{$cate_song->image}}" alt="" />
+                                </a>
+                                <div class="single-item__title">
+                                    <h4><a href="#">{{$loop->index+1}}.{{$cate_song->name}}</a></h4>
+                                    <span><a href="#">{{$cate_song->artist->name}}</a></span>
+                                </div>
+                                <a href="#" class="single-item__add">
+                                <i class="fas fa-plus"></i>
+                                </a>
+                                <a class="single-item__export">
+                                <i class="fas fa-caret-right" data-song-c = "{{ $cate_song->id }}" id="cate_s"></i>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="col-12 col-lg-8">
         <div class="article">
             <div class="article__content">
                 <h4>@lang('home.lyric') </h4>
-                      @if(isset($song->lyrics->content))
-                       {!!$song->lyrics->content!!}
-                      @else
-                          Ban co the them loi bai hat
-                    @endif
+                  @if(isset($song->lyrics->content))
+                   {!!$song->lyrics->content!!}
+                   <br>
+                  @else
+                  <span>
+                      Bạn có thể thêm lời bài hát
+                     <span  id="formButton"><i class="fas fa-plus-circle"></i></span>
+                        <form id="form1">
+                          <b> {{$song->name}}</b>
+                          <br>
+                          <textarea name="content" class="content" cols="65" rows="5">
+                          </textarea>
+                          <br><br>
+                          <button type="button" id="add_lyric" data-song
+                          ="{{$song->id}}" data-user="{{auth()->user()->id}}">Thêm</button>
+                        </form>
+                  </span>
+                  @endif
             </div>
-             <div class="comments">
+            <div class="comments">
                 <div class="comments__title">
                     <h4>Comments</h4>
-                        <span>3</span>
+                        <span>{{$countComment}}</span>
                     </div>
                     @foreach($comments as $comment)
                     <ul class="comments__list">
                         <li class="comments__item">
                             <div class="comments__autor">
-                                <img class="comments__avatar" src="/storage/{{ $comment->user->avatar }}" alt="" />
+                                <img class="comments__avatar" src="/storage/{{ auth()->user()->avatar }}" alt="" />
                                 <span class="comments__name">{{$comment->user->fullname}}</span>
                                 <span class="comments__time">{{$comment->created_at->diffForHumans()}}</span>
                             </div>
@@ -82,13 +117,7 @@
                         <button type="submit" data-song = "{{$song->id}}" data-user="{{auth()->user()->id}}" class="sign__btn" id="submit_c">Send</button>
                     </form>
                 </div>
-                <!-- end comments -->
             </div>
         </div>
     </div>
 </div>
-</section>
-</div>
-</div>
-@endsection
-

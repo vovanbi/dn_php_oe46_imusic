@@ -22,14 +22,14 @@
           </div>
           <div class="bottom">
               <span>00:00</span>
-              <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">  
+              <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
               <audio id="audio" src=""></audio>
           </div>
       </div>
       <div class="dx">
           <a href="#"><i class="fas fa-list-ul"></i></a>
           <a href="#"><i class="fas fa-volume-up"></i></a>
-          <input id="volProgress" class="volProgress" type="range" value="0.5" step="0.05" min="0" max="1">   
+          <input id="volProgress" class="volProgress" type="range" value="0.5" step="0.05" min="0" max="1">
       </div>
   </div>
 </div>

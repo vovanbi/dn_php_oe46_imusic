@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <section class="box_main">
+    <section class="box_main" id="detail-song">
         <ul class="nav_bar_main">
            @foreach($categories as $category)
           <li>
@@ -14,7 +14,7 @@
                @endforeach
             </ul>
            </li>
-           @endforeach
+            @endforeach
         </ul>
         <div class="music">
             <div class="recently_played">

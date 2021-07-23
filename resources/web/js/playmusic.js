@@ -11,13 +11,85 @@ $(document).ready(function() {
         $.ajax({
             type:'get',
             url: '/'+id,
-            success: function(data)
-            {
+            success: function(data) {
                 $('#music-playing').html(data);
                 playMusicEvent();
-            }
+            $('.detail-song').on('click', function(e){
+                e.preventDefault()
+                $.ajax({
+                    method:'GET',
+                    url:'detail-song/'+id,
+                    success: function(data) {
+                    $('#detail-song').html(data);
+
+
+                    $("#formButton").click(function(evt) {
+                         evt.preventDefault();
+                            $("#form1").toggle();
+                    });
+                    $('#add_lyric').on('click', function(e){
+                       e.preventDefault();
+                       var song_id = $(this).data('song');
+                       var content = $('.content').val();
+                       var user_id = $(this).data('user');
+                       $.ajax({
+                            method        : "POST",
+                            url         : '/add-lyric',
+                            data        : {
+                            'song_id': song_id,
+                            'content':content,
+                            'user_id':user_id,
+                            '_token': $('input[name=_token]').val()},
+                            success: function(data){
+                                alert('Add lyric song success');
+                                $('.contend').val("");
+                                $("#form1").hide();
+                            }
+                        })
+                    });
+
+                    $(".rating input:radio").attr("checked",false);
+
+                    $('.rating input').click(function () {
+                        $(".rating span").removeClass('checked');
+                        $(this).parent().addClass('checked');
+                    });
+
+                    var star;
+                    $('input:radio').change(
+                        function(){
+                        star = this.value;
+                    });
+                    $('#submit_c').on('click', function(evt){
+                    evt.preventDefault();
+                    var song_id = $(this).data('song');
+                    var content = $('#_contend').val();
+                    var user_id = $(this).data('user');
+                    $.ajax({
+                        method: "POST",
+                        url   : '/song-comment',
+                        data  : {
+                        'song_id': song_id,
+                        'rate_star':star,
+                        'content':content,
+                        'user_id':user_id,
+                        '_token': $('input[name=_token]').val()},
+                        success: function(data){
+                            alert('Comment song success');
+                            location.reload();
+                            $('#_contend').val("");
+                            $(".rating span").removeClass('checked');
+                        }
+                    });
+                    });
+                }
+
+             });
+            });
+          }
         })
     });
+
     var isRepeat = false;
     function playMusicEvent() {
         audio.play();

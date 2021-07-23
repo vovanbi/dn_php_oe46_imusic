@@ -3100,7 +3100,7 @@ body::-webkit-scrollbar-thumb {
   font-size: 16px;
   line-height: 26px;
   font-weight: 400;
-  color: #c0c0c0;
+  color: black;
   margin-bottom: 20px;
 }
 .article__content p b {
@@ -3434,6 +3434,7 @@ body::-webkit-scrollbar-thumb {
   color: #fff;
   font-weight: 400;
   margin-left: 10px;
+  margin-top: -6px;
 }
 .comments__title--tabs li {
   position: relative;

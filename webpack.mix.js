@@ -10,13 +10,11 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .styles('resources/web/css/music.css', 'public/css/music.css')
     .styles('resources/web/css/main.css','public/css/main.css')
     .js('resources/js/delartis.js','public/js/delartis.js')
-    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js')
     .js('resources/js/delCategory.js', 'public/js/delCategory.js')
     .copy('resources/image/', 'public/storage/img')
     .styles('resources/web/css/playmusic.css','public/css/playmusic.css')
     .styles('resources/web/css/style.css', 'public/css/style.css')
-    .js('resources/js/showsong.js','public/js/showsong.js')
-    .js('resources/js/comment.js' ,'public/js/comment.js')
+    .js('resources/js/admin.js','public/js/admin.js')
     .js('resources/web/js/playmusic.js', 'public/js/playmusic.js')
-    .js('resources/js/admin.js','public/js/admin.js');
-
+    .js('resources/js/showsong.js', 'public/js/showsong.js')
+    .scripts('resources/js/ckeditor.js','public/js/ckeditor.js');
