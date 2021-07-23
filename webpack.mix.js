@@ -18,4 +18,5 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .js('resources/web/js/playmusic.js', 'public/js/playmusic.js')
     .js('resources/js/showsong.js', 'public/js/showsong.js')
     .js('resources/js/hot_album_music.js','public/js/hot_album_music.js')
+    .js('resources/js/topTrending.js','public/js/topTrending.js')
     .scripts('resources/js/ckeditor.js','public/js/ckeditor.js');

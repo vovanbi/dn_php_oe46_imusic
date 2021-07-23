@@ -37,7 +37,7 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 
 Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::class, 'getSong']);
 
-Route::get('/{songId}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
+Route::get('/songs/{songId}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
 
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
@@ -45,9 +45,11 @@ Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->
 
 Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');
 
-Route::get('detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])->name('detail-song')-> middleware('auth');
+Route::get('detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])-> middleware('auth');
 
 Route::get('/hot/{id}', [App\Http\Controllers\HomeController::class, 'hotAlbumMusic']);
+
+Route::get('/top-trending-song', [App\Http\Controllers\HomeController::class, 'topTrending'])->name('top-trending');
 
 Route::post('/song-comment', [App\Http\Controllers\SongController::class, 'storeComent']);
 

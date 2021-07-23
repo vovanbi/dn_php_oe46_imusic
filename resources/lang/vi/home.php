@@ -28,4 +28,5 @@ return [
     'placeholder' => 'Bạn muốn tìm kiếm gì',
     'search' => "Tìm kiếm",
     'Notid' => "Không tìm thấy id",
+    'top'=>'Top bài hát',
 ];

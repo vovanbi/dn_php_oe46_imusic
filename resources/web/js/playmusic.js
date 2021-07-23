@@ -10,7 +10,7 @@ $(document).ready(function() {
         var id = $(this).data('id');
         $.ajax({
             type:'get',
-            url: '/'+id,
+            url: '/songs/'+id,
             success: function(data) {
                 $('#music-playing').html(data);
                 playMusicEvent();

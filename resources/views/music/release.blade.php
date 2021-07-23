@@ -1,7 +1,6 @@
 <div class="release__list" data-scrollbar="true" tabindex="-1">
     <div class="scroll-content">
         <ul class="main__list main__list--playlist main__list--dashbox">
-             @foreach($cate_songs as $cate_song)
             <li class="single-item">
                 <a
                     data-playlist=""
@@ -25,7 +24,6 @@
                 <i class="fas fa-caret-right"></i>
                 </a>
             </li>
-            @endforeach
         </ul>
     </div>
 </div>

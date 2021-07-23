@@ -8,7 +8,7 @@
     "/js/playmusic.js": "/js/playmusic.js",
     "/js/showsong.js": "/js/showsong.js",
     "/js/hot_album_music.js": "/js/hot_album_music.js",
-    "/js/profile.js": "/js/profile.js",
+    "/js/topTrending.js": "/js/topTrending.js",
     "/css/app.css": "/css/app.css",
     "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js",
     "/js/dataTables.bootstrap4.min.js": "/js/dataTables.bootstrap4.min.js",
