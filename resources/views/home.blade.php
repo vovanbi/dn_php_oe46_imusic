@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <section class="box_main" id="detail-song">
+    <section class="box_main" id="profile">
         <ul class="nav_bar_main">
            @foreach($categories as $category)
           <li>

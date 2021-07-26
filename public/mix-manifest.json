@@ -7,15 +7,16 @@
     "/js/admin.js": "/js/admin.js",
     "/js/playmusic.js": "/js/playmusic.js",
     "/js/showsong.js": "/js/showsong.js",
-    "/js/hot_album_music.js": "/js/hot_album_music.js",
+    "/js/topTrending.js": "/js/topTrending.js",
+    "/js/profile.js": "/js/profile.js",
     "/css/app.css": "/css/app.css",
     "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js",
     "/js/dataTables.bootstrap4.min.js": "/js/dataTables.bootstrap4.min.js",
     "/css/music.css": "/css/music.css",
+    "/css/style.css": "/css/style.css",
     "/css/main.css": "/css/main.css",
+    "/js/ckeditor.js": "/js/ckeditor.js",
     "/storage/img/en.png": "/storage/img/en.png",
     "/storage/img/vn.png": "/storage/img/vn.png",
-    "/css/playmusic.css": "/css/playmusic.css",
-    "/css/style.css": "/css/style.css",
-    "/js/ckeditor.js": "/js/ckeditor.js"
+    "/css/playmusic.css": "/css/playmusic.css"
 }

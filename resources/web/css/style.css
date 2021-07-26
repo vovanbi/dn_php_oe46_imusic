@@ -294,6 +294,7 @@ h1, h2, h3, h4, a {
   font-weight: 700;
   text-transform: uppercase;
 }
+
 .main .box_main .nav_bar_main a:hover {
   transition: color 1s;
   color: #ffffff;
@@ -968,23 +969,10 @@ max-width: 400px;
     background-color: #f1f1f1;
 }
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
-/* Caret */
-/*.caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    vertical-align: middle;
-    border-top: 6px dashed;
-    border-right: 6px solid transparent;
-    border-left: 6px solid transparent;
-}
-*/
-/* Dropdown menu Header */
 .dropdown-menu .dropdown-header {
     color: #777;
     font-size: .8rem;
@@ -1067,7 +1055,8 @@ max-width: 400px;
 
 #add_lyric{
   width: 80px;
-  height: 30px;
+  height: 3.me-2
+  margin-right: .5rem!important;
   position: 5px 0px;
   border: 1px solid #222227;
   border-radius: 20px;
@@ -1088,7 +1077,8 @@ max-width: 400px;
 }
 
 .dropdown-content_r {
-  display: none;
+  display: none;.me-2
+  margin-right: .5rem!important;
   position: absolute;
   left:80px;
   top:-30px;
@@ -1199,6 +1189,7 @@ max-width: 400px;
 .rating-stars ul > li.star.selected > i.fa {
   color:#FF912C;
 }
+
 .dropdown-content_r a:hover {}
 
 .dropdown_r:hover .dropdown-content_r {display: block;
