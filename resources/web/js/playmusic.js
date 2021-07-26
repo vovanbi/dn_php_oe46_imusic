@@ -89,6 +89,21 @@ $(document).ready(function() {
         })
     });
 
+    $('.play-music').click(function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+
+        $.ajax({
+            type:'get',
+            url: '/'+id,
+            success: function(data)
+            {
+                $('#music-playing').html(data);
+                playMusicEvent();
+            }
+        })  
+    });
+
     var isRepeat = false;
     function playMusicEvent() {
         audio.play();
@@ -98,10 +113,10 @@ $(document).ready(function() {
             e.preventDefault();
             if (isPlaying) {
                 audio.pause();
-                $('.play').removeClass('playing');
+                $(this).removeClass('playing');
             } else {
                 audio.play();
-                $('.play').addClass('playing');
+                $(this).addClass('playing');
             }          
         });
 
