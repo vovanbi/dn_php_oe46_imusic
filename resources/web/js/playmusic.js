@@ -10,7 +10,7 @@ $(document).ready(function() {
         var id = $(this).data('id');
         $.ajax({
             type:'get',
-            url: '/'+id,
+            url: '/song/'+id,
             success: function(data) {
                 $('#music-playing').html(data);
                 playMusicEvent();
@@ -95,7 +95,7 @@ $(document).ready(function() {
 
         $.ajax({
             type:'get',
-            url: '/'+id,
+            url: '/song/'+id,
             success: function(data)
             {
                 $('#music-playing').html(data);
@@ -155,7 +155,7 @@ $(document).ready(function() {
 
             $.ajax({
                 type:'get',
-                url: '/'+nextIndex,
+                url: '/song/'+nextIndex,
                 success: function(data)
                 {   
                     $('#music-playing').html(data);
@@ -175,7 +175,7 @@ $(document).ready(function() {
 
             $.ajax({
                 type:'get',
-                url: '/'+prevIndex,
+                url: '/song/'+prevIndex,
                 success: function(data)
                 {
                     $('#music-playing').html(data);

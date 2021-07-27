@@ -30,8 +30,11 @@
           </ul>
         </div>
         <div class="middle">
-          <h4 class="white"> @lang('home.playlist')</h4>
-          <a class="btn_playlist" href="#">
+          <h4 class="white">@lang('home.playlist')</h4>
+          <a href="" class="manage-playlist"><i class="fa fa-cog" aria-hidden="true"></i>
+            <span>@lang('playlist.managePlaylist')</span>
+          </a>
+          <a class="btn_playlist" href="{{ route('createPlaylists') }}">
             <svg class="plus" shape-rendering="crispEdges" viewBox="0 0 36 36"><path d="m28 20h-8v8h-4v-8h-8v-4h8v-8h4v8h8v4z"></path></svg>
             <span> @lang('home.newplaylist')</span>
           </a>
