@@ -73,8 +73,6 @@
                             @endif
                         </ul>
                     </div>
-                    <div class="scrollbar-track scrollbar-track-x show" style="display: none;"><div class="scrollbar-thumb scrollbar-thumb-x" style="width: 586px; transform: translate3d(0px, 0px, 0px);"></div></div>
-                    <div class="scrollbar-track scrollbar-track-y show" style="display: block;"><div class="scrollbar-thumb scrollbar-thumb-y" style="height: 228.097px; transform: translate3d(0px, 0px, 0px);"></div></div>
                 </div>
             </div>
         </div>

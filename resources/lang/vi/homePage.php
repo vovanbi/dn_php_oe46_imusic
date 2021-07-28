@@ -13,4 +13,6 @@ return [
     'noAlbumSong' => 'Album này chưa có bài hát nào',
     'artistInfo' => 'Thông tin nghệ sĩ',
     'noArtistSong' => 'Ca sĩ này chưa có bài hát nào',
+    'noPlaylistSong' => 'Danh sách phát nhạc này chưa có bài hát nào',
+    'addSongPlaylist' => 'Thêm bài hát vào danh sách phát',
 ];

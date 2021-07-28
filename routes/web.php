@@ -38,6 +38,23 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 
 Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::class, 'getSong']);
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('playlists', [PlaylistController::class, 'showPlaylists'])->name('playlists');
+    Route::get('create-playlists', [PlaylistController::class, 'createPlaylists'])->name('createPlaylists');
+    Route::post('store-playlists', [PlaylistController::class, 'storePlaylists'])->name('storePlaylists');
+    Route::post('add-album/{id}', [PlaylistController::class, 'addAlbum'])->name('addAlbum');
+    Route::get('playlist-detail/{id}', [PlaylistController::class, 'playlistDetail'])->name('playlistDetail');
+    Route::get('favorite-album/{id}', [PlaylistController::class, 'favoriteAlbum'])->name('favoriteAlbum');
+    Route::post('del-playlist/{id}', [PlaylistController::class, 'delPlaylist'])->name('delPlaylist');
+    Route::post('del-fav-album/{id}', [PlaylistController::class, 'delFavAlbum'])->name('delFavAlbum');
+    Route::get('song-list/{id}', [PlaylistController::class, 'showSongList'])->name('showSongList');
+    Route::post('playlist/{playlistId}/search/{search}', [PlaylistController::class, 'songResult'])->name('songResult');
+    Route::post('playlist/{playlistId}/song/{song}', [PlaylistController::class, 'addPlaylistSong'])
+    ->name('addPlaylistSong');
+    Route::post('playlist/{playlistId}/del-song/{song}', [PlaylistController::class, 'delPlaylistSong'])
+    ->name('delPlaylistSong');
+    Route::post('favorite-song/{song}', [PlaylistController::class, 'addFavoriteSong'])->name('addFavoriteSong');
+});
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
 Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
@@ -57,10 +74,3 @@ Route::post('/add-lyric', [App\Http\Controllers\SongController::class, 'addLyric
 
 Route::get('/info-profile/{id}', [App\Http\Controllers\UserController::class, 'proFile']);
 Route::post('/change-password', [App\Http\Controllers\UserController::class, 'changePassword']);
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('playlists', [PlaylistController::class, 'showPlaylists'])->name('playlists');
-    Route::get('create-playlists', [PlaylistController::class, 'createPlaylists'])->name('createPlaylists');
-    Route::post('store-playlists', [PlaylistController::class, 'storePlaylists'])->name('storePlaylists');
-    Route::post('add-album/{id}', [PlaylistController::class, 'addAlbum'])->name('addAlbum');
-});

@@ -22,4 +22,3 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .js('resources/js/profile.js', 'public/js/profile.js')
     .js('resources/web/js/playlist.js','public/js/playlist.js');
 
-

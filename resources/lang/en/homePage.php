@@ -13,4 +13,7 @@ return [
     'noAlbumSong' => 'This album have no song',
     'artistInfo' => 'Artist Infomation',
     'noArtistSong' => 'This artist have no song',
+    'noPlaylistSong' => 'This playlist have no song',
+    'playlist' => 'The playlist songs',
+    'addSongPlaylist' => 'Add song to this playlist',
 ];
