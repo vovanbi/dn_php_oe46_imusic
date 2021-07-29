@@ -23,9 +23,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('albums/{album}/del-song/{song}', [AlbumController::class, 'delAlbumSong'])->name('delAlbumSong');
     Route::resource('songs', SongController::class);
     Route::resource('artist', App\Http\Controllers\Admin\ArtistController::class)->except('show');
+    Route::get('albums/{action}/{id}', [AlbumController::class, 'action'])->name('albums.action');
+    Route::resource('songs', SongController::class);
+    Route::get('songs/{action}/{id}', [SongController::class, 'action'])->name('songs.action');
     Route::resource('user', App\Http\Controllers\Admin\UserController::class)->except('show');
+
     Route::resource('lyric', App\Http\Controllers\Admin\LyricController::class)->except('show');
+
     Route::get('lyric/{action}/{id}', [LyricController::class, 'action'])->name('lyric.action');
+
     Route::resource('artist', App\Http\Controllers\Admin\ArtistController::class)->except('show');
 });
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -67,6 +73,9 @@ Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'de
 ->name('detail-song')-> middleware('auth');
 
 Route::get('/hot/{id}', [App\Http\Controllers\HomeController::class, 'hotAlbumMusic']);
+
+Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
+    ->name('detail-song')-> middleware('auth');
 
 Route::post('/song-comment', [App\Http\Controllers\SongController::class, 'storeComent']);
 

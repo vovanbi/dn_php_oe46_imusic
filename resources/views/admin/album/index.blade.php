@@ -43,8 +43,12 @@
                                 <td>
                                     <img id="album-image" src="storage/{{ $album->image }}" alt="" />
                                 </td>
-                                <td>{{ $album->hot }}</td>
-                                <td> 
+                                <td>
+                                <a href="{{ route('albums.action',['hot',$album->id]) }}" class="btn {{$album->hot == config('app.Hot') ? 'btn-danger' :'btn-success'}}">
+                                {{ $album->hot == config('app.Hot') ? 'hot' :  'not' }}
+                                </a>
+                                </td>
+                                <td>
                                     <a class="btn btn-success" href="{{ route('getAddSong', ['album' => $album->id]) }}">
                                         <i class="fa fa-plus-circle" aria-hidden="true"></i>  @lang('album.albAddSong')
                                     </a>
