@@ -4,6 +4,7 @@ $(document).ready (function(){
         $.ajax({
             method: 'GET',
             url: '/get-song-by-category/' + id,
+            data : {'id' :id},
             success: function (data) {
                 var html = '';
                 Object.keys(data).forEach(key => {
@@ -21,7 +22,7 @@ $(document).ready (function(){
                     var id = $(this).data('id');
                     $.ajax({
                         type:'get',
-                        url: '/'+id,
+                        url: '/songs/'+id,
                         success: function(data) {
                             $('#music-playing').html(data);
                             playMusicEvent();

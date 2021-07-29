@@ -10,7 +10,7 @@ $(document).ready(function() {
         var id = $(this).data('id');
         $.ajax({
             type:'get',
-            url: '/song/'+id,
+            url: '/songs/'+id,
             success: function(data) {
                 $('#music-playing').html(data);
                 playMusicEvent();
@@ -101,7 +101,7 @@ $(document).ready(function() {
                 $('#music-playing').html(data);
                 playMusicEvent();
             }
-        })  
+        })
     });
 
     var isRepeat = false;
