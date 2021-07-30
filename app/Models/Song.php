@@ -11,6 +11,8 @@ class Song extends Model
 
     protected $table = 'songs';
 
+    protected $fillable = ['name', 'cate_id', 'image', 'link', 'artist_id'];
+
     public function artist()
     {
         return $this->belongsTo(Artist::class);
@@ -23,12 +25,12 @@ class Song extends Model
 
     public function albums()
     {
-        return $this->belongsToMany(Album::class, 'album_song', 'album_id', 'song_id');
+        return $this->belongsToMany(Album::class, 'album_song', 'song_id', 'album_id');
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'cate_id', 'id');
+        return $this->belongsTo(Category::class, 'cate_id');
     }
 
     public function comments()
@@ -38,7 +40,7 @@ class Song extends Model
 
     public function playLists()
     {
-        return $this->belongsToMany(Playlist::class, 'playlist_song', 'playlist_id', 'song_id');
+        return $this->belongsToMany(Playlist::class, 'playlist_song', 'song_id', 'playlist_id');
     }
 
     public function scopeOfCategory($query, $id)
@@ -54,5 +56,10 @@ class Song extends Model
     public function scopeSearchName($query, $search)
     {
         return $query->where('name', 'like', '%'.$search.'%');
+    }
+
+    public function scopeorderByid($query)
+    {
+        return $query->orderBy('id');
     }
 }

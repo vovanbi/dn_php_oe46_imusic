@@ -9,49 +9,48 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SongRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\Song\ISongRepository;
 
 class SongController extends Controller
 {
+    protected $songRepository;
+
+    public function __construct(ISongRepository $songRepository)
+    {
+        $this->songRepository = $songRepository;
+    }
     public function index()
     {
-        $songs = Song::orderBy('id')->paginate(config('app.paginate_num'));
+        $songs = $this->songRepository->showAll();
 
         return view('admin.song.index', compact('songs'));
     }
 
     public function create()
     {
-        $categories = Category::orderBy('name')->get();
-        $artists = Artist::orderBy('name')->get();
+        $categories = $this->songRepository->getAllCategory();
+        $artists = $this->songRepository->getAllArtist();
 
         return view('admin.song.create', compact('categories', 'artists'));
     }
 
     public function store(SongRequest $request)
     {
-        $song = new Song;
-        $song->cate_id = $request->cate_id;
-        $song->name = $request->name;
-        $song->artist_id = $request->art_id;
-        $song->link = $request->link;
-        $image = $request->image;
-        $image_path = 'image_song/' . time() . '.' . $image->getClientOriginalExtension();
-        $path = public_path('/storage/image_song');
-        $image->move($path, $image_path);
-        $song->image = $image_path;
-        $song->save();
+        try {
+            $this->songRepository->create($request->all());
 
-        return redirect()->route('songs.index')->with('success', trans('song.addSuccess'));
+            return redirect()->route('songs.index')->with('success', trans('song.addSuccess'));
+        } catch (Throwable $e) {
+            return redirect()->route('songs.index')->with('danger', trans('song.notAdd'));
+        }
     }
 
-    public function edit($song)
+    public function edit($id)
     {
         try {
-            $song = Song::find($song);
-            $cate_id = $song->category->id;
-            $art_id = $song->artist->id;
-            $categories = Category::orderBy('name')->where('id', '!=', $cate_id)->get();
-            $artists = Artist::orderBy('name')->where('id', '!=', $art_id)->get();
+            $song = $this->songRepository->findOrFail($id);
+            $categories = $this->songRepository->getCategory($id);
+            $artists = $this->songRepository->getArtist($id);
 
             return view('admin.song.update', compact('song', 'categories', 'artists'));
         } catch (Throwable $e) {
@@ -62,17 +61,7 @@ class SongController extends Controller
     public function update(SongRequest $request, $song)
     {
         try {
-            $song = Song::find($song);
-            $song->cate_id = $request->cate_id;
-            $song->name = $request->name;
-            $song->artist_id = $request->art_id;
-            $song->link = $request->link;
-            $image = $request->image;
-            $image_path = 'image_song/' . time() . '.' . $image->getClientOriginalExtension();
-            $path = public_path('/storage/image_song');
-            $image->move($path, $image_path);
-            $song->image = $image_path;
-            $song->save();
+            $this->songRepository->update($song, $request->all());
 
             return redirect()->route('songs.index')->with('success', trans('song.editSuccess'));
         } catch (Throwable $e) {
@@ -82,36 +71,21 @@ class SongController extends Controller
 
     public function destroy($id)
     {
-        DB::beginTransaction();
         try {
-            $song = Song::findOrFail($id);
-            $song->lyrics()->delete();
-            $song->comments()->delete();
-            foreach ($song->albums as $album) {
-                $album->users()->delete();
-            }
-            $song->albums()->delete();
-            $song->delete();
-            DB::commit();
+            $this->songRepository->destroy($id);
 
             return response()->json([
                 'error' => false,
             ], 200);
         } catch (Throwable $e) {
-            DB::rollBack();
+            return redirect()->back()->with('danger', trans('song.nodel'));
         }
     }
 
     public function action($action, $id)
     {
         try {
-            $song = Song::findOrFail($id);
-            switch ($action) {
-                case 'hot':
-                    $song->hot = $song->hot ? config('app.notHot') : config('app.Hot');
-                    $song->save();
-                    break;
-            }
+            $this->songRepository->actionHot($action, $id);
 
             return redirect()->back()->with('success', trans('lyric.active'));
         } catch (Throwable $e) {

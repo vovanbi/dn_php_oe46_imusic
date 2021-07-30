@@ -43,4 +43,7 @@ return [
     'Notlogin'=>'địa chỉ email và mật khẩu không chính xác',
     'notsuccess'=>'Đăng nhập không thành công',
     'logoutsucess'=>'Đăng xuất thành công',
+    'Notlogin'=>'địa chỉ email và mật khẩu không chính xác',
+    'notsuccess'=>'Đăng nhập không thành công',
+    'logoutsucess'=>'Đăng xuất thành công',
 ];
