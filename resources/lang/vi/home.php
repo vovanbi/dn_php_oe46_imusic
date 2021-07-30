@@ -39,4 +39,8 @@ return [
     'repair'=>'Nhập lại mật khẩu không chính xác',
     'notpass'='Mật khẩu cũ không chính xác',
     'top'=>'Top bài hát',
+    'notpass'=>'Mật khẩu cũ không chính ',
+    'Notlogin'=>'địa chỉ email và mật khẩu không chính xác',
+    'notsuccess'=>'Đăng nhập không thành công',
+    'logoutsucess'=>'Đăng xuất thành công',
 ];

@@ -39,4 +39,8 @@ return [
     'repair'=>'Re-enter incorrect password',
     'notpass'=>'Old password is not precision'
     'top' => 'Top Trending',
+    'notpass'=>'Old password is not precision',
+    'Notlogin'=>'Email-Address And Password Are Wrong.',
+    'notsuccess'=>'Login not success',
+    'logoutsucess'=>'Login not success',
 ];

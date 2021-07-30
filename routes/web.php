@@ -9,6 +9,7 @@ use App\Http\Controllers\PageDetailController;
 use App\Http\Controllers\Admin\AlbumController;
 use App\Http\Controllers\Admin\LyricController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::get('change-language/{language}', [App\Http\Controllers\HomeController::class,
     'changeLanguage'])->name('change-language');
@@ -35,13 +36,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('artist', App\Http\Controllers\Admin\ArtistController::class)->except('show');
 });
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'getRegister'])->name('get.register');
-Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'postRegister'])->name('post.register');
-Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'getLogin'])->name('get.login');
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'postLogin'])->name('post.login');
-Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['namespace'=>''], function () {
+    Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'getRegister'])->name('get.register');
+    Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'postRegister'])
+    ->name('post.register');
+    Route::get('/login', [LoginController::class, 'getLogin'])->name('get.login');
+    Route::post('/login', [LoginController::class, 'postLogin'])->name('post.login');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('oauth/{driver}', [LoginController::class, 'redirectToProvider'])
+    ->name('social.oauth');
+    Route::get('oauth/{driver}/callback', [LoginController::class, 'handleProviderCallback'])->name('social.callback');
+});
 
 Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::class, 'getSong']);
 
@@ -69,6 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
+
 
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
