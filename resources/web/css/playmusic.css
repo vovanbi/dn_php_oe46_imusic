@@ -176,6 +176,28 @@
     text-align: center;
 }
 
+.search-keyword {
+    color: #fff !important;
+    font-size: 28px;
+}
+
+.search-key-result {
+    color: #fff !important;
+    font-size: 23px !important;
+    margin-left: 25px !important;
+    font-style: italic !important;
+}
+
+.search-more {
+    cursor: pointer;
+    font-size: 26px !important;
+    display: inline-block;
+}
+
+.search-more:hover {
+    color: var(--primary-color) !important;
+}
+
 .col-md-3{
     margin-bottom: 40px;
 }
@@ -3489,7 +3511,6 @@ body::-webkit-scrollbar-thumb {
   color: #fff;
   font-weight: 400;
   margin-left: 10px;
-  margin-top: -6px;
 }
 .comments__title--tabs li {
   position: relative;

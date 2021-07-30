@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Models\Category;
 use App\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -33,10 +34,12 @@ class HomeController extends Controller
     {
         try {
             $song = Song::find($id);
+            $song->view += 1;
+            $song->save();
 
             return view('song-play', compact('song'));
         } catch (Throwable $e) {
-            return redirect()->back()->with('danger', trans('songNotFound'));
+            return redirect()->back()->with('danger', trans('homePage.songNotFound'));
         }
     }
 
@@ -80,5 +83,18 @@ class HomeController extends Controller
         ->orderBy('view', 'desc')->get();
 
         return view('music.top-trending', compact('songs'));
+    }
+
+    public function searchFeature($search)
+    {
+        try {
+            $songs = Song::searchName($search)->take(config('app.home_take_number'))->get();
+            $albums = Album::searchName($search)->take(config('app.home_take_number'))->get();
+            $artists = Artist::searchName($search)->take(config('app.home_take_number'))->get();
+    
+            return view('search', compact('songs', 'albums', 'artists', 'search'));
+        } catch (Throwable $e) {
+            return redirect()->back()->with('danger', trans('homePage.noSearchResult'));
+        }
     }
 }

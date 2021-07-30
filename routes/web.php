@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SongListController;
 use App\Http\Controllers\Admin\SongController;
@@ -44,6 +45,11 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 
 Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::class, 'getSong']);
 
+Route::get('/song/{id}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
+
+Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
+Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('playlists', [PlaylistController::class, 'showPlaylists'])->name('playlists');
     Route::get('create-playlists', [PlaylistController::class, 'createPlaylists'])->name('createPlaylists');
@@ -62,13 +68,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('favorite-song/{song}', [PlaylistController::class, 'addFavoriteSong'])->name('addFavoriteSong');
 });
 
-Route::get('/songs/{songId}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
+Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
 
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
-Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
-
-Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');
 Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
 ->name('detail-song')-> middleware('auth');
 

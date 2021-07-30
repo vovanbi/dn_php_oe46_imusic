@@ -64,7 +64,7 @@
 </div>
 <div class="main">
     <div class="upgrade">
-      <form>
+      <form id="search-form" method="get">
         <div class="inner-form">
           <div class="input-field first-wrap">
             <div class="svg-wrapper">
@@ -75,7 +75,7 @@
             <input id="search" type="text" placeholder= "@lang('home.placeholder')" />
           </div>
           <div class="input-field second-wrap">
-            <button class="btn-search" type="button">@lang('home.search')</button>
+            <button class="btn-search" type="submit">@lang('home.search')</button>
           </div>
         </div>
       </form>
