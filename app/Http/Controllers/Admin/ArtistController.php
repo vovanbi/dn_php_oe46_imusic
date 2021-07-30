@@ -15,7 +15,7 @@ class ArtistController extends Controller
 
     public function index()
     {
-        $artists = Artist::orderBy('id')->paginate(config('app.paginate_num'));
+        $artists = Artist::getAll()->paginate(config('app.paginate_num'));
 
         return view('admin.artist.index', compact('artists', $artists));
     }

@@ -234,5 +234,43 @@ $('#search-form').submit(function(e) {
         });
 });
 
-import { playMusic } from './playmusic';
+function searchMore() {
+    $('.search-more').click(function() {
+        var type = $(this).data('type');
+        var search = $(this).data('search');
+        $.ajax({
+            type:'get',
+            url: '/search/' + type + '/key/' + search,
+            success: function(data)
+            {
+                $('.box_main').html(data);
+                paginate(type, search);
+                playSong();
+            }
+        });
+    });
+}
+
+function paginate(type, search) {
+    $('.pagination a').unbind('click').on('click', function(e) {
+        e.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        getPosts(page);
+    });
+ 
+    function getPosts(page) {
+        $.ajax({
+            type: 'get',
+            url: '/search/' + type + '/key/' + search + '?page='+ page,
+            success: function(data) 
+            {
+                $('.box_main').html(data);
+                paginate(type, search);
+                playSong();
+            } 
+        });
+    }
+}
+
+import { playSong, playMusic } from './playmusic';
 export { actionPlaylist };

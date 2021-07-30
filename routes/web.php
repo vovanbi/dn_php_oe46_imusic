@@ -15,7 +15,6 @@ Route::get('change-language/{language}', [App\Http\Controllers\HomeController::c
     'changeLanguage'])->name('change-language');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
     Route::resource('categories', CategoryController::class);
     Route::resource('albums', AlbumController::class);
@@ -75,9 +74,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('favorite-song/{song}', [PlaylistController::class, 'addFavoriteSong'])->name('addFavoriteSong');
 });
 
-Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
-
-
 Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
 
 Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
@@ -93,3 +89,5 @@ Route::post('/add-lyric', [App\Http\Controllers\SongController::class, 'addLyric
 
 Route::get('/info-profile/{id}', [App\Http\Controllers\UserController::class, 'proFile']);
 Route::post('/change-password', [App\Http\Controllers\UserController::class, 'changePassword']);
+Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
+Route::get('search/{type}/key/{search}', [HomeController::class, 'searchType'])->name('searchType');
