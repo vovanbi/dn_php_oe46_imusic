@@ -11,16 +11,22 @@ class Song extends Model
 
     protected $table = 'songs';
 
-    protected $fillable = ['name', 'cate_id', 'image', 'link', 'artist_id'];
+    protected $fillable = [
+        'name',
+        'cate_id',
+        'artist_id',
+        'link',
+        'image'
+    ];
 
     public function artist()
     {
-        return $this->belongsTo(Artist::class);
+        return $this->belongsTo(Artist::class, 'artist_id');
     }
 
     public function lyrics()
     {
-        return $this->hasOne(Lyric::class);
+        return $this->hasOne(Lyric::class, 'song_id', 'id');
     }
 
     public function albums()
@@ -35,7 +41,7 @@ class Song extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'song_id', 'id');
     }
 
     public function playLists()
@@ -51,15 +57,5 @@ class Song extends Model
     public function scopeSongHot($query)
     {
         return $query->where('hot', 1);
-    }
-
-    public function scopeSearchName($query, $search)
-    {
-        return $query->where('name', 'like', '%'.$search.'%');
-    }
-
-    public function scopeorderByid($query)
-    {
-        return $query->orderBy('id');
     }
 }
