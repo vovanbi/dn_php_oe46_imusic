@@ -1,7 +1,7 @@
 <form action="{{ isset($lyric) ? route('lyric.update',$lyric->id) :route('lyric.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
-        @isset($user)
-            @method('PUT')
+        @isset($lyric)
+            @method('put')
         @endisset
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">

@@ -15,7 +15,7 @@ $(document).ready(function()
          var id = $(this).data('id')
          $.ajax({
             type:'DELETE',
-            url : 'artist/'+id,
+            url : '/admin/artist/'+id,
             success : function(data)
             {
                $('#artist-' + id).remove()
@@ -34,7 +34,7 @@ $(document).ready(function()
          var id = $(this).data('id')
          $.ajax({
             type:'DELETE',
-            url : 'user/'+id,
+            url : '/admin/user/'+id,
             success : function(data)
             {
                $('#user-' + id).remove()
@@ -50,7 +50,7 @@ $(document).ready(function()
          var id = $(this).data('id')
          $.ajax({
             type:'DELETE',
-            url : 'lyric/'+id,
+            url : '/admin/lyric/'+id,
             success : function(data)
             {
                $('#lyric-' + id).remove()

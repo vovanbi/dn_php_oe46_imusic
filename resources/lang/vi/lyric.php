@@ -16,5 +16,6 @@ return [
     'action'=>'Hành động',
     'notId' => 'Không thể tìm thấy Id',
     'active' => 'Thực hiện show bài viet',
-
+    'deleteSuccess' => 'Xóa lời bài hát thành công',
+    'noDelete' => 'Không thể xóa lời bài hát',
 ];
