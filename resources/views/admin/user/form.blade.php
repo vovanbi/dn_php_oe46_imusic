@@ -32,6 +32,10 @@
                     </span>
                 @endif
             </div>
+            <div class="form-group ">
+                <label for="password"> @lang('user.password_confirm'):</label>
+                <input class="form-control" placeholder="@lang('user.password_confirm')" value="{{ old('password',isset($user->password) ? $user->password : '') }}" type="password" name="password_confirmation" />
+            </div>
               <div class="form-group">
                 <label for="phone"> @lang('user.phone'):</label>
                 <input type="number" class="form-control" placeholder="Phone" value="{{ old('phone',isset($user->phone) ? $user->phone : '') }}" name="phone" >
