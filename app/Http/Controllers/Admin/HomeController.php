@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Song\ISongRepository;
+use App\Http\Controllers\Controller;
 use App\Repositories\Chart\IChartRepository;
 
 class HomeController extends Controller
@@ -32,5 +32,13 @@ class HomeController extends Controller
         $chart = $this->chartRepository->songChart($request->all());
 
         return view('admin.index', ['chart' => $chart, 'songViews' => $songViews ]);
+    }
+
+    public function albumChart(Request $request)
+    {
+        $songViews = $this->songRepository->topTrending();
+        $albumChart = $this->chartRepository->albumChart($request->all());
+
+        return view('admin.index', compact('albumChart', 'songViews'));
     }
 }

@@ -74,6 +74,7 @@ return [
     'manage' => 'Trang quản trị hệ thống Imusic',
     'chart' => 'Biểu đồ hệ thống',
     'chartSong' => 'Biểu đồ  thống kê song mới',
+    'chartAlbum' => 'Biểu đồ  thống kê album mới',
     'choose' => '-- Lựa chọn -- ',
     'month' => 'Báo cáo tháng',
     'quarter' => 'Báo cáo quý',
