@@ -63,4 +63,12 @@ return [
     'listsong'=>'Danh sách bài hát cập nhật hôm nay',
     'imusicSign'=>'iMusic pages',
     'no' => 'STT',
+    'toHomePage' => 'Đến trang chủ iMusic',
+    'thanksMail' => 'Cảm ơn bạn, hi vọng bạn sẽ có những trải nghiệm tuyệt vời',
+    'noNotify' => 'Không có thông báo nào',
+    'imusicSign' => 'Website nghe nhạc iMusic',
+    'emailDear' => 'Xin chào bạn,',
+    'albumRelease' => 'Đây là danh sách những album được ra mắt vào ngày hôm nay trên website iMusic',
+    'no' => 'STT',
+    'newAlbumsMail' => 'Có những album mới vừa được ra mắt tại website iMusic hôm nay',
 ];

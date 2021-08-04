@@ -60,4 +60,12 @@ return [
     'listsong'=>'Song list updated today',
     'imusicSign'=>'iMusic pages',
     'no'=>'No.',
+    'toHomePage' => 'Go to Home Page iMusic',
+    'thanksMail' => 'Thank you, hope you have nice experiences',
+    'noNotify' => 'No Notification',
+    'imusicSign' => 'iMusic Page.',
+    'emailDear' => 'Hi there,',
+    'albumRelease' => 'This is all new albums\'s list released in iMusic Website today',
+    'no' => 'No.',
+    'newAlbumsMail' => 'There\'s new albums released in iMusic website today',
 ];

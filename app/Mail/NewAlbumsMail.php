@@ -7,20 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotificationNewAlbum extends Mailable
+class NewAlbumsMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $albums;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    protected $album;
-
-    public function __construct($album)
+    public function __construct($albums)
     {
-        $this->album = $album;
+        $this->albums = $albums;
     }
 
     /**
@@ -30,7 +29,7 @@ class NotificationNewAlbum extends Mailable
      */
     public function build()
     {
-        return $this->subject(trans('home.albumMail'))
-            ->view('email.allNewAlbums', ['album' => $this->album]);
+        return $this->subject(trans('home.newAlbumsMail'))
+            ->view('email.allNewAlbums', ['albums' => $this->albums]);
     }
 }
