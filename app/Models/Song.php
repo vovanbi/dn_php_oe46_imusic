@@ -58,4 +58,9 @@ class Song extends Model
     {
         return $query->where('hot', 1);
     }
+
+    public function scopeorderByid($query)
+    {
+        return $query->orderBy('id');
+    }
 }
