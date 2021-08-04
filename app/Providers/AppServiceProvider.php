@@ -52,8 +52,14 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
+
             \App\Repositories\Chart\IChartRepository::class,
             \App\Repositories\Chart\ChartRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\Comment\ICommentRepository::class,
+            \App\Repositories\Comment\CommentRepository::class
         );
     }
 

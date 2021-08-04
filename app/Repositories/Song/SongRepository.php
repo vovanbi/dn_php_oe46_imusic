@@ -6,7 +6,6 @@ use App\Models\Song;
 use App\Models\Artist;
 use App\Models\Category;
 use App\Repositories\BaseRepository;
-use App\Repositories\Song\ISongRepository;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
@@ -19,6 +18,7 @@ use App\Notifications\NewSongNotify;
 use Pusher\Pusher;
 use App\Events\NotificationEventSong;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\Song\ISongRepository;
 
 class SongRepository extends BaseRepository implements ISongRepository
 {

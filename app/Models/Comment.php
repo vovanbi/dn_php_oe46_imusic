@@ -11,6 +11,13 @@ class Comment extends Model
 
     protected $table = 'comments';
 
+    protected $fillable = [
+        'rate_star',
+        'content',
+        'song_id',
+        'user_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
