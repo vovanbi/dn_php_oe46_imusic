@@ -6,10 +6,13 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Album;
 use App\Jobs\SendEmailAlbum;
+use Pusher\Pusher;
+use App\Events\AlbumNotifyEvent;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use App\Notifications\NewAlbumNotify;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use App\Repositories\Album\IAlbumRepository;
@@ -67,7 +70,22 @@ class AlbumRepository extends BaseRepository implements IAlbumRepository
         $users = User::isNotAdmin()->get();
         foreach ($users as $user) {
             dispatch(new SendEmailAlbum($user, $album))->delay(Carbon::now()->addSeconds(3));
+            $user->notify(new NewAlbumNotify($album));
         }
+
+        $options = array(
+            'cluster' => 'ap1',
+            'encrypted' => true
+        );
+
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+
+        $pusher->trigger('AlbumNotifyEvent', 'send-message', $album);
 
         return $album;
     }
@@ -164,5 +182,10 @@ class AlbumRepository extends BaseRepository implements IAlbumRepository
         }
 
         return false;
+    }
+
+    public function markAsRead($id)
+    {
+        $noti = DB::table('notifications')->where('id', $id)->update(['read_at' => Carbon::now()]);
     }
 }

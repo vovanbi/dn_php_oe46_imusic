@@ -58,4 +58,5 @@ return [
     'contentMail' => 'Bạn có thể thêm album vào danh sách phát của bạn',
     'toHomePage' => 'Đến trang chủ Imusic',
     'thanksMail' => 'Cảm ơn bạn, hi vọng bạn sẽ có những trải nghiệm tuyệt vời',
+    'noNotify' => 'Không có thông báo nào',
 ];

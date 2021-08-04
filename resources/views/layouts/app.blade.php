@@ -24,5 +24,6 @@
     <script src="{{asset('js/profile.js')}}"></script>
     <script src="{{asset('js/topTrending.js')}}"></script>
     <script src="{{asset('js/home.js')}}"></script>
+    <script src="{{asset('js/album.js')}}"></script>
 </body>
 </html>

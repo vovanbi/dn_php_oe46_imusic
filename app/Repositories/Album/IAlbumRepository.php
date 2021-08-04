@@ -21,4 +21,6 @@ interface IAlbumRepository
     public function addSongToAlbum($album, $song);
 
     public function delSongInAlbum($album, $song);
+
+    public function markAsRead($id);
 }

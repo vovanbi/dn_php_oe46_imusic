@@ -131,4 +131,14 @@ class AlbumController extends Controller
             return redirect()->back()->with('danger', trans('album.delSongError'));
         }
     }
+
+    public function markAsRead($id)
+    {
+        $result = $this->albumRepository->markAsRead($id);
+        
+        return response()->json([
+            'error' => false,
+            'result'  => $result,
+        ], 200);
+    }
 }

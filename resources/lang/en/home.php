@@ -55,4 +55,5 @@ return [
     'contentMail' => 'You can add this album to your playlist',
     'toHomePage' => 'Go to Home Page Imusic',
     'thanksMail' => 'Thank you, hope you have nice experiences',
+    'noNotify' => 'No Notification',
 ];
