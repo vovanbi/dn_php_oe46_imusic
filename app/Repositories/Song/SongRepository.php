@@ -108,4 +108,43 @@ class SongRepository extends BaseRepository implements ISongRepository
                 break;
         }
     }
+
+    public function getSongNew()
+    {
+        return $this->model::orderBy('created_at', 'desc')->take(config('app.home_take_number'))->get();
+    }
+
+    public function songPlaying($id)
+    {
+        $song = $this->findOrFail($id);
+        $song->view += 1;
+        $song->save();
+        return $song;
+    }
+
+    public function getSongofCategory($id)
+    {
+        return $this->model::ofCategory($id)->get();
+    }
+
+    public function getSongHot()
+    {
+        return $this->model->songHot();
+    }
+
+    public function topTrending()
+    {
+        return $this->model::select('view', 'name', 'id', 'image')
+        ->whereMonth('created_at', date('m'))->orderBy('view', 'desc')->get();
+    }
+
+    public function searchName($search)
+    {
+        return $this->model->searchName($search)->take(config('app.home_take_number'))->get();
+    }
+
+    public function searchSong($search)
+    {
+        return $this->model->searchName($search)->paginate(config('app.search_take_num'));
+    }
 }

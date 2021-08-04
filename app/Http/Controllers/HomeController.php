@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Song;
-use App\Models\Album;
-use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use App\Models\Category;
 use App\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\Category\ICategoryRepository;
+use App\Repositories\Song\ISongRepository;
+use App\Repositories\Album\IAlbumRepository;
+use App\Repositories\Artist\IArtistRepository;
 
 class HomeController extends Controller
 {
+    protected $albumReporitory;
+    protected $artistRepository;
+    protected $songRepository;
+    protected $categoryRepository;
+
+    public function __construct(
+        IAlbumRepository $albumReporitory,
+        ICategoryRepository $categoryRepository,
+        ISongRepository $songRepository,
+        IArtistRepository $artistRepository
+    ) {
+        $this->albumReporitory = $albumReporitory;
+        $this->categoryRepository = $categoryRepository;
+        $this->songRepository = $songRepository;
+        $this->artistRepository = $artistRepository;
+    }
     public function changeLanguage($locale)
     {
         App::setlocale($locale);
@@ -22,10 +38,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        $categories = Category::isParent()->get();
-        $songs = Song::orderBy('created_at', 'desc')->take(config('app.home_take_number'))->get();
-        $albums = Album::orderBy('created_at', 'desc')->take(config('app.home_take_number'))->get();
-        $artists = Artist::has('songs')->take(config('app.home_take_number'))->get();
+        $categories = $this->categoryRepository->getAllParentCategory();
+        $songs = $this->songRepository->getSongNew();
+        $albums = $this->albumReporitory->getAlbumNew();
+        $artists = $this->artistRepository->getArtistSong();
 
         return view('home', compact('songs', 'albums', 'artists', 'categories'));
     }
@@ -33,9 +49,7 @@ class HomeController extends Controller
     public function songPlaying($id)
     {
         try {
-            $song = Song::find($id);
-            $song->view += 1;
-            $song->save();
+            $song = $this->songRepository->songPlaying($id);
 
             return view('song-play', compact('song'));
         } catch (Throwable $e) {
@@ -45,7 +59,7 @@ class HomeController extends Controller
 
     public function getSong($id)
     {
-        $songs = Song::ofCategory($id)->get();
+        $songs = $this->songRepository->getSongofCategory($id);
         $songs = $songs->map(function ($item) {
             $item->setAttribute('artist_name', $item->artist->name);
 
@@ -57,30 +71,28 @@ class HomeController extends Controller
 
     public function renderHome(Request $request)
     {
-        $artists = Artist::getAll()->limit(6)->get();
-        $albums  = Album::albumHot()->get();
-        $songs = Song::songHot()->get();
+        $songs = $this->songRepository->getSongNew();
+        $albums = $this->albumReporitory->getAlbumNew();
+        $artists = $this->artistRepository->getArtistSong();
 
         return response()->json(['songs' => $songs, 'artists' => $artists , 'albums' => $albums], 200);
     }
 
-    public function hotAlbumMusic($id)
+    public function hotAlbumMusic($type)
     {
-        $songs = Song::where('hot', $id)->get();
-        $songs = $songs->map(function ($item) {
-            $item->setAttribute('artist_name', $item->artist->name);
-
-            return $item;
-        });
-        $albums = Album::where('hot', $id)->get();
-
-        return response()->json(['songs' => $songs, 'albums' => $albums], 200);
+        if ($type == "song") {
+            $songs = $this->songRepository->getSonghot();
+            return response()->json(['songs' => $songs], 200);
+        }
+        if ($type == "album") {
+            $albums = $this->albumReporitory->getAlbumHot();
+            return response()->json(['albums' => $albums], 200);
+        }
     }
 
     public function topTrending()
     {
-        $songs = Song::select('view', 'name', 'id', 'image')->whereMonth('created_at', date('m'))
-        ->orderBy('view', 'desc')->get();
+        $songs = $this->songRepository->topTrending();
 
         return view('music.top-trending', compact('songs'));
     }
@@ -88,9 +100,9 @@ class HomeController extends Controller
     public function searchFeature($search)
     {
         try {
-            $songs = Song::searchName($search)->take(config('app.home_take_number'))->get();
-            $albums = Album::searchName($search)->take(config('app.home_take_number'))->get();
-            $artists = Artist::searchName($search)->take(config('app.home_take_number'))->get();
+            $songs = $this->songRepository->searchName($search);
+            $albums = $this->albumReporitory->searchName($search);
+            $artists = $this->artistRepository->searchName($search);
     
             return view('search', compact('songs', 'albums', 'artists', 'search'));
         } catch (Throwable $e) {
@@ -102,15 +114,15 @@ class HomeController extends Controller
     {
         try {
             if ($type == 'song') {
-                $songs = Song::searchName($search)->paginate(config('app.search_take_num'));
+                $songs = $this->songRepository->searchSong($search);
 
                 return view('searchDetail', compact('songs', 'search'));
             } elseif ($type == 'album') {
-                $albums = Album::searchName($search)->paginate(config('app.search_take_num'));
+                $albums = $this->albumReporitory->searchAlbum($search);
 
                 return view('searchDetail', compact('albums', 'search'));
             } elseif ($type == 'artist') {
-                $artists = Artist::searchName($search)->paginate(config('app.search_take_num'));
+                $artists = $this->artistRepository->searchArtist($search);
 
                 return view('searchDetail', compact('artists', 'search'));
             }

@@ -6,8 +6,9 @@ use App\Models\Artist;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use App\Repositories\Artist\IArtistRepository;
 
-class ArtistRepository extends BaseRepository
+class ArtistRepository extends BaseRepository implements IArtistRepository
 {
     public function getModel()
     {
@@ -65,5 +66,20 @@ class ArtistRepository extends BaseRepository
         }
         $artist->songs()->delete();
         $artist->delete();
+    }
+
+    public function getArtistSong()
+    {
+        return $this->model::has('songs')->take(config('app.home_take_number'))->get();
+    }
+
+    public function searchName($search)
+    {
+        return $this->model->searchName($search)->take(config('app.home_take_number'))->get();
+    }
+
+    public function searchArtist($search)
+    {
+        return $this->model->searchName($search)->paginate(config('app.search_take_num'));
     }
 }

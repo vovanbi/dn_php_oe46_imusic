@@ -63,4 +63,9 @@ class Song extends Model
     {
         return $query->orderBy('id');
     }
+
+    public function scopesearchName($query, $search)
+    {
+        return $query->where('name', 'like', '%'.$search.'%');
+    }
 }
