@@ -6,8 +6,8 @@ use App\Models\Song;
 use App\Models\Artist;
 use App\Models\Category;
 use App\Repositories\BaseRepository;
-use App\Repositories\Song\ISongRepository;
 use Illuminate\Support\Facades\File;
+use App\Repositories\Song\ISongRepository;
 
 class SongRepository extends BaseRepository implements ISongRepository
 {

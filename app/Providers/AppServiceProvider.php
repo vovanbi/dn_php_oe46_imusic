@@ -50,6 +50,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Artist\IArtistRepository::class,
             \App\Repositories\Artist\ArtistRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\Comment\ICommentRepository::class,
+            \App\Repositories\Comment\CommentRepository::class
+        );
     }
 
     /**
