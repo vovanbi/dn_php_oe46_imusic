@@ -19,6 +19,13 @@ use Pusher\Pusher;
 use App\Events\NotificationEventSong;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Song\ISongRepository;
+use Illuminate\Support\Facades\Notification;
+use App\Models\User;
+use Illuminate\Notifications\Notifiable;
+use App\Jobs\SendNotifiNewSongJob;
+use Mail;
+use App\Mail\NotificationNewSong;
+use Carbon\Carbon;
 
 class SongRepository extends BaseRepository implements ISongRepository
 {
