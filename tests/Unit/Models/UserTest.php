@@ -20,6 +20,7 @@ class UserTest extends TestCase
             'provider_id',
             'provider',
             'access_token',
+            'is_admin',
         ];
 
         $this->assertEquals($columns, (new User())->getFillable());

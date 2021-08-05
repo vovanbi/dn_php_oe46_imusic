@@ -18,7 +18,7 @@ class SongRepository extends BaseRepository implements ISongRepository
 
     public function showAll()
     {
-        $songs =$this->model::orderByid()->paginate(config('app.paginate_num'));
+        $songs =$this->model::orderById()->paginate(config('app.paginate_num'));
 
         return $songs;
     }

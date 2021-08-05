@@ -7,13 +7,25 @@ use App\Models\Album;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlbumRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\Album\IAlbumRepository;
+use App\Repositories\Song\ISongRepository;
 
 class AlbumController extends Controller
 {
+    protected $albumRepository;
+    protected $songRepository;
+
+    public function __construct(
+        IAlbumRepository $albumRepository,
+        ISongRepository $songRepository
+    ) {
+        $this->albumRepository = $albumRepository;
+        $this->songRepository = $songRepository;
+    }
+
     public function index()
     {
-        $albums = Album::orderBy('id')->paginate(config('app.paginate_num'));
+        $albums = $this->albumRepository->all();
 
         return view('admin.album.index', compact('albums'));
     }
@@ -25,14 +37,7 @@ class AlbumController extends Controller
 
     public function store(AlbumRequest $request)
     {
-        $album = new Album;
-        $album->name = $request->name;
-        $image = $request->image;
-        $image_path = 'image_album/' . time() . '.' . $image->getClientOriginalExtension();
-        $path = public_path('/storage/image_album');
-        $image->move($path, $image_path);
-        $album->image = $image_path;
-        $album->save();
+        $album = $this->albumRepository->create($request->all());
 
         return redirect()->route('albums.index')->with('success', trans('album.addSuccess'));
     }
@@ -40,7 +45,7 @@ class AlbumController extends Controller
     public function edit($album)
     {
         try {
-            $album = Album::find($album);
+            $album = $this->albumRepository->findOrFail($album);
 
             return view('admin.album.update', compact('album'));
         } catch (Throwable $e) {
@@ -51,14 +56,7 @@ class AlbumController extends Controller
     public function update(AlbumRequest $request, $album)
     {
         try {
-            $album = Album::find($album);
-            $album->name = $request->name;
-            $image = $request->image;
-            $image_path = 'image_album/' . time() . '.' . $image->getClientOriginalExtension();
-            $path = public_path('/storage/image_album');
-            $image->move($path, $image_path);
-            $album->image = $image_path;
-            $album->save();
+            $album = $this->albumRepository->update($request->all(), $album);
 
             return redirect()->route('albums.index')->with('success', trans('album.esditSuccess'));
         } catch (Throwable $e) {
@@ -68,33 +66,13 @@ class AlbumController extends Controller
 
     public function destroy($id)
     {
-        DB::beginTransaction();
-        try {
-            $album = Album::findOrFail($id);
-            $album->users()->delete();
-            $album->songs()->delete();
-            $album->delete();
-
-            DB::commit();
-
-            return response()->json([
-                'error' => false,
-            ], 200);
-        } catch (Throwable $e) {
-            DB::rollBack();
-        }
+        return $this->albumRepository->destroy($id);
     }
 
     public function action($action, $id)
     {
         try {
-            $album = Album::findOrFail($id);
-            switch ($action) {
-                case 'hot':
-                    $album->hot = $album->hot ? config('app.notHot') : config('app.Hot');
-                    $album->save();
-                    break;
-            }
+            $album = $this->albumRepository->pinHotAlbum($action, $id);
 
             return redirect()->back()->with('success', trans('lyric.active'));
         } catch (Throwable $e) {
@@ -105,8 +83,8 @@ class AlbumController extends Controller
     public function albumSong($album)
     {
         try {
-            $album = Album::find($album);
-            $songs = $album->songs()->paginate(config('app.paginate_num'));
+            $songs = $this->albumRepository->showSongsInAlbum($album);
+            $album = $this->albumRepository->findOrFail($album);
 
             return view('admin.album.albumSong', compact('album', 'songs'));
         } catch (Throwable $e) {
@@ -117,8 +95,8 @@ class AlbumController extends Controller
     public function getAddSong($album)
     {
         try {
-            $album = Album::find($album);
-            $songs = Song::orderBy('id')->paginate(config('app.paginate_num'));
+            $album = $this->albumRepository->findOrFail($album);
+            $songs = $this->songRepository->showAll();
 
             return view('admin.album.addAlbumSong', compact('album', 'songs'));
         } catch (Throwable $e) {
@@ -129,8 +107,7 @@ class AlbumController extends Controller
     public function addAlbumSong($album, $song)
     {
         try {
-            $album = Album::find($album);
-            $album->songs()->attach($song);
+            $album = $this->albumRepository->addSongToAlbum($album, $song);
 
             return response()->json([
                 'error' => false,
@@ -144,8 +121,7 @@ class AlbumController extends Controller
     public function delAlbumSong($album, $song)
     {
         try {
-            $album = Album::find($album);
-            $album->songs()->detach($song);
+            $album = $this->albumRepository->delSongInAlbum($album, $song);
 
             return response()->json([
                 'error' => false,

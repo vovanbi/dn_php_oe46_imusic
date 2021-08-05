@@ -11,6 +11,11 @@ class Album extends Model
 
     protected $table = 'albums';
 
+    protected $fillable = [
+        'name',
+        'image',
+    ];
+
     public function songs()
     {
         return $this->belongsToMany(Song::class, 'album_song', 'album_id', 'song_id');

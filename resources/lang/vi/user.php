@@ -28,10 +28,10 @@ return [
     'name' => 'Tên user',
     'img' => 'Hình ảnh ',
     'phone' => 'Số điện thoại',
-    'password'=> 'Mật khẩu',
-    'email'=> 'Email',
+    'password' => 'Mật khẩu',
+    'password_confirm' => 'Xác nhận lại mật khẩu',
+    'email' => 'Email',
     'manage' =>'Quản lý user',
-    'type'=>'Loại user ',
-    'action'=> 'Hành động'
-
+    'type' =>'Loại user ',
+    'action' => 'Hành động',
 ];
