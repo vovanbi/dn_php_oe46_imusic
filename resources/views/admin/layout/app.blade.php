@@ -108,5 +108,6 @@
     <script type="text/javascript" src="{{asset('js/delCategory.js')}}"></script>
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
     <script src=" {{ asset('js/admin.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

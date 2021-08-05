@@ -38,3 +38,9 @@ window.onclick = function(event) {
     }
   }
 }
+
+$(function (){
+      $('.custom-select').change(function (){
+          $("#form_song").submit();
+      })
+  })

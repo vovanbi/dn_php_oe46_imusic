@@ -34,6 +34,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('lyric/{action}/{id}', [LyricController::class, 'action'])->name('lyric.action');
 
     Route::resource('artist', App\Http\Controllers\Admin\ArtistController::class)->except('show');
+
+    Route::get('statistical', [App\Http\Controllers\Admin\HomeController::class,
+        'statistiSong'])->name('song-statistical');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
