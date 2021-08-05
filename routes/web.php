@@ -94,4 +94,5 @@ Route::get('search/{type}/key/{search}', [HomeController::class, 'searchType'])-
 Route::post('markAsRead/{id}', [HomeController::class, 'markAsRead']);
 
 Route::get('showNotification', [HomeController::class, 'showNotification']);
+
 Route::post('album/notification/{id}', [AlbumController::class, 'markAsRead']);
