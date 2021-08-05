@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use App\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Category\ICategoryRepository;
 use App\Repositories\Song\ISongRepository;
@@ -129,5 +129,11 @@ class HomeController extends Controller
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('homePage.noSearchResult'));
         }
+    }
+
+    public function markAsRead($id)
+    {
+        $countNofication = $this->songRepository->markAsRead($id);
+        return response()->json($countNofication);
     }
 }

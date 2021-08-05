@@ -88,27 +88,61 @@
           <a class="btn_login " href="{{route('get.login')}}">LOG IN</a>
           @endif
       </div>
-        <div class="nav-item dropdown">
-          <div class="dropdown">
-               @php $locale = session()->get('locale'); @endphp
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    @switch($locale)
-                        @case('vi')
-                        <img src="{{asset('storage/img/vn.png')}}"> VN
-                        @break
-                        @case('en')
-                        <img src="{{asset('storage/img/en.png')}}"> English
-                        @break
-                        @default
-                        <img src="{{asset('storage/img/vn.png')}}"> VN
-                    @endswitch
-                    <span class="caret"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('change-language',['vi'])}}"><img src="{{asset('storage/img/vn.png')}}"> VN</a>
-                    <a class="dropdown-item" href="{{route('change-language',['en'])}}"><img src="{{asset('storage/img/en.png')}}"> English</a>
-                </div>
-             </div>
+      <div class="notification">
+          <div class="cart-items">{{Auth::user()->unreadNotifications->count()}}</div>
+          <div class="cart-box">
+              <div class="cart-icon">
+                <i class="far fa-bell"></i>
+              </div>
+              <div class="cart-product">
+                  <div class="cart-product-list">
+                      <table>
+                          <tbody class="new-notify">
+                            @if(Auth::check())
+                              @foreach(Auth::user()->unreadNotifications as $notification)
+                                <tr class="notif-count" id ="detail-noti" data-id ="{{$notification->id}}" data-song="{{$notification->data['id']}}">
+                                  <td class="product-pic">
+                                    <a href="">
+                                      <img src="/storage/{{$notification->data['image']}}" alt="">
+                                    </a>
+                                  </td>
+                                  <td class="product-text">
+                                    <a href="">
+                                      <div class="product-info">
+                                        <h5>{{$notification->data['name']}}</h5>
+                                      </div>
+                                    </a>
+                                  </td>
+                                </tr>
+                              @endforeach
+                            @endif
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
           </div>
+      </div>
+      <div class="nav-item dropdown">
+        <div class="dropdown">
+             @php $locale = session()->get('locale'); @endphp
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  @switch($locale)
+                      @case('vi')
+                        <img src="{{asset('storage/img/vn.png')}}"> VN
+                      @break
+                      @case('en')
+                        <img src="{{asset('storage/img/en.png')}}"> English
+                      @break
+                      @default
+                        <img src="{{asset('storage/img/vn.png')}}"> VN
+                  @endswitch
+                  <span class="caret"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('change-language',['vi'])}}"><img src="{{asset('storage/img/vn.png')}}"> VN</a>
+                  <a class="dropdown-item" href="{{route('change-language',['en'])}}"><img src="{{asset('storage/img/en.png')}}"> English</a>
+              </div>
+           </div>
+        </div>
       </div>

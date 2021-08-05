@@ -34,6 +34,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('lyric/{action}/{id}', [LyricController::class, 'action'])->name('lyric.action');
 
     Route::resource('artist', App\Http\Controllers\Admin\ArtistController::class)->except('show');
+
+    Route::get('statistical', [App\Http\Controllers\Admin\HomeController::class,
+        'statistiSong'])->name('song-statistical');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -90,3 +93,7 @@ Route::get('/info-profile/{id}', [App\Http\Controllers\UserController::class, 'p
 Route::post('/change-password', [App\Http\Controllers\UserController::class, 'changePassword']);
 Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
 Route::get('search/{type}/key/{search}', [HomeController::class, 'searchType'])->name('searchType');
+
+Route::post('markAsRead/{id}', [HomeController::class, 'markAsRead']);
+
+Route::get('showNotification', [HomeController::class, 'showNotification']);
