@@ -40,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Album\IAlbumRepository::class,
             \App\Repositories\Album\AlbumRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\Artist\IArtistRepository::class,
+            \App\Repositories\Artist\ArtistRepository::class
+        );
     }
 
     /**

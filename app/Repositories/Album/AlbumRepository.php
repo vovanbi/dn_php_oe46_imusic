@@ -18,4 +18,24 @@ class AlbumRepository extends BaseRepository implements IAlbumRepository
     {
         return  Auth::user()->albums()->detach($id);
     }
+
+    public function getAlbumNew()
+    {
+        return $this->model::orderBy('created_at', 'desc')->take(config('app.home_take_number'))->get();
+    }
+
+    public function getAlbumHot()
+    {
+        return $this->model->songHot();
+    }
+
+    public function searchName($search)
+    {
+        return $this->model->searchName($search)->take(config('app.home_take_number'))->get();
+    }
+
+    public function searchAlbum($search)
+    {
+        return $this->model->searchName($search)->paginate(config('app.search_take_num'));
+    }
 }
