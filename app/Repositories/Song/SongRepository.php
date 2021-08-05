@@ -15,6 +15,10 @@ use App\Jobs\SendNotifiNewSongJob;
 use Mail;
 use App\Mail\NotificationNewSong;
 use Carbon\Carbon;
+use App\Notifications\NewSongNotify;
+use Pusher\Pusher;
+use App\Events\NotificationEventSong;
+use Illuminate\Support\Facades\DB;
 
 class SongRepository extends BaseRepository implements ISongRepository
 {
@@ -156,12 +160,40 @@ class SongRepository extends BaseRepository implements ISongRepository
     {
         return $this->model->searchName($search)->paginate(config('app.search_take_num'));
     }
+
     public function sendNotify($song)
     {
-        $users = User::isnotAdmin()->get();
+        $users = User::where('is_admin', config('app.user'))->get();
 
         foreach ($users as $user) {
             dispatch(new SendNotifiNewSongJob($user, $song))->delay(Carbon::now()->addSeconds(10));
+
+            $user->notify(new NewSongNotify($song));
         }
+
+        $options = array(
+            'cluster' => 'ap1',
+            'encrypted' => true
+        );
+
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+
+        $pusher->trigger('NotificationEventSong', 'send-message', $song);
+    }
+
+    public function markAsRead($notificationId)
+    {
+        DB::table('notifications')->where('id', $notificationId)->update(['read_at'=>Carbon::now()]);
+
+        $countNotRead = DB::table('notifications')->where('read_at', config('app.notRead'))
+        ->where('notifiable_id', auth()->user()->id)
+        ->count();
+
+        return $countNotRead;
     }
 }

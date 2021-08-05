@@ -11,15 +11,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Listen Mussic</title>
 </head>
+<body>
     <div class="container_big clearfix">
         @include('layouts.header')
         @yield('content')
         @include('layouts.footer')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://js.pusher.com/7.0.3/pusher.min.js"></script>
     <script src="{{asset('js/playmusic.js')}}"></script>
     <script src="{{asset('js/showsong.js')}}"></script>
     <script src="{{asset('js/hot_album_music.js')}}"></script>
     <script src="{{asset('js/profile.js')}}"></script>
     <script src="{{asset('js/topTrending.js')}}"></script>
+    <script src="{{asset('js/home.js')}}"></script>
 </body>
 </html>

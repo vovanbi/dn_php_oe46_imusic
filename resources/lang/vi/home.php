@@ -37,7 +37,7 @@ return [
     'delUse' =>'Xóa tài khoản',
     'changesuccss'=>'Thay đổi mật khẩu thành công',
     'repair'=>'Nhập lại mật khẩu không chính xác',
-    'notpass'='Mật khẩu cũ không chính xác',
+    'notpass'=>'Mật khẩu cũ không chính xác',
     'top'=>'Top bài hát',
     'notpass'=>'Mật khẩu cũ không chính ',
     'Notlogin'=>'địa chỉ email và mật khẩu không chính xác',
@@ -50,5 +50,6 @@ return [
     'contents'=>'Imusic đã cập nhật một bài hát mới',
     'namesong'=>'Tên bài hát : ',
     'urlsong'=>'Nghe liền',
-    'thanks'=>'Cảm ơn bạn , chúc bạn có 1 trải nghiệm thú vị!'
+    'thanks'=>'Cảm ơn bạn , chúc bạn có 1 trải nghiệm thú vị!',
+    'notlogin'=>'Vui lòng đăng nhập',
 ];
