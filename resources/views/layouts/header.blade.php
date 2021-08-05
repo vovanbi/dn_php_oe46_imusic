@@ -88,27 +88,30 @@
           <a class="btn_login " href="{{route('get.login')}}">LOG IN</a>
           @endif
       </div>
-        <div class="nav-item dropdown">
-          <div class="dropdown">
-               @php $locale = session()->get('locale'); @endphp
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    @switch($locale)
-                        @case('vi')
+      <div class="notification">
+       <i class="far fa-bell"></i>
+      </div>
+      <div class="nav-item dropdown">
+        <div class="dropdown">
+             @php $locale = session()->get('locale'); @endphp
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  @switch($locale)
+                      @case('vi')
                         <img src="{{asset('storage/img/vn.png')}}"> VN
-                        @break
-                        @case('en')
+                      @break
+                      @case('en')
                         <img src="{{asset('storage/img/en.png')}}"> English
-                        @break
-                        @default
+                      @break
+                      @default
                         <img src="{{asset('storage/img/vn.png')}}"> VN
-                    @endswitch
-                    <span class="caret"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('change-language',['vi'])}}"><img src="{{asset('storage/img/vn.png')}}"> VN</a>
-                    <a class="dropdown-item" href="{{route('change-language',['en'])}}"><img src="{{asset('storage/img/en.png')}}"> English</a>
-                </div>
-             </div>
-          </div>
+                  @endswitch
+                  <span class="caret"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('change-language',['vi'])}}"><img src="{{asset('storage/img/vn.png')}}"> VN</a>
+                  <a class="dropdown-item" href="{{route('change-language',['en'])}}"><img src="{{asset('storage/img/en.png')}}"> English</a>
+              </div>
+           </div>
+        </div>
       </div>
