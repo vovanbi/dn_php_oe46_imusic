@@ -29,6 +29,7 @@ class NotificationNewSong extends Mailable
      */
     public function build()
     {
+
         return $this->subject(trans('home.contents'))
         ->view('email.admin-sendmail', ['song' => $this->song]);
     }
