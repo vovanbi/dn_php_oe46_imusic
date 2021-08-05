@@ -9,15 +9,20 @@ use App\Http\Requests\ArtistRequest;
 use Illuminate\Support\Facades\File;
 use Throwable;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\Artist\ArtistRepository;
 
 class ArtistController extends Controller
 {
-
+    protected $artistRepository;
+    public function __construct(ArtistRepository $artistRepository)
+    {
+        $this->artistRepository = $artistRepository;
+    }
     public function index()
     {
-        $artists = Artist::getAll()->paginate(config('app.paginate_num'));
+        $artists =$this->artistRepository->showAll();
 
-        return view('admin.artist.index', compact('artists', $artists));
+        return view('admin.artist.index', compact('artists'));
     }
 
     public function create()
@@ -27,7 +32,7 @@ class ArtistController extends Controller
 
     public function store(ArtistRequest $request)
     {
-        $this->insertOrUpdate($request);
+        $this->artistRepository->create($request->all());
 
         return redirect()->route('artist.index')->with('susccess', trans('artist.susccessAdd'));
     }
@@ -40,62 +45,26 @@ class ArtistController extends Controller
     public function edit($id)
     {
         try {
-            $artist = Artist::findOrFail($id);
+            $artist = $this->artistRepository->findOrFail($id);
+
+            return view('admin.artist.update', compact('artist'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('artist.Noupdate'));
         }
-
-        return view('admin.artist.update', compact('artist'));
     }
 
     public function update(Request $request, $id)
     {
-        $this->insertOrUpdate($request, $id);
+        $this->artistRepository->update($id, $request->all());
 
         return redirect()->route('artist.index')->with('susccess', trans('artist.susccessUpdate'));
-    }
-
-    public function insertOrUpdate($request, $id = null)
-    {
-        $artist = new Artist();
-        if (is_null($id)) {
-            $artist->name = $request->name;
-            $artist->info = $request->info;
-            $image = $request->avatar;
-            $image_path = 'image_artist/' . time() . '.' . $image->getClientOriginalExtension();
-            $path = public_path('/storage/image_artist');
-            $image->move($path, $image_path);
-            $artist->avatar = $image_path;
-            $artist->save();
-        } else {
-            try {
-                $artist = Artist::findOrFail($id);
-                $artist->name = $request->name;
-                $artist->info = $request->info;
-                $image = $request->avatar;
-                $image_path = 'image_artist/' . time() . '.' . $image->getClientOriginalExtension();
-                $path = public_path('/storage/image_artist');
-                $image->move($path, $image_path);
-                $artist->avatar = $image_path;
-                $artist->save();
-            } catch (Throwable $e) {
-                return redirect()->back()->with('danger', trans('artist.Noadd'));
-            }
-        }
     }
 
     public function destroy($id)
     {
         DB::beginTransaction();
         try {
-            $artist = Artist::findOrFail($id);
-            foreach ($artist->songs as $song) {
-                $song->lyrics()->delete();
-                $song->comments()->delete();
-                $song->albums()->delete();
-            }
-            $artist->songs()->delete();
-            $artist->delete();
+            $this->artistRepository->destroy($id);
             DB::commit();
 
             return response()->json([
@@ -103,6 +72,7 @@ class ArtistController extends Controller
             ], 200);
         } catch (Throwable $e) {
             DB::rollBack();
+            return redirect()->back()->with('danger', trans('artist.Nodelete'));
         }
     }
 }

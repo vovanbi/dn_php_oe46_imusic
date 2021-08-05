@@ -11,6 +11,12 @@ class Artist extends Model
 
     protected $table = 'artists';
 
+    protected $fillable = [
+        'name',
+        'info',
+        'avatar',
+    ];
+
     public function songs()
     {
         return $this->hasMany(Song::class);
@@ -23,5 +29,10 @@ class Artist extends Model
     public function scopeSearchName($query, $search)
     {
         return $query->where('name', 'like', '%'.$search.'%');
+    }
+
+    public function scopeorderByid($query)
+    {
+        return $query->orderBy('id');
     }
 }

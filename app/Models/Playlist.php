@@ -11,6 +11,11 @@ class Playlist extends Model
 
     protected $table = 'playlists';
 
+    protected $fillable = [
+        'name',
+        'user_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo(Playlist::class);

@@ -9,13 +9,25 @@ use App\Models\Playlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PlaylistRequest;
+use App\Repositories\Playlist\IPlaylistRepository;
+use App\Repositories\Album\IAlbumRepository;
 
 class PlaylistController extends Controller
 {
+    protected $playlistRepository;
+    protected $albumReporitory;
+
+    public function __construct(
+        IPlaylistRepository $playlistRepository,
+        IAlbumRepository $albumReporitory
+    ) {
+        $this->playlistRepository = $playlistRepository;
+        $this->albumReporitory = $albumReporitory;
+    }
     public function showPlaylists()
     {
-        $albums = Auth::user()->albums;
-        $playlists = Auth::user()->playlists;
+        $albums = $this->playlistRepository->getAlbumUser();
+        $playlists = $this->playlistRepository->getPlaylistUser();
 
         return view('playlist', compact('playlists', 'albums'));
     }
@@ -27,14 +39,10 @@ class PlaylistController extends Controller
 
     public function storePlaylists(Request $request)
     {
-        $playlist = new Playlist;
-        $playlist->name = $request->name;
-        $playlist->user_id = Auth::user()->id;
-        $playlist->save();
-        
+        $playlist = $this->playlistRepository->create($request->all());
         try {
-            $albums = Auth::user()->albums;
-            $playlists = Auth::user()->playlists;
+            $albums = $this->playlistRepository->getAlbumUser();
+            $playlists = $this->playlistRepository->getPlaylistUser();
             
             return view('playlist', compact('playlists', 'albums'));
         } catch (Throwable $e) {
@@ -45,7 +53,7 @@ class PlaylistController extends Controller
     public function addAlbum($id)
     {
         try {
-            $user = Auth::user()->albums()->attach($id);
+            $user = $this->playlistRepository->addAlbum($id);
 
             return response()->json([
                 'error' => false,
@@ -59,7 +67,7 @@ class PlaylistController extends Controller
     public function playlistDetail($id)
     {
         try {
-            $playlist = Playlist::find($id);
+            $playlist = $this->playlistRepository->findOrFail($id);
             $songs = $playlist->songs;
             
             return view('playlistSong', compact('songs', 'playlist'));
@@ -71,7 +79,7 @@ class PlaylistController extends Controller
     public function favoriteAlbum($id)
     {
         try {
-            $album = Album::find($id);
+            $album = $this->albumReporitory->findOrFail($id);
             $songs = $album->songs;
             
             return view('playlistSong', compact('songs', 'album'));
@@ -83,13 +91,10 @@ class PlaylistController extends Controller
     public function delPlaylist($id)
     {
         try {
-            $playlist = Playlist::find($id);
-            $playlist->songs()->wherePivot('playlist_id', '=', $id)->detach();
-            $playlist->delete();
-            
+            $this->playlistRepository->destroy($id);
+
             return response()->json([
-                'error' => false,
-                'playlist'  => $playlist,
+                'error' => false
             ], 200);
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('playlist.notFoundPlaylist'));
@@ -99,11 +104,10 @@ class PlaylistController extends Controller
     public function delFavAlbum($id)
     {
         try {
-            $album = Auth::user()->albums()->detach($id);
+            $this->albumReporitory->delFavAlbum($id);
     
             return response()->json([
                 'error' => false,
-                'album'  => $album,
             ], 200);
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('playlist.notFoundAlbum'));
@@ -118,60 +122,45 @@ class PlaylistController extends Controller
     public function songResult($playlistId, $search)
     {
         try {
-            $songs = Song::searchName($search)->take(config('app.home_take_number'))->get();
-
+            $songs = $this->playlistRepository->songResult($playlistId, $search);
             return view('songResult', compact('songs', 'playlistId'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('playlist.noSearchFound'));
         }
     }
 
-    public function addPlaylistSong($playlistId, $song)
+    public function addPlaylistSong($id, $idSong)
     {
         try {
-            $playlist = Playlist::find($playlistId);
-            $playlist->songs()->attach($song);
-            
+            $this->playlistRepository->addSonginPlaylist($id, $idSong);
+
             return response()->json([
                 'error' => false,
-                'playlist'  => $playlist,
             ], 200);
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('playlist.noPlaylistFound'));
         }
     }
 
-    public function delPlaylistSong($playlistId, $song)
+    public function delPlaylistSong($id, $idSong)
     {
         try {
-            $playlist = Playlist::find($playlistId);
-            $playlist->songs()->detach($song);
+            $this->playlistRepository->delSonginPlaylist($id, $idSong);
             
             return response()->json([
                 'error' => false,
-                'playlist'  => $playlist,
             ], 200);
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('playlist.noPlaylistFound'));
         }
     }
 
-    public function addFavoriteSong($song)
+    public function addFavoriteSong($idSong)
     {
-        $playlists = Auth::user()->playlists;
-        $result = $playlists->where('name', '=', 'Favorite');
-        if (count($result) == 0) {
-            $favorite = new Playlist;
-            $favorite->name = "Favorite";
-            $favorite->user_id = Auth::user()->id;
-            $favorite->save();
-        }
-        $favorite = $playlists->where('name', '=', 'Favorite')->first();
-        $favorite->songs()->attach($song);
+        $this->playlistRepository->addSonginPlaylist($idSong);
 
         return response()->json([
             'error' => false,
-            'favorite'  => $favorite,
         ], 200);
     }
 }
