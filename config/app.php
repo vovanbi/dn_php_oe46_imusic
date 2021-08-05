@@ -36,7 +36,6 @@ return [
 
     'user' => '0',
 
-
     'notRead'=>'null',
 
     /*

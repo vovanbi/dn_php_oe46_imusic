@@ -1237,6 +1237,16 @@ max-width: 400px;
     border: 1px solid #e5101d;
 }
 
+.cart-box.show .cart-product {
+    display: block;
+}
+.cart-product-list table {
+    width: 100%;
+}
+.cart-product-list tr .product-pic {
+  width: 30%;
+}
+
 .cart-product {
     position: absolute;
     z-index: 999;
@@ -1273,8 +1283,11 @@ max-width: 400px;
   }
 
 .cart-product-list {
+<<<<<<< HEAD
     padding-left: 15px;
     padding-right: 15px;
+=======
+>>>>>>> a19f414 (notification for user when admin new song)
     border-bottom: solid 1px #ccc;
 }
 

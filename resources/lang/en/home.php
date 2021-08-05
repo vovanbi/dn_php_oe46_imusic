@@ -47,7 +47,7 @@ return [
     'contentS'=>'Imusic updated a new song',
     'Namesong'=>'Name of the song : ',
     'urlsong'=>'Listen now',
-    'thankS'=>'Thank you, wish you have a pleasant experience!',
+    'thanks'=>'Thank you, wish you have a pleasant experience!',
     'chartsong'=>'New song chart by month, quarter, year',
     'list'=>'List of most listened songs',
     'category'=>'Category',
@@ -59,4 +59,5 @@ return [
     'month' => 'Month Report',
     'quarter' => 'Quarter Report',
     'year' => 'Year Report',
+    'notlogin'=>'Please login !',
 ];

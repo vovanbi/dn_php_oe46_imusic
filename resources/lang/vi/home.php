@@ -50,7 +50,7 @@ return [
     'contentS'=>'Imusic đã cập nhật một bài hát mới',
     'Namesong'=>'Tên bài hát : ',
     'urlsong'=>'Nghe liền',
-    'thankS'=>'Cảm ơn bạn , chúc bạn có 1 trải nghiệm thú vị!',
+    'thanks'=>'Cảm ơn bạn , chúc bạn có 1 trải nghiệm thú vị!',
     'chartsong'=>'Biểu đồ thể số bài hát mới theo tháng , quý , năm',
     'list'=>'Danh sách bài hát được nghe nhiều nhất',
     'category'=>'Danh mục',
@@ -62,4 +62,5 @@ return [
     'month' => 'Báo cáo tháng',
     'quarter' => 'Báo cáo quý',
     'year' => 'Báo cáo năm',
+    'notlogin'=>'Vui lòng đăng nhập',
 ];
