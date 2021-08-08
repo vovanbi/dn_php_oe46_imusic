@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotificationNewSong extends Mailable
+class MailCreateSongToUser extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,10 +16,10 @@ class NotificationNewSong extends Mailable
      *
      * @return void
      */
-    protected $song;
-    public function __construct($song)
+    protected $songs;
+    public function __construct($songs)
     {
-        $this->song = $song;
+        $this->songs = $songs;
     }
 
     /**
@@ -30,6 +30,7 @@ class NotificationNewSong extends Mailable
     public function build()
     {
         return $this->subject(trans('home.contents'))
-        ->view('email.admin-sendmail', ['song' => $this->song]);
+        ->view('email.admin-sendmail', ['songs' => $this->songs]);
     }
 }
+
