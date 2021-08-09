@@ -90,3 +90,7 @@ Route::get('/info-profile/{id}', [App\Http\Controllers\UserController::class, 'p
 Route::post('/change-password', [App\Http\Controllers\UserController::class, 'changePassword']);
 Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
 Route::get('search/{type}/key/{search}', [HomeController::class, 'searchType'])->name('searchType');
+
+Route::post('markAsRead/{id}', [HomeController::class, 'markAsRead']);
+
+Route::get('showNotification', [HomeController::class, 'showNotification']);

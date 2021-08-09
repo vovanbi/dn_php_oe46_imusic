@@ -89,7 +89,44 @@
           @endif
       </div>
       <div class="notification">
-       <i class="far fa-bell"></i>
+          @if(Auth::check())
+          <div class="cart-items">{{Auth::user()->unreadNotifications->count()}}</div>
+          @endif
+          <div class="cart-box">
+              <div class="cart-icon">
+                <i class="far fa-bell"></i>
+              </div>
+              <div class="cart-product">
+                  <div class="cart-product-list">
+                      <table>
+                          <tbody class="new-notify">
+                            @if(Auth::check())
+                                @foreach(Auth::user()->unreadNotifications as $notification)
+                                  <tr class="notif-count" id="detail-noti" data-id ="{{$notification->id}}" data-song="{{$notification->data['id']}}">
+                                    <td class="product-pic">
+                                      <a href="">
+                                        <img src="/storage/{{$notification->data['image']}}" alt="">
+                                      </a>
+                                    </td>
+                                    <td class="product-text">
+                                      <a href="">
+                                        <div class="product-info">
+                                          <h5>{{$notification->data['name']}}</h5>
+                                        </div>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                @endforeach
+                            @else
+                            <tr>
+                              <td class="text-danger">@lang('home.notlogin')</td>
+                            </tr>
+                            @endif
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
       </div>
       <div class="nav-item dropdown">
         <div class="dropdown">

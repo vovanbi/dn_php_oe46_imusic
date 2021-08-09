@@ -43,7 +43,7 @@
                                 <i class="fas fa-plus"></i>
                                 </a>
                                 <a class="single-item__export">
-                                <i class="fas fa-caret-right" data-song-c = "{{ $cate_song->id }}" id="cate_s"></i>
+                                <i class="fas fa-caret-right play-music" data-id = "{{ $cate_song->id }}" id="cate_s"></i>
                                 </a>
                             </li>
                             @endforeach

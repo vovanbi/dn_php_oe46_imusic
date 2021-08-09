@@ -47,5 +47,6 @@ return [
     'contents'=>'Imusic updated a new song',
     'namesong'=>'Name of the song : ',
     'urlsong'=>'Listen now',
-    'thanks'=>'Thank you, wish you have a pleasant experience!'
+    'thanks'=>'Thank you, wish you have a pleasant experience!',
+    'notlogin'=>'Please login !',
 ];
