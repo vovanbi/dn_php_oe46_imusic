@@ -52,4 +52,10 @@ return [
     'urlsong'=>'Nghe liền',
     'thanks'=>'Cảm ơn bạn , chúc bạn có 1 trải nghiệm thú vị!',
     'notlogin'=>'Vui lòng đăng nhập',
+    'albumMail' => 'Chào bạn, một album mới vừa được ra mắt hôm nay',
+    'albumIntro' => 'Album mới đã sẵn sàng được nghe',
+    'albumName' => 'Tên album: ',
+    'contentMail' => 'Bạn có thể thêm album vào danh sách phát của bạn',
+    'toHomePage' => 'Đến trang chủ Imusic',
+    'thanksMail' => 'Cảm ơn bạn, hi vọng bạn sẽ có những trải nghiệm tuyệt vời',
 ];

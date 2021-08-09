@@ -2,13 +2,18 @@
 
 namespace App\Repositories\Album;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Album;
-use Illuminate\Support\Facades\Auth;
+use App\Jobs\SendEmailAlbum;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 use App\Repositories\Album\IAlbumRepository;
+use Illuminate\Support\Facades\Notification;
 
 class AlbumRepository extends BaseRepository implements IAlbumRepository
 {
@@ -58,6 +63,13 @@ class AlbumRepository extends BaseRepository implements IAlbumRepository
             'name' => $data['name'],
             'image' => $image_path,
         ]);
+
+        $users = User::isNotAdmin()->get();
+        foreach ($users as $user) {
+            dispatch(new SendEmailAlbum($user, $album))->delay(Carbon::now()->addSeconds(3));
+        }
+
+        return $album;
     }
 
     public function update($data, $album)

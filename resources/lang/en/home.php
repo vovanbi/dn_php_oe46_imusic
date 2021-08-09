@@ -49,4 +49,10 @@ return [
     'urlsong'=>'Listen now',
     'thanks'=>'Thank you, wish you have a pleasant experience!',
     'notlogin'=>'Please login !',
+    'albumMail' => 'Hi there, new album\'s release now',
+    'albumIntro' => 'New album\'s ready for listen',
+    'albumName' => 'Album name: ',
+    'contentMail' => 'You can add this album to your playlist',
+    'toHomePage' => 'Go to Home Page Imusic',
+    'thanksMail' => 'Thank you, hope you have nice experiences',
 ];
