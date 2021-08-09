@@ -43,4 +43,9 @@ return [
     'Notlogin'=>'Email-Address And Password Are Wrong.',
     'notsuccess'=>'Login not success',
     'logoutsucess'=>'Login not success',
+    'subjects'=>'Hey, Song New',
+    'contents'=>'Imusic updated a new song',
+    'namesong'=>'Name of the song : ',
+    'urlsong'=>'Listen now',
+    'thanks'=>'Thank you, wish you have a pleasant experience!'
 ];

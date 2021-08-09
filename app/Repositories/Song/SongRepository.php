@@ -8,6 +8,13 @@ use App\Models\Category;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\File;
 use App\Repositories\Song\ISongRepository;
+use Illuminate\Support\Facades\Notification;
+use App\Models\User;
+use Illuminate\Notifications\Notifiable;
+use App\Jobs\SendNotifiNewSongJob;
+use Mail;
+use App\Mail\NotificationNewSong;
+use Carbon\Carbon;
 
 class SongRepository extends BaseRepository implements ISongRepository
 {
@@ -37,6 +44,8 @@ class SongRepository extends BaseRepository implements ISongRepository
             'link'=>$data['link'],
             'artist_id' => $data['art_id']
         ]);
+
+        $this->sendNotify($song);
 
         return $song;
     }
@@ -146,5 +155,13 @@ class SongRepository extends BaseRepository implements ISongRepository
     public function searchSong($search)
     {
         return $this->model->searchName($search)->paginate(config('app.search_take_num'));
+    }
+    public function sendNotify($song)
+    {
+        $users = User::isnotAdmin()->get();
+
+        foreach ($users as $user) {
+            dispatch(new SendNotifiNewSongJob($user, $song))->delay(Carbon::now()->addSeconds(10));
+        }
     }
 }

@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $query->orderBy('fullname', 'desc');
     }
+
+    public function scopeisNotAdmin($query)
+    {
+        return $query->where('is_admin', config('app.user'));
+    }
 }
