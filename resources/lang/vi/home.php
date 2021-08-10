@@ -59,4 +59,8 @@ return [
     'toHomePage' => 'Đến trang chủ Imusic',
     'thanksMail' => 'Cảm ơn bạn, hi vọng bạn sẽ có những trải nghiệm tuyệt vời',
     'noNotify' => 'Không có thông báo nào',
+    'evening'=> 'Chào bạn có buổi chiều thật vui vẽ',
+    'listsong'=>'Danh sách bài hát cập nhật hôm nay',
+    'imusicSign'=>'iMusic pages',
+    'no' => 'STT',
 ];

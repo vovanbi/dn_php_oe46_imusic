@@ -56,4 +56,8 @@ return [
     'toHomePage' => 'Go to Home Page Imusic',
     'thanksMail' => 'Thank you, hope you have nice experiences',
     'noNotify' => 'No Notification',
+    'evening'=> 'Have a nice afternoon',
+    'listsong'=>'Song list updated today',
+    'imusicSign'=>'iMusic pages',
+    'no'=>'No.',
 ];
