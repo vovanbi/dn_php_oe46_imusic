@@ -84,8 +84,10 @@ class AlbumRepository extends BaseRepository implements IAlbumRepository
             env('PUSHER_APP_ID'),
             $options
         );
+        $title = trans('home.newAlbumNoti');
+        $time = $album->created_at->diffForHumans();
 
-        $pusher->trigger('AlbumNotifyEvent', 'send-message', $album);
+        $pusher->trigger('AlbumNotifyEvent', 'send-message', ['album' => $album, 'time' => $time, 'title' => $title]);
 
         return $album;
     }

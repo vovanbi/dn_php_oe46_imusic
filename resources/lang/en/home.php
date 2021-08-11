@@ -76,4 +76,5 @@ return [
     'month' => 'Month Report',
     'quarter' => 'Quarter Report',
     'year' => 'Year Report',
+    'newAlbumNoti' => 'New album\'s release:',
 ];

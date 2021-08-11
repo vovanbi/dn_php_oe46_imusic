@@ -11,16 +11,18 @@ var count_noti = Number($('.cart-items').html());
 var channel = pusher.subscribe('AlbumNotifyEvent');
 channel.bind('send-message', function(data) {
     var newNotificationHtml = `
-    <tr class="notif-count" data-id="${data.id}">
+    <tr class="notif-count" data-id="${data['album'].id}" data-album="${data['album'].id}">
         <td class="product-pic">
             <a>
-                <img src="/storage/${data.image}" alt="">
+                <img src="/storage/${data['album'].image}" alt="">
             </a>
         </td>
         <td class="product-text">
             <a>
                 <div class="product-info">
-                    <span>${data.name}</span>
+                    <p class="new-noti">${data['title']}</p>
+                    <h5 class="noti-name">${data['album'].name}</h5>
+                    <p class="noti-time">${data['time']}</p>
                 </div>
             </a>
         </td>
@@ -37,6 +39,7 @@ function readNotify() {
         e.preventDefault();
         var noti_id = $(this).data('id');
         var album = $(this).find('.product-info');
+        var _this = $(this);
         if (count_noti > 0) {
             count_noti -= 1;
         } else {
@@ -49,6 +52,7 @@ function readNotify() {
             {   
                 $('.cart-items').html(count_noti);
                 album.addClass('read');
+                $(_this).addClass('read');
             }
         })
     });
