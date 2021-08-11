@@ -44,3 +44,8 @@ $(function (){
           $("#form_song").submit();
       })
   })
+
+$('.album-select').change(function (){
+    $("#form_order").submit();
+})
+

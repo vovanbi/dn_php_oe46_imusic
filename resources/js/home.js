@@ -51,16 +51,6 @@ function markAsRead()
 }
 
 markAsRead()
- $('.cart-box').on('click',function(e) {
-    $(this).toggleClass('show');
-    e.stopPropagation();
-});
-
-$(document).on('click', function(e) {
-    if ($(e.target).is('.cart-box') === false) {
-        $('.cart-box').removeClass('show');
-    }
-});
 
 function detailSong() {
 $('#detail-noti').on('click', function(e){

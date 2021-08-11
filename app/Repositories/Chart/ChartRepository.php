@@ -8,6 +8,8 @@ use App\Charts\SongChart;
 use Carbon\Carbon;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use App\Models\Album;
+use App\Charts\AlbumChart;
 
 class ChartRepository extends BaseRepository implements IChartRepository
 {
@@ -110,5 +112,98 @@ class ChartRepository extends BaseRepository implements IChartRepository
         }
 
         return $chart;
+    }
+
+    public function albumChart($data)
+    {
+        $time = strtotime("january");
+    
+        $jan = date("Y-m-d", strtotime(date("Y-m-d", $time)));
+        $feb = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +1 month"));
+        $mar = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +2 month"));
+        $apr = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +3 month"));
+        $may = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +4 month"));
+        $jun = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +5 month"));
+        $jul = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +6 month"));
+        $aug = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +7 month"));
+        $sep = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +8 month"));
+        $oct = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +9 month"));
+        $nov = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +10 month"));
+        $dec = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +11 month"));
+        $janNextYear = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +12 month"));
+
+        $albumChart = new AlbumChart();
+
+        if ($data['time2'] == 'm') {
+            $albumJan = Album::whereBetween('created_at', [$jan, $feb])->count();
+            $albumFeb = Album::whereBetween('created_at', [$feb, $mar])->count();
+            $albumMar = Album::whereBetween('created_at', [$mar, $apr])->count();
+            $albumApr = Album::whereBetween('created_at', [$apr, $may])->count();
+            $albumMay = Album::whereBetween('created_at', [$may, $jun])->count();
+            $albumJun = Album::whereBetween('created_at', [$jun, $jul])->count();
+            $albumJul = Album::whereBetween('created_at', [$jul, $aug])->count();
+            $albumAug = Album::whereBetween('created_at', [$aug, $sep])->count();
+            $albumSep = Album::whereBetween('created_at', [$sep, $oct])->count();
+            $albumOct = Album::whereBetween('created_at', [$oct, $nov])->count();
+            $albumNov = Album::whereBetween('created_at', [$nov, $dec])->count();
+            $albumDec = Album::whereBetween('created_at', [$dec, $janNextYear])->count();
+
+            $dataset = [
+                $albumJan,
+                $albumFeb,
+                $albumMar,
+                $albumApr,
+                $albumMay,
+                $albumJun,
+                $albumJul,
+                $albumAug,
+                $albumSep,
+                $albumOct,
+                $albumNov,
+                $albumDec,
+            ];
+            $albumChart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+        }
+
+        if ($data['time2'] == 'Q') {
+            $albumFirstQuarter = Album::whereBetween('created_at', [$jan, $apr])->count();
+            $albumSecondQuarter = Album::whereBetween('created_at', [$apr, $jul])->count();
+            $albumThirdQuarter = Album::whereBetween('created_at', [$jul, $oct])->count();
+            $albumForthQuarter = Album::whereBetween('created_at', [$oct, $jan])->count();
+    
+            $dataset = [
+                $albumFirstQuarter,
+                $albumSecondQuarter,
+                $albumThirdQuarter,
+                $albumForthQuarter,
+            ];
+
+            $albumChart->labels(['First Quarter','Second Quarter', 'Third Quater', 'Fourth Quater']);
+        }
+
+        if ($data['time2'] == 'Y') {
+            $oldYear     = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " -24 month"));
+            $lastYear    = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " -12 month"));
+            $currentYear = date("Y-m-d", strtotime(date("Y-m-d", $time)));
+            $nextYear    = date("Y-m-d", strtotime(date("Y-m-d", $time)  . " +12 month"));
+
+            $albumOldYear  = Album::whereBetween('created_at', [$oldYear, $lastYear])->count();
+            $albumLastYear = Album::whereBetween('created_at', [$lastYear, $currentYear])->count();
+            $albumYear  = Album::whereBetween('created_at', [$currentYear, $nextYear])->count();
+
+            $dataset = [
+                $albumOldYear,
+                $albumLastYear,
+                $albumYear
+            ];
+
+            $albumChart->labels([$oldYear, $lastYear, $currentYear]);
+        }
+
+        $albumChart->dataset('News Album', 'bar', $dataset)
+                ->color("#00CCCC")
+                ->backgroundcolor("#00CCCC");
+
+        return $albumChart;
     }
 }

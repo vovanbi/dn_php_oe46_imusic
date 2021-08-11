@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('statistical', [App\Http\Controllers\Admin\HomeController::class,
         'statistiSong'])->name('song-statistical');
+    Route::get('album-chart', [App\Http\Controllers\Admin\HomeController::class, 'albumChart'])->name('albumChart');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
