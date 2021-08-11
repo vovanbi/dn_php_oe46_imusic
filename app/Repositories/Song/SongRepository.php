@@ -147,7 +147,7 @@ class SongRepository extends BaseRepository implements ISongRepository
 
     public function topTrending()
     {
-        return $this->model::select('view', 'name', 'id', 'image')
+        return $this->model::select('view', 'name', 'id', 'image', 'cate_id')
         ->whereMonth('created_at', date('m'))->orderBy('view', 'desc')->get();
     }
 
