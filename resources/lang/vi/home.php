@@ -79,4 +79,5 @@ return [
     'month' => 'Báo cáo tháng',
     'quarter' => 'Báo cáo quý',
     'year' => 'Báo cáo năm',
+    'newAlbumNoti' => 'Album mới vừa ra mắt:',
 ];

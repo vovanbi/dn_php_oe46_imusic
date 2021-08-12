@@ -101,7 +101,7 @@
                       <table>
                           <tbody class="new-notify">
                             @if(Auth::check())
-                                @foreach(Auth::user()->unreadNotifications as $notification)
+                                @foreach(Auth::user()->unReadNotifications as $notification)
                                   <tr class="notif-count" id="detail-noti" data-id ="{{$notification->id}}" data-song="{{$notification->data['id']}}">
                                     <td class="product-pic">
                                       <a href="">
@@ -111,7 +111,9 @@
                                     <td class="product-text">
                                       <a href="">
                                         <div class="product-info">
-                                          <h5>{{$notification->data['name']}}</h5>
+                                          <p class="new-noti">@lang('home.newAlbumNoti')</p>
+                                          <h5 class="noti-name">{{$notification->data['name']}}</h5>
+                                          <p class="noti-time">{{$notification->created_at->diffForHumans()}}</p>
                                         </div>
                                       </a>
                                     </td>
